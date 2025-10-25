@@ -21,14 +21,17 @@
     <Filter Include="소스 파일\99. Headers\Andromeda">
       <UniqueIdentifier>{42a4a856-248f-49c0-96d8-527625721ec6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\03. Object">
-      <UniqueIdentifier>{e6b2931a-244e-4c1c-aa6b-afa5deaf7487}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\02. Scene">
       <UniqueIdentifier>{4be727dc-3ae1-410b-abe6-786109c539f2}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\02. Scene\Game">
       <UniqueIdentifier>{6b20ce57-5a97-4038-9f5a-ba170c4cf1a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03. Objects">
+      <UniqueIdentifier>{e6b2931a-244e-4c1c-aa6b-afa5deaf7487}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03. Objects\Game">
+      <UniqueIdentifier>{aed6c673-a360-47e7-aa90-28b6ed446316}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +83,21 @@
     <ClInclude Include="GameScene.h">
       <Filter>소스 파일\02. Scene\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>소스 파일\03. Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Missile.h">
+      <Filter>소스 파일\03. Objects\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>소스 파일\03. Objects\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>소스 파일\03. Objects\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>소스 파일\01. Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -111,6 +129,21 @@
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
       <Filter>소스 파일\02. Scene\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>소스 파일\03. Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Missile.cpp">
+      <Filter>소스 파일\03. Objects\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>소스 파일\03. Objects\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일\03. Objects\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>소스 파일\01. Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

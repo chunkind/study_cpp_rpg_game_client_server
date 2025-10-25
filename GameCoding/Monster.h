@@ -1,18 +1,16 @@
 #pragma once
 
-#include "Scene.h"
+#include "Object.h"
 
-class DevScene : public Scene
+class Monster : public Object
 {
 public:
-	DevScene();
-	virtual ~DevScene() override;
+	Monster();
+	virtual ~Monster() override;
 
 	virtual void Init() override;
 	virtual void Update() override;
 	virtual void Render(HDC hdc) override;
-
 public:
-
 };
 
