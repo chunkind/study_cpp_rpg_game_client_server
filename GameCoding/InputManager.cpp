@@ -16,11 +16,11 @@ void InputManager::Update()
 	for (uint32 key = 0; key < KEY_TYPE_COUNT; key++)
 	{
 		// 키가 눌려 있으면 true
-		if (asciiKeys[key] & 0x80) // 16진수 0x80 => 10진수 128
+		if (asciiKeys[key] & 0x80)
 		{
 			KeyState& state = _states[key];
 
-			// 이전 프레임에 키를 누른상태라면 PRESS
+			// 이전 프레임에 키를 누른 상태라면 PRESS
 			if (state == KeyState::Press || state == KeyState::Down)
 				state = KeyState::Press;
 			else
@@ -30,7 +30,7 @@ void InputManager::Update()
 		{
 			KeyState& state = _states[key];
 
-			// 이전 프레임에 키를 누른상태라면 Up
+			// 이전 프레임에 키를 누른 상태라면 UP
 			if (state == KeyState::Press || state == KeyState::Down)
 				state = KeyState::Up;
 			else
@@ -39,6 +39,6 @@ void InputManager::Update()
 	}
 
 	// Mouse
-	::GetCursorPos(&_mousePos); // 커서 좌표를 알아온다.
+	::GetCursorPos(&_mousePos); // 커서의 좌표를 알아온다
 	::ScreenToClient(_hwnd, &_mousePos);
 }

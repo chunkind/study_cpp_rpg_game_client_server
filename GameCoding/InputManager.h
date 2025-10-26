@@ -11,10 +11,15 @@ enum class KeyType
 	Right = VK_RIGHT,
 	SpaceBar = VK_SPACE,
 
+	KEY_1 = '1',
+	KEY_2 = '2',
+
 	W = 'W',
 	A = 'A',
 	S = 'S',
 	D = 'D',
+	Q = 'Q',
+	E = 'E'
 };
 
 enum class KeyState
@@ -29,7 +34,7 @@ enum class KeyState
 
 enum
 {
-	KEY_TYPE_COUNT = static_cast<int32>(UINT8_MAX) + 1, // UINT8_MAX::0xffui8 => 10진수로 255
+	KEY_TYPE_COUNT = static_cast<int32>(UINT8_MAX) + 1,
 	KEY_STATE_COUNT = static_cast<int32>(KeyState::End)
 };
 
@@ -47,10 +52,9 @@ public:
 	// 맨 처음 눌렀을 때
 	bool GetButtonDown(KeyType key) { return GetState(key) == KeyState::Down; }
 
-	// 맨 처음 눌렀다 땔때
+	// 맨 처음 눌렀다가 땔 때
 	bool GetButtonUp(KeyType key) { return GetState(key) == KeyState::Up; }
 
-	// 마우스 포지션
 	POINT GetMousePos() { return _mousePos; }
 
 private:

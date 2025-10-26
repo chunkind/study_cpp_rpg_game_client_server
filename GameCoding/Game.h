@@ -13,11 +13,12 @@ public:
 
 private:
 	HWND _hwnd = {};
-	HDC _hdc = {};
+	HDC hdc = {};
 
 private:
+	// Double Buffering
 	RECT _rect;
-	HDC _hdcBack = {};
+	HDC hdcBack = {};
 	HBITMAP _bmpBack = {};
 };
 

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "SceneManager.h"
 #include "DevScene.h"
-#include "GameScene.h"
+#include "EditScene.h"
 
 void SceneManager::Init()
 {
@@ -37,8 +37,8 @@ void SceneManager::ChangeScene(SceneType sceneType)
 	case SceneType::DevScene:
 		newScene = new DevScene();
 		break;
-	case SceneType::GameScene:
-		newScene = new GameScene();
+	case SceneType::EditScene:
+		newScene = new EditScene();
 		break;
 	}
 
