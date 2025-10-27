@@ -8,8 +8,22 @@
 #include <map>
 #include <queue>
 using namespace std;
+#include "ThreadManager.h"
+
+void TestThread()
+{
+	cout << "HI! i am thread" << LThreadId << endl;
+
+	while (true)
+	{
+
+	}
+}
 
 int main()
 {
-	int32 a;
+	for (int32 i = 0; i < 10; i++)
+		GThreadManager->Launch(TestThread);
+
+	GThreadManager->Join();
 }
