@@ -1,94 +1,101 @@
 #include "pch.h"
-//#include <iostream>
-//#include <thread>
-//#include <vector>
-//using namespace std;
-//#include <atomic>
-//#include <mutex>
+#include <iostream>
+#include <thread>
+#include <vector>
+using namespace std;
+#include <atomic>
+#include <mutex>
+#include <windows.h>
+#include "ThreadManager.h"
 
-// TCP 서버
-// 1) 새로운 소켓 생성 (socket)
-// 2) 소켓에 주소/포트 번호 설정 (bind)
-// 3) 소켓 일 시키기 (listen)
-// 4) 손님 접속 (accept)
-// 5) 클라와 통신
+const int32 BUFSIZE = 1000;
 
-// UDP 서버
-// 1) 새로운 소켓 생성 (socket)
-// 2) 소켓에 주소/포트 번호 설정 (bind)
-// 3) 클라와 통신
+struct Session
+{
+	SOCKET socket = INVALID_SOCKET;
+	char recvBuffer[BUFSIZE] = {};
+	int32 recvBytes = 0;
+	//new
+	WSAOVERLAPPED overlapped = {};
+};
 
 int main()
 {
-	cout << "=============== Server Program ===============" << endl;
-	// 초기화
-	WSADATA wsaData;
-	if (::WSAStartup(MAKEWORD(2, 2), &wsaData))
-		return 0;
+	SocketUtils::Init();
 
-	// 1) 소켓 생성
-	// ad : Address Family (AF_INET = IPv4, AF_INET6 = IPv6)
-	// type : TCP(SOCK_STREAM) vs UDP(SOCK_DGRAM)
-	// protocol : 0
-	// return : descriptor
-	// int32 errorCode = ::WSAGetLastError();
-	//SOCKET listenSocket = ::socket(AF_INET, SOCK_STREAM, 0);
-	SOCKET listenSocket = ::socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+	SOCKET listenSocket = ::socket(AF_INET, SOCK_STREAM, 0);
 	if (listenSocket == INVALID_SOCKET)
 		return 0;
 
-	// 2) 주소/포트 번호 설정 (bind)
-	SOCKADDR_IN serverAddr;
-	::memset(&serverAddr, 0, sizeof(serverAddr));
-	serverAddr.sin_family = AF_INET;
-	serverAddr.sin_addr.s_addr = ::htonf(INADDR_ANY);
-	serverAddr.sin_port = ::htons(7777);
-
-	if(::bind(listenSocket, (SOCKADDR*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)
+	u_long on = 1;
+	if (::ioctlsocket(listenSocket, FIONBIO, &on) == INVALID_SOCKET)
 		return 0;
 
-	// 3) 업무 개시 (listen)
-	//if (::listen(listenSocket, SOMAXCONN) == SOCKET_ERROR)
-		//return 0;
+	SocketUtils::SetReuseAddress(listenSocket, true);
 
-	// 4)
+	if (SocketUtils::BindAnyAddress(listenSocket, 7777) == false)
+		return 0;
+
+	SocketUtils::Listen(listenSocket);
+
+	SOCKADDR_IN clientAddr;
+	int32 addrLen = sizeof(clientAddr);
+
 	while (true)
 	{
 		SOCKADDR_IN clientAddr;
-		::memset(&clientAddr, 0, sizeof(clientAddr));
 		int32 addrLen = sizeof(clientAddr);
 
-		// 클라이언트 소켓 받기
-		/*SOCKET clientSocket = ::accept(listenSocket, (SOCKADDR*)&clientAddr, &addrLen);
-		if (clientSocket == INVALID_SOCKET)
+		SOCKET clientSocket;
+		while (true)
+		{
+			clientSocket = ::accept(listenSocket, (SOCKADDR*)&clientAddr, &addrLen);
+			if (clientSocket != INVALID_SOCKET)
+				break;
+
+			if (::WSAGetLastError() == WSAEWOULDBLOCK)
+				continue;
+
+			// 문제 있는 상황
 			return 0;
+		}
 
-		char ip[16];
-		::inet_ntop(AF_INET, &clientAddr.sin_addr, ip, sizeof(ip));
-		cout << "Client Connected! IP = " << ip << endl;*/
+		Session session = Session{ clientSocket };
+		WSAEVENT wsaEvent = ::WSACreateEvent();
+		session.overlapped.hEvent = wsaEvent;
 
-		//while (true)
-		//{
-			// 클라에서 받기
-			char recvBuffer[100];
-			//int32 recvLen = ::recv(clientSocket, recvBuffer, sizeof(recvBuffer), 0);
-			int32 recvLen = ::recvfrom(listenSocket, recvBuffer, sizeof(recvBuffer), 0, (SOCKADDR*)&clientAddr, &addrLen);
-			if (recvLen <= 0)
-				return 0;
+		cout << "Client Connected !" << endl;
 
-			cout << "Recv Data : " << recvBuffer << endl;
-			cout << "Recv Data Len : " << recvLen << endl;
+		while (true)
+		{
+			WSABUF wsaBuf;
+			wsaBuf.buf = session.recvBuffer;
+			wsaBuf.len = BUFSIZE;
 
-			// 클라로 보내기
-			/*int32 resultCode = ::send(clientSocket, recvBuffer, recvLen, 0);
-			if (resultCode == SOCKET_ERROR)
-				return 0;*/
+			DWORD recvLen = 0;
+			DWORD flags = 0;
+			if (::WSARecv(clientSocket, &wsaBuf, 1, &recvLen, &flags, &session.overlapped, nullptr) == SOCKET_ERROR)
+			{
+				if (::WSAGetLastError() == WSA_IO_PENDING)
+				{
+					// Pending
+					::WSAWaitForMultipleEvents(1, &wsaEvent, TRUE, WSA_INFINITE, FALSE);
+					::WSAGetOverlappedResult(session.socket, &session.overlapped, &recvLen, FALSE, &flags);
+				}
+				else
+				{
+					// TODO : 문제 있는 상황
+					break;
+				}
+			}
 
-			this_thread::sleep_for(1s);
+			cout << "Data Recv = " << session.recvBuffer << endl;
+			cout << "Data Recv Len = " << recvLen << endl;
+		}
 
-		//}
+		::closesocket(session.socket);
+		::WSACloseEvent(wsaEvent);
 	}
 
-	::closesocket(listenSocket);
-	::WSACleanup();
+	SocketUtils::Close(listenSocket);
 }
