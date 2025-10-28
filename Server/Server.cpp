@@ -6,12 +6,17 @@
 //#include <atomic>
 //#include <mutex>
 
-// 서버
+// TCP 서버
 // 1) 새로운 소켓 생성 (socket)
 // 2) 소켓에 주소/포트 번호 설정 (bind)
 // 3) 소켓 일 시키기 (listen)
 // 4) 손님 접속 (accept)
 // 5) 클라와 통신
+
+// UDP 서버
+// 1) 새로운 소켓 생성 (socket)
+// 2) 소켓에 주소/포트 번호 설정 (bind)
+// 3) 클라와 통신
 
 int main()
 {
@@ -27,7 +32,8 @@ int main()
 	// protocol : 0
 	// return : descriptor
 	// int32 errorCode = ::WSAGetLastError();
-	SOCKET listenSocket = ::socket(AF_INET, SOCK_STREAM, 0);
+	//SOCKET listenSocket = ::socket(AF_INET, SOCK_STREAM, 0);
+	SOCKET listenSocket = ::socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	if (listenSocket == INVALID_SOCKET)
 		return 0;
 
@@ -42,8 +48,8 @@ int main()
 		return 0;
 
 	// 3) 업무 개시 (listen)
-	if (::listen(listenSocket, SOMAXCONN) == SOCKET_ERROR)
-		return 0;
+	//if (::listen(listenSocket, SOMAXCONN) == SOCKET_ERROR)
+		//return 0;
 
 	// 4)
 	while (true)
@@ -53,19 +59,20 @@ int main()
 		int32 addrLen = sizeof(clientAddr);
 
 		// 클라이언트 소켓 받기
-		SOCKET clientSocket = ::accept(listenSocket, (SOCKADDR*)&clientAddr, &addrLen);
+		/*SOCKET clientSocket = ::accept(listenSocket, (SOCKADDR*)&clientAddr, &addrLen);
 		if (clientSocket == INVALID_SOCKET)
 			return 0;
 
 		char ip[16];
 		::inet_ntop(AF_INET, &clientAddr.sin_addr, ip, sizeof(ip));
-		cout << "Client Connected! IP = " << ip << endl;
+		cout << "Client Connected! IP = " << ip << endl;*/
 
-		while (true)
-		{
+		//while (true)
+		//{
 			// 클라에서 받기
 			char recvBuffer[100];
-			int32 recvLen = ::recv(clientSocket, recvBuffer, sizeof(recvBuffer), 0);
+			//int32 recvLen = ::recv(clientSocket, recvBuffer, sizeof(recvBuffer), 0);
+			int32 recvLen = ::recvfrom(listenSocket, recvBuffer, sizeof(recvBuffer), 0, (SOCKADDR*)&clientAddr, &addrLen);
 			if (recvLen <= 0)
 				return 0;
 
@@ -73,11 +80,13 @@ int main()
 			cout << "Recv Data Len : " << recvLen << endl;
 
 			// 클라로 보내기
-			int32 resultCode = ::send(clientSocket, recvBuffer, recvLen, 0);
+			/*int32 resultCode = ::send(clientSocket, recvBuffer, recvLen, 0);
 			if (resultCode == SOCKET_ERROR)
-				return 0;
+				return 0;*/
 
-		}
+			this_thread::sleep_for(1s);
+
+		//}
 	}
 
 	::closesocket(listenSocket);
