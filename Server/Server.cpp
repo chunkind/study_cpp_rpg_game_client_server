@@ -12,12 +12,21 @@ const int32 BUFSIZE = 1000;
 
 struct Session
 {
+	WSAOVERLAPPED overlapped = {};
 	SOCKET socket = INVALID_SOCKET;
 	char recvBuffer[BUFSIZE] = {};
 	int32 recvBytes = 0;
-	//new
-	WSAOVERLAPPED overlapped = {};
 };
+
+//new
+void CALLBACK RecvCallback(DWORD error, DWORD recvLen, LPWSAOVERLAPPED overlapped, DWORD flags)
+{
+	cout << "Data Recv Len Callback = " << recvLen << endl;
+	// TODO : 에코 서버를 만든다면 WSASend()
+
+	Session* session = (Session*)overlapped;
+	cout << "Data Recv = " << session->recvBuffer << endl;
+}
 
 int main()
 {
@@ -38,8 +47,9 @@ int main()
 
 	SocketUtils::Listen(listenSocket);
 
-	SOCKADDR_IN clientAddr;
-	int32 addrLen = sizeof(clientAddr);
+	//old
+	/*SOCKADDR_IN clientAddr;
+	int32 addrLen = sizeof(clientAddr);*/
 
 	while (true)
 	{
@@ -61,8 +71,9 @@ int main()
 		}
 
 		Session session = Session{ clientSocket };
-		WSAEVENT wsaEvent = ::WSACreateEvent();
-		session.overlapped.hEvent = wsaEvent;
+		//old
+		//WSAEVENT wsaEvent = ::WSACreateEvent();
+		//session.overlapped.hEvent = wsaEvent;
 
 		cout << "Client Connected !" << endl;
 
@@ -74,13 +85,20 @@ int main()
 
 			DWORD recvLen = 0;
 			DWORD flags = 0;
-			if (::WSARecv(clientSocket, &wsaBuf, 1, &recvLen, &flags, &session.overlapped, nullptr) == SOCKET_ERROR)
+			//old
+			//if (::WSARecv(clientSocket, &wsaBuf, 1, &recvLen, &flags, &session.overlapped, nullptr) == SOCKET_ERROR)
+			//new
+			if (::WSARecv(clientSocket, &wsaBuf, 1, &recvLen, &flags, &session.overlapped, RecvCallback) == SOCKET_ERROR)
 			{
 				if (::WSAGetLastError() == WSA_IO_PENDING)
 				{
 					// Pending
-					::WSAWaitForMultipleEvents(1, &wsaEvent, TRUE, WSA_INFINITE, FALSE);
-					::WSAGetOverlappedResult(session.socket, &session.overlapped, &recvLen, FALSE, &flags);
+					//old
+					//::WSAWaitForMultipleEvents(1, &wsaEvent, TRUE, WSA_INFINITE, FALSE);
+					//::WSAGetOverlappedResult(session.socket, &session.overlapped, &recvLen, FALSE, &flags);
+					//new
+					// Alertable Wait					
+					::SleepEx(INFINITE, TRUE);
 				}
 				else
 				{
@@ -89,12 +107,13 @@ int main()
 				}
 			}
 
-			cout << "Data Recv = " << session.recvBuffer << endl;
+			//cout << "Data Recv = " << session.recvBuffer << endl;
 			cout << "Data Recv Len = " << recvLen << endl;
 		}
 
 		::closesocket(session.socket);
-		::WSACloseEvent(wsaEvent);
+		//old
+		//::WSACloseEvent(wsaEvent);
 	}
 
 	SocketUtils::Close(listenSocket);
