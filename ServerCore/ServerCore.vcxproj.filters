@@ -37,10 +37,22 @@
     <ClCompile Include="ThreadManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SocketUtils.cpp">
+    <ClCompile Include="NetAddress.cpp">
       <Filter>소스 파일\Network</Filter>
     </ClCompile>
-    <ClCompile Include="NetAddress.cpp">
+    <ClCompile Include="IocpCore.cpp">
+      <Filter>소스 파일\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketUtils.cpp">
+      <Filter>소스 파일\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="IocpEvent.cpp">
+      <Filter>소스 파일\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Listener.cpp">
+      <Filter>소스 파일\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Session.cpp">
       <Filter>소스 파일\Network</Filter>
     </ClCompile>
   </ItemGroup>
@@ -64,10 +76,22 @@
       <Filter>소스 파일\Main</Filter>
     </ClInclude>
     <ClInclude Include="ThreadManager.h" />
-    <ClInclude Include="SocketUtils.h">
+    <ClInclude Include="NetAddress.h">
       <Filter>소스 파일\Network</Filter>
     </ClInclude>
-    <ClInclude Include="NetAddress.h">
+    <ClInclude Include="IocpCore.h">
+      <Filter>소스 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="SocketUtils.h">
+      <Filter>소스 파일\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="IocpEvent.h">
+      <Filter>소스 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Listener.h">
+      <Filter>소스 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Session.h">
       <Filter>소스 파일\Network</Filter>
     </ClInclude>
   </ItemGroup>
