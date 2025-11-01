@@ -34,9 +34,6 @@
     <ClCompile Include="CoreTLS.cpp">
       <Filter>소스 파일\Main</Filter>
     </ClCompile>
-    <ClCompile Include="ThreadManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="NetAddress.cpp">
       <Filter>소스 파일\Network</Filter>
     </ClCompile>
@@ -53,6 +50,12 @@
       <Filter>소스 파일\Network</Filter>
     </ClCompile>
     <ClCompile Include="Session.cpp">
+      <Filter>소스 파일\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadManager.cpp">
+      <Filter>소스 파일\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="Service.cpp">
       <Filter>소스 파일\Network</Filter>
     </ClCompile>
   </ItemGroup>
@@ -75,7 +78,6 @@
     <ClInclude Include="CoreTLS.h">
       <Filter>소스 파일\Main</Filter>
     </ClInclude>
-    <ClInclude Include="ThreadManager.h" />
     <ClInclude Include="NetAddress.h">
       <Filter>소스 파일\Network</Filter>
     </ClInclude>
@@ -92,6 +94,12 @@
       <Filter>소스 파일\Network</Filter>
     </ClInclude>
     <ClInclude Include="Session.h">
+      <Filter>소스 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadManager.h">
+      <Filter>소스 파일\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="Service.h">
       <Filter>소스 파일\Network</Filter>
     </ClInclude>
   </ItemGroup>
