@@ -14,7 +14,23 @@ using namespace std;
 class GameSession : public Session
 {
 public:
-	// TODO
+	~GameSession()
+	{
+		cout << "~GameSession" << endl;
+	}
+
+	virtual int32 OnRecv(BYTE* buffer, int32 len) override
+	{
+		// Echo
+		cout << "OnRecv Len = " << len << endl;
+		Send(buffer, len);
+		return len;
+	}
+
+	virtual void OnSend(int32 len) override
+	{
+		cout << "OnSend Len = " << len << endl;
+	}
 };
 
 int main()
@@ -24,9 +40,8 @@ int main()
 	ServerServiceRef service = make_shared<ServerService>(
 		NetAddress(L"127.0.0.1", 7777),
 		make_shared<IocpCore>(),
-		[]() { return make_shared<GameSession>(); },
-		100
-	);
+		[]() { return make_shared<GameSession>(); }, // TODO : SessionManager 등
+		100);
 
 	assert(service->Start());
 
@@ -43,5 +58,6 @@ int main()
 
 	GThreadManager->Join();
 
+	// 윈속 종료
 	SocketUtils::Clear();
 }
