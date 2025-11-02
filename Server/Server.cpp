@@ -9,33 +9,15 @@ using namespace std;
 #include "SocketUtils.h"
 #include "Listener.h"
 #include "Service.h"
-#include "Session.h"
-
-class GameSession : public Session
-{
-public:
-	~GameSession()
-	{
-		cout << "~GameSession" << endl;
-	}
-
-	virtual int32 OnRecv(BYTE* buffer, int32 len) override
-	{
-		// Echo
-		cout << "OnRecv Len = " << len << endl;
-		Send(buffer, len);
-		return len;
-	}
-
-	virtual void OnSend(int32 len) override
-	{
-		cout << "OnSend Len = " << len << endl;
-	}
-};
+#include "GameSession.h"
+#include "GameSessionManager.h"
+#include "ServerPacketHandler.h"
+#include "GameRoom.h"
 
 int main()
 {
 	SocketUtils::Init();
+	GRoom->Init();
 
 	ServerServiceRef service = make_shared<ServerService>(
 		NetAddress(L"127.0.0.1", 7777),
@@ -45,15 +27,10 @@ int main()
 
 	assert(service->Start());
 
-	for (int32 i = 0; i < 5; i++)
+	while (true)
 	{
-		GThreadManager->Launch([=]()
-			{
-				while (true)
-				{
-					service->GetIocpCore()->Dispatch();
-				}
-			});
+		service->GetIocpCore()->Dispatch(0);
+		GRoom->Update();
 	}
 
 	GThreadManager->Join();
