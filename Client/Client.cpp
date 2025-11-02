@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include "framework.h"
 #include "Client.h"
-#include "Game.h"
+#include "Core.h"
 
 HINSTANCE hInst;
 HWND g_hWnd;
@@ -22,8 +22,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     if (!InitInstance(hInstance, nCmdShow))
         return FALSE;
 
-    Game game;
-    game.Init(g_hWnd);
+    GET(Core)->Init(g_hWnd);
 
     MSG msg = {};
     uint64 prevTick = 0;
@@ -44,8 +43,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             uint64 now = ::GetTickCount64();
 
             if (now - prevTick >= 10) {
-                game.Update();
-                game.Render();
+                GET(Core)->Update();
+                GET(Core)->Render();
 
                 prevTick = now;
             }

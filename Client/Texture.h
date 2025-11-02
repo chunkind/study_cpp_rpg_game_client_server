@@ -1,7 +1,7 @@
 #pragma once
-#include "ResourceBase.h"
+#include "Res.h"
 
-class Texture : public ResourceBase
+class Texture : public Res
 {
 public:
 	Texture();

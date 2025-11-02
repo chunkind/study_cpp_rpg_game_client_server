@@ -1,10 +1,8 @@
 #pragma once
 
-class Game
+class Core
 {
-public:
-	Game();
-	~Game();
+	SING(Core)
 
 public:
 	void Init(HWND hwnd);

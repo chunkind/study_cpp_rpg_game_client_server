@@ -1,5 +1,5 @@
 #pragma once
-#include "ResourceBase.h"
+#include "Res.h"
 
 class Texture;
 
@@ -15,7 +15,7 @@ struct FlipbookInfo
 	bool loop = true;
 };
 
-class Flipbook : public ResourceBase
+class Flipbook : public Res
 {
 public:
 	Flipbook();

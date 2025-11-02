@@ -2,7 +2,7 @@
 
 class TimeMgr
 {
-	SING(TimeMgr);
+	SING(TimeMgr)
 
 public:
 	void Init();

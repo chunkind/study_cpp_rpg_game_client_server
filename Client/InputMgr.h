@@ -41,7 +41,7 @@ enum
 
 class InputMgr
 {
-	SING(InputMgr);
+	SING(InputMgr)
 
 public:
 	void Init(HWND hwnd);

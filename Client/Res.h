@@ -1,10 +1,10 @@
 #pragma once
 
-class ResourceBase
+class Res
 {
 public:
-	ResourceBase();
-	virtual ~ResourceBase();
+	Res();
+	virtual ~Res();
 
 	virtual void LoadFile(const wstring& path);
 	virtual void SaveFile(const wstring& path);

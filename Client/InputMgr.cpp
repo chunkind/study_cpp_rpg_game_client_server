@@ -1,6 +1,16 @@
 #include "pch.h"
 #include "InputMgr.h"
 
+InputMgr::InputMgr()
+{
+
+}
+
+InputMgr::~InputMgr()
+{
+
+}
+
 void InputMgr::Init(HWND hwnd)
 {
 	_hwnd = hwnd;

@@ -4,7 +4,7 @@ class Collider;
 
 class CollisionMgr
 {
-	SING(CollisionMgr);
+	SING(CollisionMgr)
 
 public:
 	void Init();

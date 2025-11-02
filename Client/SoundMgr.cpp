@@ -3,6 +3,11 @@
 #include "ResMgr.h"
 #include "Sound.h"
 
+SoundMgr::SoundMgr()
+{
+
+}
+
 SoundMgr::~SoundMgr()
 {
 	if (_soundDevice)

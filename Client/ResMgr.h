@@ -1,6 +1,6 @@
 #pragma once
 
-class ResourceBase;
+class Res;
 class Texture;
 class Sprite;
 class Flipbook;
@@ -10,9 +10,7 @@ class Sound;
 class ResMgr
 {
 public:
-	SING(ResMgr);
-
-	~ResMgr();
+	SING(ResMgr)
 
 public:
 	void Init(HWND hwnd, fs::path resourcePath);

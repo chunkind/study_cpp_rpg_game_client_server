@@ -6,6 +6,11 @@
 #include "Tilemap.h"
 #include "Sound.h"
 
+ResMgr::ResMgr()
+{
+
+}
+
 ResMgr::~ResMgr()
 {
 	Clear();

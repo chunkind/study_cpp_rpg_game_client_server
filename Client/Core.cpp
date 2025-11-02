@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Game.h"
+#include "Core.h"
 #include "TimeMgr.h"
 #include "InputMgr.h"
 #include "SceneMgr.h"
@@ -7,21 +7,21 @@
 #include "SoundMgr.h"
 #include "NetMgr.h"
 
-Game::Game()
+Core::Core()
 {
 
 }
 
-Game::~Game()
+Core::~Core()
 {
 	// 사실 마지막에 ..
-	GET(SceneMgr)->Clear();
-	GET(ResMgr)->Clear();
+	//GET(SceneMgr)->Clear();
+	//GET(ResMgr)->Clear();
 
 	_CrtDumpMemoryLeaks();
 }
 
-void Game::Init(HWND hwnd)
+void Core::Init(HWND hwnd)
 {
 	_hwnd = hwnd;
 	hdc = ::GetDC(hwnd);
@@ -45,7 +45,7 @@ void Game::Init(HWND hwnd)
 	GET(NetMgr)->Init();
 }
 
-void Game::Update()
+void Core::Update()
 {
 	GET(TimeMgr)->Update();
 	GET(InputMgr)->Update();
@@ -53,7 +53,7 @@ void Game::Update()
 	GET(NetMgr)->Update();
 }
 
-void Game::Render()
+void Core::Render()
 {
 	GET(SceneMgr)->Render(hdcBack);
 

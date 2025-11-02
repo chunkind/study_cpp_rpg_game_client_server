@@ -4,6 +4,16 @@
 #include "ThreadManager.h"
 #include "ServerSession.h"
 
+NetMgr::NetMgr()
+{
+
+}
+
+NetMgr::~NetMgr()
+{
+
+}
+
 void NetMgr::Init()
 {
 	SocketUtils::Init();

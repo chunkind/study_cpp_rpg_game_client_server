@@ -3,9 +3,7 @@
 
 class SoundMgr
 {
-	SING(SoundMgr);
-
-	~SoundMgr();
+	SING(SoundMgr)
 
 public:
 	void Init(HWND hwnd);

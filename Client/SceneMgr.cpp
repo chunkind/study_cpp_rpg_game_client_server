@@ -4,6 +4,16 @@
 #include "EditScene.h"
 #include "MyPlayer.h"
 
+SceneMgr::SceneMgr()
+{
+
+}
+
+SceneMgr::~SceneMgr()
+{
+
+}
+
 void SceneMgr::Init()
 {
 

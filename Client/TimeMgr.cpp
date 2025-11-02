@@ -1,6 +1,16 @@
 #include "pch.h"
 #include "TimeMgr.h"
 
+TimeMgr::TimeMgr()
+{
+
+}
+
+TimeMgr::~TimeMgr()
+{
+
+}
+
 void TimeMgr::Init()
 {
 	::QueryPerformanceFrequency(reinterpret_cast<LARGE_INTEGER*>(&_frequency));

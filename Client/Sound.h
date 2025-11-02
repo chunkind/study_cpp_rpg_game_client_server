@@ -1,5 +1,5 @@
 #pragma once
-#include "ResourceBase.h"
+#include "Res.h"
 
 enum class SoundType
 {
@@ -7,7 +7,7 @@ enum class SoundType
 	Normal,
 };
 
-class Sound : public ResourceBase
+class Sound : public Res
 {
 public:
 	Sound();

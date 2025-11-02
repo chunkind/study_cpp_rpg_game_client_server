@@ -1,5 +1,5 @@
 #pragma once
-#include "ResourceBase.h"
+#include "Res.h"
 
 struct Tile
 {
@@ -7,7 +7,7 @@ struct Tile
 	int32 value = 0;
 };
 
-class Tilemap : public ResourceBase
+class Tilemap : public Res
 {
 public:
 	Tilemap();
