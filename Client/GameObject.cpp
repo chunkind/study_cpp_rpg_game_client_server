@@ -1,12 +1,12 @@
 #include "pch.h"
 #include "GameObject.h"
 #include "Creature.h"
-#include "InputManager.h"
-#include "TimeManager.h"
-#include "ResourceManager.h"
+#include "InputMgr.h"
+#include "TimeMgr.h"
+#include "ResMgr.h"
 #include "Flipbook.h"
 #include "CameraComponent.h"
-#include "SceneManager.h"
+#include "SceneMgr.h"
 #include "DevScene.h"
 
 GameObject::GameObject()
@@ -77,7 +77,7 @@ bool GameObject::HasReachedDest()
 
 bool GameObject::CanGo(Vec2Int cellPos)
 {
-	DevScene* scene = dynamic_cast<DevScene*>(GET_SINGLE(SceneManager)->GetCurrentScene());
+	DevScene* scene = dynamic_cast<DevScene*>(GET(SceneMgr)->GetCurrentScene());
 	if (scene == nullptr)
 		return false;
 
@@ -102,7 +102,7 @@ void GameObject::SetCellPos(Vec2Int cellPos, bool teleport /*= false*/)
 	info.set_posx(cellPos.x);
 	info.set_posy(cellPos.y);
 
-	DevScene* scene = dynamic_cast<DevScene*>(GET_SINGLE(SceneManager)->GetCurrentScene());
+	DevScene* scene = dynamic_cast<DevScene*>(GET(SceneMgr)->GetCurrentScene());
 	if (scene == nullptr)
 		return;
 

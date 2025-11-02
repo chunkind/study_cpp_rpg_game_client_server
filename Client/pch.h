@@ -12,7 +12,7 @@
 #include "Struct.pb.h"
 #include <assert.h>
 #include "ClientPacketHandler.h"
-#include "NetworkManager.h"
+#include "NetMgr.h"
 
 // C++20
 #include <format>

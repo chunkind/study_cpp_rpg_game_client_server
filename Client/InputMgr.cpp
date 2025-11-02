@@ -1,13 +1,13 @@
 #include "pch.h"
-#include "InputManager.h"
+#include "InputMgr.h"
 
-void InputManager::Init(HWND hwnd)
+void InputMgr::Init(HWND hwnd)
 {
 	_hwnd = hwnd;
 	_states.resize(KEY_TYPE_COUNT, KeyState::None);
 }
 
-void InputManager::Update()
+void InputMgr::Update()
 {
 	BYTE asciiKeys[KEY_TYPE_COUNT] = {};
 	if (::GetKeyboardState(asciiKeys) == false)

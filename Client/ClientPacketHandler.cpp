@@ -3,7 +3,7 @@
 #include "BufferReader.h"
 #include "DevScene.h"
 #include "MyPlayer.h"
-#include "SceneManager.h"
+#include "SceneMgr.h"
 
 void ClientPacketHandler::HandlePacket(ServerSessionRef session, BYTE* buffer, int32 len)
 {
@@ -82,12 +82,12 @@ void ClientPacketHandler::Handle_S_MyPlayer(ServerSessionRef session, BYTE* buff
 	//
 	const Protocol::ObjectInfo& info = pkt.info();
 
-	DevScene* scene = GET_SINGLE(SceneManager)->GetDevScene();
+	DevScene* scene = GET(SceneMgr)->GetDevScene();
 	if (scene)
 	{
 		MyPlayer* myPlayer = scene->SpawnObject<MyPlayer>(Vec2Int{ info.posx(), info.posy() });
 		myPlayer->info = info;
-		GET_SINGLE(SceneManager)->SetMyPlayer(myPlayer);
+		GET(SceneMgr)->SetMyPlayer(myPlayer);
 	}
 }
 
@@ -100,7 +100,7 @@ void ClientPacketHandler::Handle_S_AddObject(ServerSessionRef session, BYTE* buf
 	Protocol::S_AddObject pkt;
 	pkt.ParseFromArray(&header[1], size - sizeof(PacketHeader));
 
-	DevScene* scene = GET_SINGLE(SceneManager)->GetDevScene();
+	DevScene* scene = GET(SceneMgr)->GetDevScene();
 	if (scene)
 		scene->Handle_S_AddObject(pkt);
 }
@@ -114,7 +114,7 @@ void ClientPacketHandler::Handle_S_RemoveObject(ServerSessionRef session, BYTE* 
 	Protocol::S_RemoveObject pkt;
 	pkt.ParseFromArray(&header[1], size - sizeof(PacketHeader));
 
-	DevScene* scene = GET_SINGLE(SceneManager)->GetDevScene();
+	DevScene* scene = GET(SceneMgr)->GetDevScene();
 	if (scene)
 		scene->Handle_S_RemoveObject(pkt);
 }
@@ -130,10 +130,10 @@ void ClientPacketHandler::Handle_S_Move(ServerSessionRef session, BYTE* buffer, 
 	//
 	const Protocol::ObjectInfo& info = pkt.info();
 
-	DevScene* scene = GET_SINGLE(SceneManager)->GetDevScene();
+	DevScene* scene = GET(SceneMgr)->GetDevScene();
 	if (scene)
 	{
-		uint64 myPlayerId = GET_SINGLE(SceneManager)->GetMyPlayerId();
+		uint64 myPlayerId = GET(SceneMgr)->GetMyPlayerId();
 		if (myPlayerId == info.objectid())
 			return;
 
@@ -151,7 +151,7 @@ SendBufferRef ClientPacketHandler::Make_C_Move()
 {
 	Protocol::C_Move pkt;
 
-	MyPlayer* myPlayer = GET_SINGLE(SceneManager)->GetMyPlayer();
+	MyPlayer* myPlayer = GET(SceneMgr)->GetMyPlayer();
 
 	*pkt.mutable_info() = myPlayer->info;
 

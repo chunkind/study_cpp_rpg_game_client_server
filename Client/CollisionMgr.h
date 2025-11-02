@@ -2,9 +2,9 @@
 
 class Collider;
 
-class CollisionManager
+class CollisionMgr
 {
-	DECLARE_SINGLE(CollisionManager);
+	SING(CollisionMgr);
 
 public:
 	void Init();

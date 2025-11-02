@@ -1,11 +1,11 @@
 #include "pch.h"
 #include "Creature.h"
-#include "InputManager.h"
-#include "TimeManager.h"
-#include "ResourceManager.h"
+#include "InputMgr.h"
+#include "TimeMgr.h"
+#include "ResMgr.h"
 #include "Flipbook.h"
 #include "CameraComponent.h"
-#include "SceneManager.h"
+#include "SceneMgr.h"
 #include "DevScene.h"
 
 Creature::Creature()
@@ -49,7 +49,7 @@ void Creature::OnDamaged(Creature* attacker)
 	stat.hp = max(0, stat.hp - damage);
 	if (stat.hp == 0)
 	{
-		Scene* scene = GET_SINGLE(SceneManager)->GetCurrentScene();
+		Scene* scene = GET(SceneMgr)->GetCurrentScene();
 		if (scene)
 		{
 			scene->RemoveActor(this);

@@ -1,11 +1,11 @@
 #include "pch.h"
 #include "Game.h"
-#include "TimeManager.h"
-#include "InputManager.h"
-#include "SceneManager.h"
-#include "ResourceManager.h"
-#include "SoundManager.h"
-#include "NetworkManager.h"
+#include "TimeMgr.h"
+#include "InputMgr.h"
+#include "SceneMgr.h"
+#include "ResMgr.h"
+#include "SoundMgr.h"
+#include "NetMgr.h"
 
 Game::Game()
 {
@@ -15,8 +15,8 @@ Game::Game()
 Game::~Game()
 {
 	// 사실 마지막에 ..
-	GET_SINGLE(SceneManager)->Clear();
-	GET_SINGLE(ResourceManager)->Clear();
+	GET(SceneMgr)->Clear();
+	GET(ResMgr)->Clear();
 
 	_CrtDumpMemoryLeaks();
 }
@@ -33,41 +33,40 @@ void Game::Init(HWND hwnd)
 	HBITMAP prev = (HBITMAP)::SelectObject(hdcBack, _bmpBack); // DC와 BMP를 연결
 	::DeleteObject(prev);
 
-	GET_SINGLE(TimeManager)->Init();
-	GET_SINGLE(InputManager)->Init(hwnd);
-	GET_SINGLE(SceneManager)->Init();
-	GET_SINGLE(ResourceManager)->Init(hwnd, fs::path(L"C:\\git\\Rookiss\\Server\\Resources"));
+	GET(TimeMgr)->Init();
+	GET(InputMgr)->Init(hwnd);
+	GET(SceneMgr)->Init();
+	GET(ResMgr)->Init(hwnd, fs::path(L"C:\\git\\study_cpp_rpg_game_client_server\\Resources"));
 
-	GET_SINGLE(SoundManager)->Init(hwnd);
+	GET(SoundMgr)->Init(hwnd);
 
-	GET_SINGLE(SceneManager)->ChangeScene(SceneType::DevScene);
+	GET(SceneMgr)->ChangeScene(SceneType::DevScene);
 
-	GET_SINGLE(NetworkManager)->Init();
+	GET(NetMgr)->Init();
 }
 
 void Game::Update()
 {
-	GET_SINGLE(TimeManager)->Update();
-	GET_SINGLE(InputManager)->Update();
-	GET_SINGLE(SceneManager)->Update();
-	GET_SINGLE(NetworkManager)->Update();
+	GET(TimeMgr)->Update();
+	GET(InputMgr)->Update();
+	GET(SceneMgr)->Update();
+	GET(NetMgr)->Update();
 }
 
 void Game::Render()
 {
-	GET_SINGLE(SceneManager)->Render(hdcBack);
+	GET(SceneMgr)->Render(hdcBack);
 
-	uint32 fps = GET_SINGLE(TimeManager)->GetFps();
-	float deltaTime = GET_SINGLE(TimeManager)->GetDeltaTime();
+	uint32 fps = GET(TimeMgr)->GetFps();
 
 	{
-		POINT mousePos = GET_SINGLE(InputManager)->GetMousePos();
+		POINT mousePos = GET(InputMgr)->GetMousePos();
 		wstring str = std::format(L"Mouse({0}, {1})", mousePos.x, mousePos.y);
 		::TextOut(hdcBack, 20, 10, str.c_str(), static_cast<int32>(str.size()));
 	}
 
 	{
-		wstring str = std::format(L"FPS({0}), DT({1})", fps, deltaTime);
+		wstring str = std::format(L"FPS({0}), DT({1})", fps, DT);
 		::TextOut(hdcBack, 550, 10, str.c_str(), static_cast<int32>(str.size()));
 	}
 

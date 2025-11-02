@@ -1,14 +1,14 @@
 #include "pch.h"
-#include "CollisionManager.h"
+#include "CollisionMgr.h"
 #include "Collider.h"
 #include "Actor.h"
 
-void CollisionManager::Init()
+void CollisionMgr::Init()
 {
 
 }
 
-void CollisionManager::Update()
+void CollisionMgr::Update()
 {
 	vector<Collider*>& colliders = _colliders;
 
@@ -44,12 +44,12 @@ void CollisionManager::Update()
 
 }
 
-void CollisionManager::AddCollider(Collider* collider)
+void CollisionMgr::AddCollider(Collider* collider)
 {
 	_colliders.push_back(collider);
 }
 
-void CollisionManager::RemoveCollider(Collider* collider)
+void CollisionMgr::RemoveCollider(Collider* collider)
 {
 	auto it = std::remove(_colliders.begin(), _colliders.end(), collider);
 	_colliders.erase(it, _colliders.end());

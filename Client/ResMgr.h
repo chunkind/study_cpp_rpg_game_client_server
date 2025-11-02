@@ -7,12 +7,12 @@ class Flipbook;
 class Tilemap;
 class Sound;
 
-class ResourceManager
+class ResMgr
 {
 public:
-	DECLARE_SINGLE(ResourceManager);
+	SING(ResMgr);
 
-	~ResourceManager();
+	~ResMgr();
 
 public:
 	void Init(HWND hwnd, fs::path resourcePath);

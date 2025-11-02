@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Button.h"
-#include "InputManager.h"
-#include "TimeManager.h"
+#include "InputMgr.h"
+#include "TimeMgr.h"
 #include "Sprite.h"
 
 Button::Button()
@@ -23,12 +23,11 @@ void Button::BeginPlay()
 
 void Button::Tick()
 {
-	POINT mousePos = GET_SINGLE(InputManager)->GetMousePos();
-	float deltaTime = GET_SINGLE(TimeManager)->GetDeltaTime();
+	POINT mousePos = GET(InputMgr)->GetMousePos();
 
 	if (_state == BS_Clicked)
 	{
-		_sumTime += deltaTime;
+		_sumTime += DT;
 		if (_sumTime >= 0.2f)
 		{
 			_sumTime = 0.f;
@@ -38,7 +37,7 @@ void Button::Tick()
 
 	if (IsMouseInRect())
 	{
-		if (GET_SINGLE(InputManager)->GetButton(KeyType::LeftMouse))
+		if (GET(InputMgr)->GetButton(KeyType::LeftMouse))
 		{
 			SetButtonState(BS_Pressed);
 			// OnPressed

@@ -40,6 +40,8 @@ public:
 	void LoadEffect();
 	void LoadTilemap();
 
+	void LoadUI();
+
 	template<typename T>
 	T* SpawnObject(Vec2Int pos)
 	{

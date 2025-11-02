@@ -1,10 +1,10 @@
 #include "pch.h"
-#include "NetworkManager.h"
+#include "NetMgr.h"
 #include "Service.h"
 #include "ThreadManager.h"
 #include "ServerSession.h"
 
-void NetworkManager::Init()
+void NetMgr::Init()
 {
 	SocketUtils::Init();
 
@@ -28,17 +28,17 @@ void NetworkManager::Init()
 	}*/
 }
 
-void NetworkManager::Update()
+void NetMgr::Update()
 {
 	_service->GetIocpCore()->Dispatch(0);
 }
 
-ServerSessionRef NetworkManager::CreateSession()
+ServerSessionRef NetMgr::CreateSession()
 {
 	return _session = make_shared<ServerSession>();
 }
 
-void NetworkManager::SendPacket(SendBufferRef sendBuffer)
+void NetMgr::SendPacket(SendBufferRef sendBuffer)
 {
 	if (_session)
 		_session->Send(sendBuffer);

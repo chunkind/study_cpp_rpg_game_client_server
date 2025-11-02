@@ -1,15 +1,15 @@
 #include "pch.h"
-#include "SoundManager.h"
-#include "ResourceManager.h"
+#include "SoundMgr.h"
+#include "ResMgr.h"
 #include "Sound.h"
 
-SoundManager::~SoundManager()
+SoundMgr::~SoundMgr()
 {
 	if (_soundDevice)
 		_soundDevice->Release();
 }
 
-void SoundManager::Init(HWND hwnd)
+void SoundMgr::Init(HWND hwnd)
 {
 	// 사운드 디바이스 생성
 	if (FAILED(::DirectSoundCreate(NULL, &_soundDevice, NULL)))
@@ -26,9 +26,9 @@ void SoundManager::Init(HWND hwnd)
 	}
 }
 
-void SoundManager::Play(const wstring& key, bool loop /*= false*/)
+void SoundMgr::Play(const wstring& key, bool loop /*= false*/)
 {
-	Sound* sound = GET_SINGLE(ResourceManager)->GetSound(key);
+	Sound* sound = GET(ResMgr)->GetSound(key);
 	if (sound == nullptr)
 		return;
 

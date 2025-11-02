@@ -1,11 +1,11 @@
 #pragma once
 
 
-class SoundManager
+class SoundMgr
 {
-	DECLARE_SINGLE(SoundManager);
+	SING(SoundMgr);
 
-	~SoundManager();
+	~SoundMgr();
 
 public:
 	void Init(HWND hwnd);

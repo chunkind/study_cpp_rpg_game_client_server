@@ -3,8 +3,8 @@
 #include "Actor.h"
 #include "Creature.h"
 #include "UI.h"
-#include "TimeManager.h"
-#include "SceneManager.h"
+#include "TimeMgr.h"
+#include "SceneMgr.h"
 
 Scene::Scene()
 {
@@ -37,7 +37,7 @@ void Scene::Init()
 
 void Scene::Update()
 {
-	float deltaTime = GET_SINGLE(TimeManager)->GetDeltaTime();
+	float deltaTime = DT;
 
 	// บนป็
 	for (const vector<Actor*> actors : _actors)
@@ -79,6 +79,22 @@ void Scene::RemoveActor(Actor* actor)
 
 	vector<Actor*>& v = _actors[actor->GetLayer()];
 	v.erase(std::remove(v.begin(), v.end(), actor), v.end());
+}
+
+void Scene::AddUI(UI* ui)
+{
+	if (ui == nullptr)
+		return;
+
+	_uis.push_back(ui);
+}
+
+void Scene::RemoveUI(UI* ui)
+{
+	if (ui == nullptr)
+		return;
+
+	_uis.erase(std::remove(_uis.begin(), _uis.end(), ui), _uis.end());
 }
 
 Creature* Scene::GetCreatureAt(Vec2Int cellPos)

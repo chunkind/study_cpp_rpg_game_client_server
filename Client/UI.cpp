@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "UI.h"
-#include "InputManager.h"
+#include "InputMgr.h"
 
 UI::UI()
 {
@@ -24,7 +24,7 @@ void UI::Tick()
 
 void UI::Render(HDC hdc)
 {
-
+	Utils::DrawRect(hdc, _pos, _size.x, _size.y);
 }
 
 RECT UI::GetRect()
@@ -44,7 +44,7 @@ bool UI::IsMouseInRect()
 {
 	RECT rect = GetRect();
 
-	POINT mousePos = GET_SINGLE(InputManager)->GetMousePos();
+	POINT mousePos = GET(InputMgr)->GetMousePos();
 
 	//return ::PtInRect(&rect, mousePos);
 	if (mousePos.x < rect.left)

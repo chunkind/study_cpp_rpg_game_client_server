@@ -2,9 +2,9 @@
 
 class GameObject;
 
-class ObjectManager
+class ObjMgr
 {
-	DECLARE_SINGLE(ObjectManager)
+	SING(ObjMgr)
 
 public:
 	template<typename T>

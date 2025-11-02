@@ -1,8 +1,8 @@
 #pragma once
 
-class TimeManager
+class TimeMgr
 {
-	DECLARE_SINGLE(TimeManager);
+	SING(TimeMgr);
 
 public:
 	void Init();

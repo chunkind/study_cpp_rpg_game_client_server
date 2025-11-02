@@ -1,41 +1,41 @@
 #include "pch.h"
 #include "Player.h"
-#include "InputManager.h"
-#include "TimeManager.h"
-#include "ResourceManager.h"
+#include "InputMgr.h"
+#include "TimeMgr.h"
+#include "ResMgr.h"
 #include "Flipbook.h"
 #include "CameraComponent.h"
-#include "SceneManager.h"
+#include "SceneMgr.h"
 #include "DevScene.h"
 #include "Arrow.h"
 #include "HitEffect.h"
 
 Player::Player()
 {
-	_flipbookIdle[DIR_UP] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_IdleUp");
-	_flipbookIdle[DIR_DOWN] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_IdleDown");
-	_flipbookIdle[DIR_LEFT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_IdleLeft");
-	_flipbookIdle[DIR_RIGHT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_IdleRight");
+	_flipbookIdle[DIR_UP] = GET(ResMgr)->GetFlipbook(L"FB_IdleUp");
+	_flipbookIdle[DIR_DOWN] = GET(ResMgr)->GetFlipbook(L"FB_IdleDown");
+	_flipbookIdle[DIR_LEFT] = GET(ResMgr)->GetFlipbook(L"FB_IdleLeft");
+	_flipbookIdle[DIR_RIGHT] = GET(ResMgr)->GetFlipbook(L"FB_IdleRight");
 
-	_flipbookMove[DIR_UP] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_MoveUp");
-	_flipbookMove[DIR_DOWN] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_MoveDown");
-	_flipbookMove[DIR_LEFT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_MoveLeft");
-	_flipbookMove[DIR_RIGHT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_MoveRight");
+	_flipbookMove[DIR_UP] = GET(ResMgr)->GetFlipbook(L"FB_MoveUp");
+	_flipbookMove[DIR_DOWN] = GET(ResMgr)->GetFlipbook(L"FB_MoveDown");
+	_flipbookMove[DIR_LEFT] = GET(ResMgr)->GetFlipbook(L"FB_MoveLeft");
+	_flipbookMove[DIR_RIGHT] = GET(ResMgr)->GetFlipbook(L"FB_MoveRight");
 
-	_flipbookAttack[DIR_UP] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_AttackUp");
-	_flipbookAttack[DIR_DOWN] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_AttackDown");
-	_flipbookAttack[DIR_LEFT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_AttackLeft");
-	_flipbookAttack[DIR_RIGHT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_AttackRight");
+	_flipbookAttack[DIR_UP] = GET(ResMgr)->GetFlipbook(L"FB_AttackUp");
+	_flipbookAttack[DIR_DOWN] = GET(ResMgr)->GetFlipbook(L"FB_AttackDown");
+	_flipbookAttack[DIR_LEFT] = GET(ResMgr)->GetFlipbook(L"FB_AttackLeft");
+	_flipbookAttack[DIR_RIGHT] = GET(ResMgr)->GetFlipbook(L"FB_AttackRight");
 
-	_flipbookBow[DIR_UP] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_BowUp");
-	_flipbookBow[DIR_DOWN] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_BowDown");
-	_flipbookBow[DIR_LEFT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_BowLeft");
-	_flipbookBow[DIR_RIGHT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_BowRight");
+	_flipbookBow[DIR_UP] = GET(ResMgr)->GetFlipbook(L"FB_BowUp");
+	_flipbookBow[DIR_DOWN] = GET(ResMgr)->GetFlipbook(L"FB_BowDown");
+	_flipbookBow[DIR_LEFT] = GET(ResMgr)->GetFlipbook(L"FB_BowLeft");
+	_flipbookBow[DIR_RIGHT] = GET(ResMgr)->GetFlipbook(L"FB_BowRight");
 
-	_flipbookStaff[DIR_UP] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_StaffUp");
-	_flipbookStaff[DIR_DOWN] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_StaffDown");
-	_flipbookStaff[DIR_LEFT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_StaffLeft");
-	_flipbookStaff[DIR_RIGHT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_StaffRight");
+	_flipbookStaff[DIR_UP] = GET(ResMgr)->GetFlipbook(L"FB_StaffUp");
+	_flipbookStaff[DIR_DOWN] = GET(ResMgr)->GetFlipbook(L"FB_StaffDown");
+	_flipbookStaff[DIR_LEFT] = GET(ResMgr)->GetFlipbook(L"FB_StaffLeft");
+	_flipbookStaff[DIR_RIGHT] = GET(ResMgr)->GetFlipbook(L"FB_StaffRight");
 }
 
 Player::~Player()
@@ -69,8 +69,6 @@ void Player::TickIdle()
 
 void Player::TickMove()
 {
-	float deltaTime = GET_SINGLE(TimeManager)->GetDeltaTime();
-
 	Vec2 dir = (_destPos - _pos);
 	if (dir.Length() < 4.f)
 	{
@@ -82,16 +80,16 @@ void Player::TickMove()
 		switch (info.dir())
 		{
 		case DIR_UP:
-			_pos.y -= 200 * deltaTime;
+			_pos.y -= 200 * DT;
 			break;
 		case DIR_DOWN:
-			_pos.y += 200 * deltaTime;
+			_pos.y += 200 * DT;
 			break;
 		case DIR_LEFT:
-			_pos.x -= 200 * deltaTime;
+			_pos.x -= 200 * DT;
 			break;
 		case DIR_RIGHT:
-			_pos.x += 200 * deltaTime;
+			_pos.x += 200 * DT;
 			break;
 		}
 	}
@@ -105,7 +103,7 @@ void Player::TickSkill()
 	// TODO : Damage?
 	if (IsAnimationEnded())
 	{
-		DevScene* scene = dynamic_cast<DevScene*>(GET_SINGLE(SceneManager)->GetCurrentScene());
+		DevScene* scene = dynamic_cast<DevScene*>(GET(SceneMgr)->GetCurrentScene());
 		if (scene == nullptr)
 			return;
 

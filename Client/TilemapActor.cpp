@@ -1,10 +1,10 @@
 #include "pch.h"
 #include "TilemapActor.h"
 #include "Tilemap.h"
-#include "ResourceManager.h"
+#include "ResMgr.h"
 #include "Sprite.h"
-#include "SceneManager.h"
-#include "InputManager.h"
+#include "SceneMgr.h"
+#include "InputMgr.h"
 
 
 TilemapActor::TilemapActor()
@@ -43,10 +43,10 @@ void TilemapActor::Render(HDC hdc)
 
 	vector<vector<Tile>>& tiles = _tilemap->GetTiles();
 
-	Sprite* spriteO = GET_SINGLE(ResourceManager)->GetSprite(L"TileO");
-	Sprite* spriteX = GET_SINGLE(ResourceManager)->GetSprite(L"TileX");
+	Sprite* spriteO = GET(ResMgr)->GetSprite(L"TileO");
+	Sprite* spriteX = GET(ResMgr)->GetSprite(L"TileX");
 	Vec2Int size = spriteO->GetSize();
-	Vec2 cameraPos = GET_SINGLE(SceneManager)->GetCameraPos();
+	Vec2 cameraPos = GET(SceneMgr)->GetCameraPos();
 
 	// 컬링 : 보여야 할 애들만 보여주기
 	int32 leftX = ((int32)cameraPos.x - GWinSizeX / 2);
@@ -109,13 +109,13 @@ void TilemapActor::Render(HDC hdc)
 
 void TilemapActor::TickPicking()
 {
-	if (GET_SINGLE(InputManager)->GetButtonDown(KeyType::LeftMouse))
+	if (GET(InputMgr)->GetButtonDown(KeyType::LeftMouse))
 	{
-		Vec2 cameraPos = GET_SINGLE(SceneManager)->GetCameraPos();
+		Vec2 cameraPos = GET(SceneMgr)->GetCameraPos();
 		int32 screenX = cameraPos.x - GWinSizeX / 2;
 		int32 screenY = cameraPos.y - GWinSizeY / 2;
 
-		POINT mousePos = GET_SINGLE(InputManager)->GetMousePos();
+		POINT mousePos = GET(InputMgr)->GetMousePos();
 		int32 posX = mousePos.x + screenX;
 		int32 posY = mousePos.y + screenY;
 

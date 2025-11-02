@@ -1,6 +1,6 @@
 #pragma once
 
-#define DECLARE_SINGLE(classname)			\
+#define SING(classname)			\
 private:									\
 	classname() { }							\
 public:										\
@@ -10,7 +10,7 @@ public:										\
 		return &s_instance;					\
 	}
 
-#define GET_SINGLE(classname)	classname::GetInstance()
+#define GET(classname)	classname::GetInstance()
 
 #define SAFE_DELETE(ptr)		\
 	if (ptr)					\
@@ -18,3 +18,5 @@ public:										\
 		delete ptr;				\
 		ptr = nullptr;			\
 	}
+
+#define DT TimeMgr::GetInstance()->GetDeltaTime()

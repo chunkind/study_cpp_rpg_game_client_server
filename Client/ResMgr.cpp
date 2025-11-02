@@ -1,17 +1,17 @@
 #include "pch.h"
-#include "ResourceManager.h"
+#include "ResMgr.h"
 #include "Texture.h"
 #include "Sprite.h"
 #include "Flipbook.h"
 #include "Tilemap.h"
 #include "Sound.h"
 
-ResourceManager::~ResourceManager()
+ResMgr::~ResMgr()
 {
 	Clear();
 }
 
-void ResourceManager::Init(HWND hwnd, fs::path resourcePath)
+void ResMgr::Init(HWND hwnd, fs::path resourcePath)
 {
 	_hwnd = hwnd;
 	_resourcePath = resourcePath;
@@ -21,7 +21,7 @@ void ResourceManager::Init(HWND hwnd, fs::path resourcePath)
 	//fs::absolute(_resourcePath);
 }
 
-void ResourceManager::Clear()
+void ResMgr::Clear()
 {
 	for (auto& item : _textures)
 		SAFE_DELETE(item.second);
@@ -49,7 +49,7 @@ void ResourceManager::Clear()
 	_sounds.clear();
 }
 
-Texture* ResourceManager::LoadTexture(const wstring& key, const wstring& path, uint32 transparent /*= RGB(255, 0, 255)*/)
+Texture* ResMgr::LoadTexture(const wstring& key, const wstring& path, uint32 transparent /*= RGB(255, 0, 255)*/)
 {
 	if (_textures.find(key) != _textures.end())
 		return _textures[key];
@@ -64,7 +64,7 @@ Texture* ResourceManager::LoadTexture(const wstring& key, const wstring& path, u
 	return texture;
 }
 
-Sprite* ResourceManager::CreateSprite(const wstring& key, Texture* texture, int32 x, int32 y, int32 cx, int32 cy)
+Sprite* ResMgr::CreateSprite(const wstring& key, Texture* texture, int32 x, int32 y, int32 cx, int32 cy)
 {
 	if (_sprites.find(key) != _sprites.end())
 		return _sprites[key];
@@ -81,7 +81,7 @@ Sprite* ResourceManager::CreateSprite(const wstring& key, Texture* texture, int3
 	return sprite;
 }
 
-Flipbook* ResourceManager::CreateFlipbook(const wstring& key)
+Flipbook* ResMgr::CreateFlipbook(const wstring& key)
 {
 	if (_flipbooks.find(key) != _flipbooks.end())
 		return _flipbooks[key];
@@ -92,7 +92,7 @@ Flipbook* ResourceManager::CreateFlipbook(const wstring& key)
 	return fb;
 }
 
-Tilemap* ResourceManager::CreateTilemap(const wstring& key)
+Tilemap* ResMgr::CreateTilemap(const wstring& key)
 {
 	if (_tilemaps.find(key) != _tilemaps.end())
 		return _tilemaps[key];
@@ -103,7 +103,7 @@ Tilemap* ResourceManager::CreateTilemap(const wstring& key)
 	return tm;
 }
 
-void ResourceManager::SaveTilemap(const wstring& key, const wstring& path)
+void ResMgr::SaveTilemap(const wstring& key, const wstring& path)
 {
 	Tilemap* tilemap = GetTilemap(key);
 
@@ -111,7 +111,7 @@ void ResourceManager::SaveTilemap(const wstring& key, const wstring& path)
 	tilemap->SaveFile(fullPath);
 }
 
-Tilemap* ResourceManager::LoadTilemap(const wstring& key, const wstring& path)
+Tilemap* ResMgr::LoadTilemap(const wstring& key, const wstring& path)
 {
 	Tilemap* tilemap = nullptr;
 
@@ -126,7 +126,7 @@ Tilemap* ResourceManager::LoadTilemap(const wstring& key, const wstring& path)
 	return tilemap;
 }
 
-Sound* ResourceManager::LoadSound(const wstring& key, const wstring& path)
+Sound* ResMgr::LoadSound(const wstring& key, const wstring& path)
 {
 	if (_sounds.find(key) != _sounds.end())
 		return _sounds[key];

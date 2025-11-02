@@ -1,11 +1,11 @@
 #include "pch.h"
 #include "MyPlayer.h"
-#include "InputManager.h"
-#include "TimeManager.h"
-#include "ResourceManager.h"
+#include "InputMgr.h"
+#include "TimeMgr.h"
+#include "ResMgr.h"
 #include "Flipbook.h"
 #include "CameraComponent.h"
-#include "SceneManager.h"
+#include "SceneMgr.h"
 #include "DevScene.h"
 #include "Arrow.h"
 #include "HitEffect.h"
@@ -43,19 +43,19 @@ void MyPlayer::TickInput()
 {
 	_keyPressed = true;
 
-	if (GET_SINGLE(InputManager)->GetButton(KeyType::W))
+	if (GET(InputMgr)->GetButton(KeyType::W))
 	{
 		SetDir(DIR_UP);
 	}
-	else  if (GET_SINGLE(InputManager)->GetButton(KeyType::S))
+	else  if (GET(InputMgr)->GetButton(KeyType::S))
 	{
 		SetDir(DIR_DOWN);
 	}
-	else if (GET_SINGLE(InputManager)->GetButton(KeyType::A))
+	else if (GET(InputMgr)->GetButton(KeyType::A))
 	{
 		SetDir(DIR_LEFT);
 	}
-	else if (GET_SINGLE(InputManager)->GetButton(KeyType::D))
+	else if (GET(InputMgr)->GetButton(KeyType::D))
 	{
 		SetDir(DIR_RIGHT);
 	}
@@ -64,20 +64,20 @@ void MyPlayer::TickInput()
 		_keyPressed = false;
 	}
 
-	if (GET_SINGLE(InputManager)->GetButtonDown(KeyType::KEY_1))
+	if (GET(InputMgr)->GetButtonDown(KeyType::KEY_1))
 	{
 		SetWeaponType(WeaponType::Sword);
 	}
-	else if (GET_SINGLE(InputManager)->GetButtonDown(KeyType::KEY_2))
+	else if (GET(InputMgr)->GetButtonDown(KeyType::KEY_2))
 	{
 		SetWeaponType(WeaponType::Bow);
 	}
-	else if (GET_SINGLE(InputManager)->GetButtonDown(KeyType::KEY_3))
+	else if (GET(InputMgr)->GetButtonDown(KeyType::KEY_3))
 	{
 		SetWeaponType(WeaponType::Staff);
 	}
 
-	if (GET_SINGLE(InputManager)->GetButton(KeyType::SpaceBar))
+	if (GET(InputMgr)->GetButton(KeyType::SpaceBar))
 	{
 		SetState(SKILL);
 	}
@@ -150,5 +150,5 @@ void MyPlayer::SyncToServer()
 		return;
 
 	SendBufferRef sendBuffer = ClientPacketHandler::Make_C_Move();
-	GET_SINGLE(NetworkManager)->SendPacket(sendBuffer);
+	GET(NetMgr)->SendPacket(sendBuffer);
 }

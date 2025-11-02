@@ -1,13 +1,13 @@
 #include "pch.h"
-#include "TimeManager.h"
+#include "TimeMgr.h"
 
-void TimeManager::Init()
+void TimeMgr::Init()
 {
 	::QueryPerformanceFrequency(reinterpret_cast<LARGE_INTEGER*>(&_frequency));
 	::QueryPerformanceCounter(reinterpret_cast<LARGE_INTEGER*>(&_prevCount)); // CPU Å¬·°
 }
 
-void TimeManager::Update()
+void TimeMgr::Update()
 {
 	uint64 currentCount;
 	::QueryPerformanceCounter(reinterpret_cast<LARGE_INTEGER*>(&currentCount));

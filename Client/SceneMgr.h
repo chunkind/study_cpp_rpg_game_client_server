@@ -3,9 +3,9 @@
 class Scene;
 class MyPlayer;
 
-class SceneManager
+class SceneMgr
 {
-	DECLARE_SINGLE(SceneManager)
+	SING(SceneMgr)
 
 public:
 	void Init();

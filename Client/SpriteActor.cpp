@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "SpriteActor.h"
 #include "Sprite.h"
-#include "SceneManager.h"
+#include "SceneMgr.h"
 
 SpriteActor::SpriteActor()
 {
@@ -35,7 +35,7 @@ void SpriteActor::Render(HDC hdc)
 		return;
 
 	Vec2Int size = _sprite->GetSize();
-	Vec2 cameraPos = GET_SINGLE(SceneManager)->GetCameraPos();
+	Vec2 cameraPos = GET(SceneMgr)->GetCameraPos();
 
 	/*::TransparentBlt(hdc,
 		(int32)_pos.x - size.x / 2 - ((int32)cameraPos.x - GWinSizeX / 2),

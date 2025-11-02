@@ -39,9 +39,9 @@ enum
 	KEY_STATE_COUNT = static_cast<int32>(KeyState::End)
 };
 
-class InputManager
+class InputMgr
 {
-	DECLARE_SINGLE(InputManager);
+	SING(InputMgr);
 
 public:
 	void Init(HWND hwnd);

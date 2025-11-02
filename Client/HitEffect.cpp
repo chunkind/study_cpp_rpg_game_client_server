@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "HitEffect.h"
-#include "ResourceManager.h"
-#include "SceneManager.h"
+#include "ResMgr.h"
+#include "SceneMgr.h"
 #include "Scene.h"
 
 HitEffect::HitEffect()
@@ -26,7 +26,7 @@ void HitEffect::Tick()
 
 	if (IsAnimationEnded())
 	{
-		Scene* scene = GET_SINGLE(SceneManager)->GetCurrentScene();
+		Scene* scene = GET(SceneMgr)->GetCurrentScene();
 		scene->RemoveActor(this);
 	}
 }
@@ -39,5 +39,5 @@ void HitEffect::Render(HDC hdc)
 
 void HitEffect::UpdateAnimation()
 {
-	SetFlipbook(GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_Hit"));
+	SetFlipbook(GET(ResMgr)->GetFlipbook(L"FB_Hit"));
 }

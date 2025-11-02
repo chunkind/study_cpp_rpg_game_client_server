@@ -22,6 +22,22 @@ void Utils::DrawLine(HDC hdc, Pos from, Pos to)
 	::LineTo(hdc, static_cast<int32>(to.x), static_cast<int32>(to.y));
 }
 
+void Utils::DrawRectColored(HDC hdc, Pos pos, int32 w, int32 h, COLORREF color)
+{
+	HPEN pen = ::CreatePen(PS_SOLID, 1, color);
+	HPEN oldPen = (HPEN)::SelectObject(hdc, (HGDIOBJ)pen);
+	HBRUSH brush = ::CreateSolidBrush(color);
+	HBRUSH oldBrush = (HBRUSH)::SelectObject(hdc, (HGDIOBJ)brush);
+
+	::Rectangle(hdc, static_cast<int32>(pos.x - w / 2), static_cast<int32>(pos.y - h / 2), static_cast<int32>(pos.x + w / 2), static_cast<int32>(pos.y + h / 2));
+
+	::SelectObject(hdc, oldPen);
+	::DeleteObject(pen);
+	::SelectObject(hdc, oldBrush);
+	::DeleteObject(brush);
+}
+
+
 void Utils::DrawLineColored(HDC hdc, Pos from, Pos to, COLORREF color)
 {
 	HPEN pen = ::CreatePen(PS_SOLID, 1, color);

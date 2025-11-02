@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "EditScene.h"
-#include "InputManager.h"
+#include "InputMgr.h"
 #include <fstream>
 
 EditScene::EditScene()
@@ -20,9 +20,9 @@ void EditScene::Init()
 
 void EditScene::Update()
 {
-	if (GET_SINGLE(InputManager)->GetButtonDown(KeyType::LeftMouse))
+	if (GET(InputMgr)->GetButtonDown(KeyType::LeftMouse))
 	{
-		POINT mousePos = GET_SINGLE(InputManager)->GetMousePos();
+		POINT mousePos = GET(InputMgr)->GetMousePos();
 
 		if (_setOrigin)
 		{
@@ -36,11 +36,11 @@ void EditScene::Update()
 		}
 	}
 
-	if (GET_SINGLE(InputManager)->GetButtonDown(KeyType::RightMouse))
+	if (GET(InputMgr)->GetButtonDown(KeyType::RightMouse))
 		_setOrigin = true;
 
 	// Save
-	if (GET_SINGLE(InputManager)->GetButtonDown(KeyType::S))
+	if (GET(InputMgr)->GetButtonDown(KeyType::S))
 	{
 		wofstream file;
 		file.open(L"Unit.txt");
@@ -85,7 +85,7 @@ void EditScene::Update()
 	}
 
 	// Load
-	if (GET_SINGLE(InputManager)->GetButtonDown(KeyType::D))
+	if (GET(InputMgr)->GetButtonDown(KeyType::D))
 	{
 		wifstream file;
 		file.open(L"Unit.txt");

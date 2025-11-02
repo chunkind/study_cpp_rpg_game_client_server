@@ -1,32 +1,32 @@
 #include "pch.h"
-#include "SceneManager.h"
+#include "SceneMgr.h"
 #include "DevScene.h"
 #include "EditScene.h"
 #include "MyPlayer.h"
 
-void SceneManager::Init()
+void SceneMgr::Init()
 {
 
 }
 
-void SceneManager::Update()
+void SceneMgr::Update()
 {
 	if (_scene)
 		_scene->Update();
 }
 
-void SceneManager::Render(HDC hdc)
+void SceneMgr::Render(HDC hdc)
 {
 	if (_scene)
 		_scene->Render(hdc);
 }
 
-void SceneManager::Clear()
+void SceneMgr::Clear()
 {
 	SAFE_DELETE(_scene);
 }
 
-void SceneManager::ChangeScene(SceneType sceneType)
+void SceneMgr::ChangeScene(SceneType sceneType)
 {
 	if (_sceneType == sceneType)
 		return;
@@ -51,12 +51,12 @@ void SceneManager::ChangeScene(SceneType sceneType)
 	newScene->Init();
 }
 
-class DevScene* SceneManager::GetDevScene()
+class DevScene* SceneMgr::GetDevScene()
 {
 	return dynamic_cast<DevScene*>(GetCurrentScene());
 }
 
-uint64 SceneManager::GetMyPlayerId()
+uint64 SceneMgr::GetMyPlayerId()
 {
 	return _myPlayer ? _myPlayer->info.objectid() : 0;
 }

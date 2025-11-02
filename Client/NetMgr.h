@@ -2,9 +2,9 @@
 
 using ServerSessionRef = shared_ptr<class ServerSession>;
 
-class NetworkManager
+class NetMgr
 {
-	DECLARE_SINGLE(NetworkManager)
+	SING(NetMgr)
 
 public:
 	void Init();
