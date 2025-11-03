@@ -9,9 +9,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\00. MainGame">
-      <UniqueIdentifier>{0b46e6b5-4889-45b2-802c-f06bd6dcf844}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\01. Manager">
       <UniqueIdentifier>{5466f644-fcab-47f0-b185-adb69b5eaafb}</UniqueIdentifier>
     </Filter>
@@ -66,16 +63,19 @@
     <Filter Include="소스 파일\07. Network">
       <UniqueIdentifier>{285af632-1843-4b70-a2da-ffbd594f0f54}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\08. Protocol">
-      <UniqueIdentifier>{8192dbd9-296f-4059-8d34-17efadc0a98a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\01. Manager\Game">
       <UniqueIdentifier>{3152bcf9-b9f9-4b61-a5f0-3307b6f88704}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Main">
+      <UniqueIdentifier>{0b46e6b5-4889-45b2-802c-f06bd6dcf844}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Protocol">
+      <UniqueIdentifier>{8192dbd9-296f-4059-8d34-17efadc0a98a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
-      <Filter>소스 파일\00. MainGame</Filter>
+      <Filter>소스 파일\00. Main</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>소스 파일\99. Headers\Andromeda</Filter>
@@ -104,7 +104,7 @@
     <ClInclude Include="Scene.h">
       <Filter>소스 파일\02. Scene</Filter>
     </ClInclude>
-    <ClInclude Include="DevScene.h">
+    <ClInclude Include="GameScene.h">
       <Filter>소스 파일\02. Scene\Game</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
@@ -183,7 +183,7 @@
       <Filter>소스 파일\01. Manager</Filter>
     </ClInclude>
     <ClInclude Include="Protocol.pb.h">
-      <Filter>소스 파일\08. Protocol</Filter>
+      <Filter>소스 파일\Protocol</Filter>
     </ClInclude>
     <ClInclude Include="Res.h">
       <Filter>소스 파일\04. Resources</Filter>
@@ -192,10 +192,10 @@
       <Filter>소스 파일\01. Manager\Game</Filter>
     </ClInclude>
     <ClInclude Include="Enum.pb.h">
-      <Filter>소스 파일\08. Protocol</Filter>
+      <Filter>소스 파일\Protocol</Filter>
     </ClInclude>
     <ClInclude Include="Struct.pb.h">
-      <Filter>소스 파일\08. Protocol</Filter>
+      <Filter>소스 파일\Protocol</Filter>
     </ClInclude>
     <ClInclude Include="ServerSession.h">
       <Filter>소스 파일\07. Network</Filter>
@@ -228,7 +228,7 @@
       <Filter>소스 파일\06. UI\Game</Filter>
     </ClInclude>
     <ClInclude Include="Core.h">
-      <Filter>소스 파일\00. MainGame</Filter>
+      <Filter>소스 파일\00. Main</Filter>
     </ClInclude>
     <ClInclude Include="HitEffect.h">
       <Filter>소스 파일\03. Objects\Game</Filter>
@@ -239,7 +239,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
-      <Filter>소스 파일\00. MainGame</Filter>
+      <Filter>소스 파일\00. Main</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일\99. Headers</Filter>
@@ -250,7 +250,7 @@
     <ClCompile Include="Scene.cpp">
       <Filter>소스 파일\02. Scene</Filter>
     </ClCompile>
-    <ClCompile Include="DevScene.cpp">
+    <ClCompile Include="GameScene.cpp">
       <Filter>소스 파일\02. Scene\Game</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
@@ -326,7 +326,7 @@
       <Filter>소스 파일\01. Manager</Filter>
     </ClCompile>
     <ClCompile Include="Protocol.pb.cc">
-      <Filter>소스 파일\08. Protocol</Filter>
+      <Filter>소스 파일\Protocol</Filter>
     </ClCompile>
     <ClCompile Include="Res.cpp">
       <Filter>소스 파일\04. Resources</Filter>
@@ -335,10 +335,10 @@
       <Filter>소스 파일\01. Manager\Game</Filter>
     </ClCompile>
     <ClCompile Include="Enum.pb.cc">
-      <Filter>소스 파일\08. Protocol</Filter>
+      <Filter>소스 파일\Protocol</Filter>
     </ClCompile>
     <ClCompile Include="Struct.pb.cc">
-      <Filter>소스 파일\08. Protocol</Filter>
+      <Filter>소스 파일\Protocol</Filter>
     </ClCompile>
     <ClCompile Include="ServerSession.cpp">
       <Filter>소스 파일\07. Network</Filter>
@@ -371,7 +371,7 @@
       <Filter>소스 파일\06. UI\Game</Filter>
     </ClCompile>
     <ClCompile Include="Core.cpp">
-      <Filter>소스 파일\00. MainGame</Filter>
+      <Filter>소스 파일\00. Main</Filter>
     </ClCompile>
     <ClCompile Include="HitEffect.cpp">
       <Filter>소스 파일\03. Objects\Game</Filter>

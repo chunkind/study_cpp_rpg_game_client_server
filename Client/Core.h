@@ -9,6 +9,9 @@ public:
 	void Update();
 	void Render();
 
+	int32 GetScreenWidth() { return _rect.right - _rect.left; }
+	int32 GetScreenHeight() { return _rect.bottom - _rect.top; }
+
 private:
 	HWND _hwnd = {};
 	HDC hdc = {};

@@ -19,12 +19,12 @@ struct PQNode
 	Vec2Int pos;
 };
 
-class DevScene : public Scene
+class GameScene : public Scene
 {
 	using Super = Scene;
 public:
-	DevScene();
-	virtual ~DevScene() override;
+	GameScene();
+	virtual ~GameScene() override;
 
 	virtual void Init() override;
 	virtual void Update() override;

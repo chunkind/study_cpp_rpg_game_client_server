@@ -4,7 +4,7 @@
 #include "ResMgr.h"
 #include "Flipbook.h"
 #include "SceneMgr.h"
-#include "DevScene.h"
+#include "GameScene.h"
 #include "Creature.h"
 #include "HitEffect.h"
 
@@ -43,7 +43,7 @@ void Arrow::Render(HDC hdc)
 
 void Arrow::TickIdle()
 {
-	DevScene* scene = dynamic_cast<DevScene*>(GET(SceneMgr)->GetCurrentScene());
+	GameScene* scene = dynamic_cast<GameScene*>(GET(SceneMgr)->GetCurrentScene());
 	if (scene == nullptr)
 		return;
 

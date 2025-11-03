@@ -6,7 +6,7 @@
 #include "Flipbook.h"
 #include "CameraComponent.h"
 #include "SceneMgr.h"
-#include "DevScene.h"
+#include "GameScene.h"
 #include "Arrow.h"
 #include "HitEffect.h"
 

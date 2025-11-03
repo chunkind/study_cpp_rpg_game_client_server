@@ -40,7 +40,7 @@ void Core::Init(HWND hwnd)
 
 	GET(SoundMgr)->Init(hwnd);
 
-	GET(SceneMgr)->ChangeScene(SceneType::DevScene);
+	GET(SceneMgr)->ChangeScene(SceneType::GameScene);
 
 	GET(NetMgr)->Init();
 }

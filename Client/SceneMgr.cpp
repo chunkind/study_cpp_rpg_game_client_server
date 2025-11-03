@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "SceneMgr.h"
-#include "DevScene.h"
+#include "GameScene.h"
 #include "EditScene.h"
 #include "MyPlayer.h"
 
@@ -45,8 +45,8 @@ void SceneMgr::ChangeScene(SceneType sceneType)
 
 	switch (sceneType)
 	{
-	case SceneType::DevScene:
-		newScene = new DevScene();
+	case SceneType::GameScene:
+		newScene = new GameScene();
 		break;
 	case SceneType::EditScene:
 		newScene = new EditScene();
@@ -61,9 +61,9 @@ void SceneMgr::ChangeScene(SceneType sceneType)
 	newScene->Init();
 }
 
-class DevScene* SceneMgr::GetDevScene()
+class GameScene* SceneMgr::GetGameScene()
 {
-	return dynamic_cast<DevScene*>(GetCurrentScene());
+	return dynamic_cast<GameScene*>(GetCurrentScene());
 }
 
 uint64 SceneMgr::GetMyPlayerId()

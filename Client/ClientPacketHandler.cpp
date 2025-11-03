@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "ClientPacketHandler.h"
 #include "BufferReader.h"
-#include "DevScene.h"
+#include "GameScene.h"
 #include "MyPlayer.h"
 #include "SceneMgr.h"
 
@@ -82,7 +82,7 @@ void ClientPacketHandler::Handle_S_MyPlayer(ServerSessionRef session, BYTE* buff
 	//
 	const Protocol::ObjectInfo& info = pkt.info();
 
-	DevScene* scene = GET(SceneMgr)->GetDevScene();
+	GameScene* scene = GET(SceneMgr)->GetGameScene();
 	if (scene)
 	{
 		MyPlayer* myPlayer = scene->SpawnObject<MyPlayer>(Vec2Int{ info.posx(), info.posy() });
@@ -100,7 +100,7 @@ void ClientPacketHandler::Handle_S_AddObject(ServerSessionRef session, BYTE* buf
 	Protocol::S_AddObject pkt;
 	pkt.ParseFromArray(&header[1], size - sizeof(PacketHeader));
 
-	DevScene* scene = GET(SceneMgr)->GetDevScene();
+	GameScene* scene = GET(SceneMgr)->GetGameScene();
 	if (scene)
 		scene->Handle_S_AddObject(pkt);
 }
@@ -114,7 +114,7 @@ void ClientPacketHandler::Handle_S_RemoveObject(ServerSessionRef session, BYTE* 
 	Protocol::S_RemoveObject pkt;
 	pkt.ParseFromArray(&header[1], size - sizeof(PacketHeader));
 
-	DevScene* scene = GET(SceneMgr)->GetDevScene();
+	GameScene* scene = GET(SceneMgr)->GetGameScene();
 	if (scene)
 		scene->Handle_S_RemoveObject(pkt);
 }
@@ -130,7 +130,7 @@ void ClientPacketHandler::Handle_S_Move(ServerSessionRef session, BYTE* buffer, 
 	//
 	const Protocol::ObjectInfo& info = pkt.info();
 
-	DevScene* scene = GET(SceneMgr)->GetDevScene();
+	GameScene* scene = GET(SceneMgr)->GetGameScene();
 	if (scene)
 	{
 		uint64 myPlayerId = GET(SceneMgr)->GetMyPlayerId();

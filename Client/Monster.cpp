@@ -6,7 +6,7 @@
 #include "Flipbook.h"
 #include "CameraComponent.h"
 #include "SceneMgr.h"
-#include "DevScene.h"
+#include "GameScene.h"
 #include "Player.h"
 #include "HitEffect.h"
 
@@ -46,7 +46,7 @@ void Monster::Render(HDC hdc)
 
 void Monster::TickIdle()
 {
-	DevScene* scene = dynamic_cast<DevScene*>(GET(SceneMgr)->GetCurrentScene());
+	GameScene* scene = dynamic_cast<GameScene*>(GET(SceneMgr)->GetCurrentScene());
 	if (scene == nullptr)
 		return;
 
@@ -133,7 +133,7 @@ void Monster::TickSkill()
 	}
 
 	{
-		DevScene* scene = dynamic_cast<DevScene*>(GET(SceneMgr)->GetCurrentScene());
+		GameScene* scene = dynamic_cast<GameScene*>(GET(SceneMgr)->GetCurrentScene());
 		if (scene == nullptr)
 			return;
 

@@ -6,7 +6,7 @@
 #include "Flipbook.h"
 #include "CameraComponent.h"
 #include "SceneMgr.h"
-#include "DevScene.h"
+#include "GameScene.h"
 #include "Arrow.h"
 #include "HitEffect.h"
 
@@ -103,7 +103,7 @@ void Player::TickSkill()
 	// TODO : Damage?
 	if (IsAnimationEnded())
 	{
-		DevScene* scene = dynamic_cast<DevScene*>(GET(SceneMgr)->GetCurrentScene());
+		GameScene* scene = dynamic_cast<GameScene*>(GET(SceneMgr)->GetCurrentScene());
 		if (scene == nullptr)
 			return;
 

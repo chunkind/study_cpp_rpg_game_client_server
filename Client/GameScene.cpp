@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "DevScene.h"
+#include "GameScene.h"
 #include "Utils.h"
 #include "InputMgr.h"
 #include "TimeMgr.h"
@@ -21,16 +21,16 @@
 #include "SceneMgr.h"
 #include "RectBar.h"
 
-DevScene::DevScene()
+GameScene::GameScene()
 {
 
 }
 
-DevScene::~DevScene()
+GameScene::~GameScene()
 {
 }
 
-void DevScene::Init()
+void GameScene::Init()
 {
 	GET(ResMgr)->LoadTexture(L"Stage01", L"Sprite\\Map\\Stage01.bmp");
 	GET(ResMgr)->LoadTexture(L"Tile", L"Sprite\\Map\\Tile.bmp", RGB(128, 128, 128));
@@ -80,7 +80,7 @@ void DevScene::Init()
 	Super::Init();
 }
 
-void DevScene::Update()
+void GameScene::Update()
 {
 	Super::Update();
 
@@ -89,13 +89,13 @@ void DevScene::Update()
 	TickMonsterSpawn();
 }
 
-void DevScene::Render(HDC hdc)
+void GameScene::Render(HDC hdc)
 {
 	Super::Render(hdc);
 
 }
 
-void DevScene::AddActor(Actor* actor)
+void GameScene::AddActor(Actor* actor)
 {
 	Super::AddActor(actor);
 
@@ -106,7 +106,7 @@ void DevScene::AddActor(Actor* actor)
 	}
 }
 
-void DevScene::RemoveActor(Actor* actor)
+void GameScene::RemoveActor(Actor* actor)
 {
 	Super::RemoveActor(actor);
 
@@ -117,7 +117,7 @@ void DevScene::RemoveActor(Actor* actor)
 	}
 }
 
-void DevScene::LoadMap()
+void GameScene::LoadMap()
 {
 	Sprite* sprite = GET(ResMgr)->GetSprite(L"Stage01");
 
@@ -130,7 +130,7 @@ void DevScene::LoadMap()
 	AddActor(background);
 }
 
-void DevScene::LoadPlayer()
+void GameScene::LoadPlayer()
 {
 	// IDLE
 	{
@@ -240,7 +240,7 @@ void DevScene::LoadPlayer()
 
 }
 
-void DevScene::LoadMonster()
+void GameScene::LoadMonster()
 {
 	// MOVE
 	{
@@ -265,7 +265,7 @@ void DevScene::LoadMonster()
 	}
 }
 
-void DevScene::LoadProjectiles()
+void GameScene::LoadProjectiles()
 {
 	// MOVE
 	{
@@ -290,7 +290,7 @@ void DevScene::LoadProjectiles()
 	}
 }
 
-void DevScene::LoadEffect()
+void GameScene::LoadEffect()
 {
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Hit");
@@ -299,7 +299,7 @@ void DevScene::LoadEffect()
 	}
 }
 
-void DevScene::LoadTilemap()
+void GameScene::LoadTilemap()
 {
 	TilemapActor* actor = new TilemapActor();
 	AddActor(actor);
@@ -317,7 +317,7 @@ void DevScene::LoadTilemap()
 	}
 }
 
-void DevScene::LoadUI()
+void GameScene::LoadUI()
 {
 	Sprite* hpSprite = GET(ResMgr)->GetSprite(L"HpBar");
 	Sprite* mpSprite = GET(ResMgr)->GetSprite(L"MpBar");
@@ -339,7 +339,7 @@ void DevScene::LoadUI()
 	AddUI(mpBar);
 }
 
-void DevScene::Handle_S_AddObject(Protocol::S_AddObject& pkt)
+void GameScene::Handle_S_AddObject(Protocol::S_AddObject& pkt)
 {
 	uint64 myPlayerId = GET(SceneMgr)->GetMyPlayerId();
 
@@ -367,7 +367,7 @@ void DevScene::Handle_S_AddObject(Protocol::S_AddObject& pkt)
 	}
 }
 
-void DevScene::Handle_S_RemoveObject(Protocol::S_RemoveObject& pkt)
+void GameScene::Handle_S_RemoveObject(Protocol::S_RemoveObject& pkt)
 {
 	const int32 size = pkt.ids_size();
 	for (int32 i = 0; i < size; i++)
@@ -380,7 +380,7 @@ void DevScene::Handle_S_RemoveObject(Protocol::S_RemoveObject& pkt)
 	}
 }
 
-GameObject* DevScene::GetObject(uint64 id)
+GameObject* GameScene::GetObject(uint64 id)
 {
 	for (Actor* actor : _actors[LAYER_OBJECT])
 	{
@@ -392,7 +392,7 @@ GameObject* DevScene::GetObject(uint64 id)
 	return nullptr;
 }
 
-Player* DevScene::FindClosestPlayer(Vec2Int pos)
+Player* GameScene::FindClosestPlayer(Vec2Int pos)
 {
 	float best = FLT_MAX;
 	Player* ret = nullptr;
@@ -417,7 +417,7 @@ Player* DevScene::FindClosestPlayer(Vec2Int pos)
 
 // A* -> Dijikstra -> BFS -> Graph
 // PQ
-bool DevScene::FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32 maxDepth)
+bool GameScene::FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32 maxDepth)
 {
 	// F = G + H
 	// F = 최종 점수(작을 수록 좋음)
@@ -538,7 +538,7 @@ bool DevScene::FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32 
 	return true;
 }
 
-bool DevScene::CanGo(Vec2Int cellPos)
+bool GameScene::CanGo(Vec2Int cellPos)
 {
 	if (_tilemapActor == nullptr)
 		return false;
@@ -558,7 +558,7 @@ bool DevScene::CanGo(Vec2Int cellPos)
 	return tile->value != 1;
 }
 
-Vec2 DevScene::ConvertPos(Vec2Int cellPos)
+Vec2 GameScene::ConvertPos(Vec2Int cellPos)
 {
 	Vec2 ret = {};
 
@@ -578,7 +578,7 @@ Vec2 DevScene::ConvertPos(Vec2Int cellPos)
 	return ret;
 }
 
-Vec2Int DevScene::GetRandomEmptyCellPos()
+Vec2Int GameScene::GetRandomEmptyCellPos()
 {
 	Vec2Int ret = { -1, -1 };
 
@@ -603,7 +603,7 @@ Vec2Int DevScene::GetRandomEmptyCellPos()
 	}
 }
 
-void DevScene::TickMonsterSpawn()
+void GameScene::TickMonsterSpawn()
 {
 	return;
 

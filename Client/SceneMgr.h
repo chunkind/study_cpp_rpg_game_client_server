@@ -18,7 +18,7 @@ public:
 	void ChangeScene(SceneType sceneType);
 	Scene* GetCurrentScene() { return _scene; }
 
-	class DevScene* GetDevScene();
+	class GameScene* GetGameScene();
 
 	MyPlayer* GetMyPlayer() { return _myPlayer; }
 	uint64 GetMyPlayerId();
