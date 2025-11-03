@@ -20,6 +20,7 @@
 #include "MyPlayer.h"
 #include "SceneMgr.h"
 #include "RectBar.h"
+#include "Core.h"
 
 GameScene::GameScene()
 {
@@ -92,7 +93,6 @@ void GameScene::Update()
 void GameScene::Render(HDC hdc)
 {
 	Super::Render(hdc);
-
 }
 
 void GameScene::AddActor(Actor* actor)
@@ -319,6 +319,9 @@ void GameScene::LoadTilemap()
 
 void GameScene::LoadUI()
 {
+	int screenWidth = GET(Core)->GetScreenWidth();
+	int screenHeight = GET(Core)->GetScreenHeight();
+
 	Sprite* hpSprite = GET(ResMgr)->GetSprite(L"HpBar");
 	Sprite* mpSprite = GET(ResMgr)->GetSprite(L"MpBar");
 
@@ -326,14 +329,16 @@ void GameScene::LoadUI()
 	const Vec2Int mpSize = mpSprite->GetSize();
 
 	RectBar* hpBar = new RectBar();
+	hpBar->SetUIName("HpBar");
 	hpBar->SetSprite(hpSprite);
 	hpBar->SetColor(RGB(255, 0, 0));
-	hpBar->SetPos(Vec2(400 + hpSize.x/2, 400));
+	hpBar->SetPos(Vec2(screenWidth - hpSize.x/2 - 10, screenHeight - (hpSize.y/2*3)));
 
 	RectBar* mpBar = new RectBar();
+	mpBar->SetUIName("MpBar");
 	mpBar->SetSprite(mpSprite);
 	mpBar->SetColor(RGB(0, 0, 255));
-	mpBar->SetPos(Vec2(0 + mpSize.x/2, 430));
+	mpBar->SetPos(Vec2(screenWidth - mpSize.x/2 - 10, screenHeight - (mpSize.y/2)));
 
 	AddUI(hpBar);
 	AddUI(mpBar);

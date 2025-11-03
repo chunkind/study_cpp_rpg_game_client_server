@@ -14,10 +14,14 @@ public:
 	void SetPos(Vec2 pos) { _pos = pos; }
 	Vec2 GetPos() { return _pos; }
 
+	void SetUIName(string uiName) { _uiName = uiName; }
+	string GetUIName() { return _uiName; }
+
 	RECT GetRect();
 	bool IsMouseInRect();
 
 protected:
+	string _uiName = "";
 	Vec2	_pos = { 400, 300 };
 	Vec2Int _size = { 150, 150 };
 

@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "RectBar.h"
+#include "MyPlayer.h"
+#include "SceneMgr.h"
 
 void RectBar::Render(HDC hdc)
 {
@@ -19,6 +21,21 @@ void RectBar::Render(HDC hdc)
 		_sprite->GetSize().x,
 		_sprite->GetSize().y,
 		RGB(255, 0, 255));
+
+	if (!_uiName.empty() && GET(SceneMgr)->GetMyPlayer() != nullptr) {
+		if (_uiName == "HpBar") {
+			//Player 에너지바 그리기
+			Stat playerStat = GET(SceneMgr)->GetMyPlayer()->GetStat();
+			float hpRt = ((float)playerStat.hp / (float)playerStat.maxHp) * 100;
+			SetWidth(hpRt);
+		}
+		else if (_uiName == "MpBar") {
+			//Player 에너지바 그리기
+			Stat playerStat = GET(SceneMgr)->GetMyPlayer()->GetStat();
+			float mpRt = ((float)playerStat.mp / (float)playerStat.maxMp) * 100;
+			SetWidth(mpRt);
+		}
+	}
 	
-	Utils::DrawRectColored(hdc, Vec2(static_cast<float>(_pos.x + 8), static_cast<float>(_pos.y)), 100, 13, _color);
+	Utils::DrawRectColored(hdc, Vec2(static_cast<float>(_pos.x + 8), static_cast<float>(_pos.y)), _width, 13, _color, false);
 }

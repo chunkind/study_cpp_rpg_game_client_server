@@ -42,6 +42,14 @@ void Monster::Render(HDC hdc)
 {
 	Super::Render(hdc);
 
+	// 에너지바
+	Vec2 cameraPos = GET(SceneMgr)->GetCameraPos();
+	float hpRt = ((float)_stat.hp / (float)_stat.maxHp) * 100;
+	Utils::DrawRectColored(hdc
+		, Vec2(static_cast<float>(_pos.x + 8 - ((int32)cameraPos.x - GWinSizeX / 2)), static_cast<float>(_pos.y - 25 - ((int32)cameraPos.y - GWinSizeY / 2)))
+		, hpRt
+		, 13
+		, RGB(255, 0, 0), false);
 }
 
 void Monster::TickIdle()

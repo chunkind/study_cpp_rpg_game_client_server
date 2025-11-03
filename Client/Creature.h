@@ -9,7 +9,9 @@ class BoxCollider;
 struct Stat
 {
 	int32 hp = 100;
+	int32 mp = 100;
 	int32 maxHp = 100;
+	int32 maxMp = 100;
 	int32 attack = 10;
 	int32 defence = 0;
 	float speed = 0;

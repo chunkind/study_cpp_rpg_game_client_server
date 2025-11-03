@@ -22,14 +22,32 @@ void Utils::DrawLine(HDC hdc, Pos from, Pos to)
 	::LineTo(hdc, static_cast<int32>(to.x), static_cast<int32>(to.y));
 }
 
-void Utils::DrawRectColored(HDC hdc, Pos pos, int32 w, int32 h, COLORREF color)
+void Utils::DrawRectColored(HDC hdc, Pos pos, int32 w, int32 h, COLORREF color, bool isAutoPos)
 {
 	HPEN pen = ::CreatePen(PS_SOLID, 1, color);
 	HPEN oldPen = (HPEN)::SelectObject(hdc, (HGDIOBJ)pen);
 	HBRUSH brush = ::CreateSolidBrush(color);
 	HBRUSH oldBrush = (HBRUSH)::SelectObject(hdc, (HGDIOBJ)brush);
 
-	::Rectangle(hdc, static_cast<int32>(pos.x - w / 2), static_cast<int32>(pos.y - h / 2), static_cast<int32>(pos.x + w / 2), static_cast<int32>(pos.y + h / 2));
+	if (isAutoPos) {
+		::Rectangle(hdc,
+			static_cast<int32>(pos.x - w / 2),
+			static_cast<int32>(pos.y - h / 2),
+			static_cast<int32>(pos.x + w / 2),
+			static_cast<int32>(pos.y + h / 2));
+	}
+	else
+	{
+		static const int32 srtx = static_cast<int32>(w / 2);
+		//int widrt = static_cast<int32>(pos.x + w / 2);
+		//widrt = static_cast<int32>(widrt * (w / 100));
+		::Rectangle(hdc,
+			static_cast<int32>(pos.x - srtx),
+			static_cast<int32>(pos.y - h / 2),
+			static_cast<int32>(pos.x - srtx + w),
+			static_cast<int32>(pos.y + h / 2));
+	}
+	
 
 	::SelectObject(hdc, oldPen);
 	::DeleteObject(pen);

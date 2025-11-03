@@ -14,7 +14,7 @@ public:
 
 	static void DrawLine(HDC hdc, Pos from, Pos to);
 
-	static void DrawRectColored(HDC hdc, Pos pos, int32 w, int32 h, COLORREF color);
+	static void DrawRectColored(HDC hdc, Pos pos, int32 w, int32 h, COLORREF color, bool isAutoPos=true);
 
 	static void DrawLineColored(HDC hdc, Pos from, Pos to, COLORREF color);
 

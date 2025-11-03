@@ -10,8 +10,9 @@ public:
 
 	void SetSprite(Sprite* sprite) { _sprite = sprite; }
 	void SetColor(COLORREF color) { _color = color; }
-
+	void SetWidth(float width) { _width = width; }
 protected:
+	float _width = 100;
 	Sprite* _sprite = nullptr;
 	COLORREF _color = RGB(0, 0, 0);
 };
