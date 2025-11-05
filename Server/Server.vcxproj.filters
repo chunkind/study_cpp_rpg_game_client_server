@@ -5,43 +5,40 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="소스 파일\Game">
-      <UniqueIdentifier>{99a2b59f-102d-4d2e-a64f-d46bc189636d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Room">
-      <UniqueIdentifier>{f7a98773-b695-40d3-bb5c-858f3b360814}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Object">
-      <UniqueIdentifier>{ec27d15c-a4d4-4cb9-ae9a-999614815170}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Main">
-      <UniqueIdentifier>{780df301-31ff-4895-94a8-3606b688cc28}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Protocol">
       <UniqueIdentifier>{66889ae5-9c12-44cf-9f5a-ffd1963437d0}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Protocol\Proto">
       <UniqueIdentifier>{d2afbaf1-75da-403e-b711-3cdda3485fbe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01. Manager">
+      <UniqueIdentifier>{7462e0da-c338-440c-9e9b-383f7243e98c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Main">
+      <UniqueIdentifier>{780df301-31ff-4895-94a8-3606b688cc28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\99. Header">
+      <UniqueIdentifier>{915afaf4-3866-4dbf-a2bf-195ac92fd27b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Objects">
+      <UniqueIdentifier>{b85f0b59-be35-44a1-a33c-f35ee3a906f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Objects\Creature">
+      <UniqueIdentifier>{9f18c7d0-3d7d-4cfd-bdfb-cc16478cc688}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03. Network">
+      <UniqueIdentifier>{7f217820-ee06-4dd9-95fd-16875a35c481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03. Network\Room">
+      <UniqueIdentifier>{f7a98773-b695-40d3-bb5c-858f3b360814}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Struct.pb.cc">
       <Filter>소스 파일\Protocol</Filter>
     </ClCompile>
-    <ClCompile Include="GameSession.cpp">
-      <Filter>소스 파일\Main</Filter>
-    </ClCompile>
-    <ClCompile Include="GameSessionManager.cpp">
-      <Filter>소스 파일\Main</Filter>
-    </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>소스 파일\Main</Filter>
-    </ClCompile>
     <ClCompile Include="Server.cpp">
-      <Filter>소스 파일\Main</Filter>
-    </ClCompile>
-    <ClCompile Include="ServerPacketHandler.cpp">
-      <Filter>소스 파일\Main</Filter>
+      <Filter>소스 파일\00. Main</Filter>
     </ClCompile>
     <ClCompile Include="Protocol.pb.cc">
       <Filter>소스 파일\Protocol</Filter>
@@ -50,36 +47,39 @@
       <Filter>소스 파일\Protocol</Filter>
     </ClCompile>
     <ClCompile Include="GameRoom.cpp">
-      <Filter>소스 파일\Game\Room</Filter>
+      <Filter>소스 파일\03. Network\Room</Filter>
     </ClCompile>
     <ClCompile Include="Tilemap.cpp">
-      <Filter>소스 파일\Game\Room</Filter>
+      <Filter>소스 파일\03. Network\Room</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>소스 파일\99. Header</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>소스 파일\Game\Object</Filter>
+      <Filter>소스 파일\02. Objects</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
-      <Filter>소스 파일\Game\Object</Filter>
+      <Filter>소스 파일\02. Objects\Creature</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>소스 파일\Game\Object</Filter>
+      <Filter>소스 파일\02. Objects\Creature</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerPacketHandler.cpp">
+      <Filter>소스 파일\03. Network</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSessionManager.cpp">
+      <Filter>소스 파일\03. Network</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSession.cpp">
+      <Filter>소스 파일\03. Network</Filter>
+    </ClCompile>
+    <ClCompile Include="SpawnMgr.cpp">
+      <Filter>소스 파일\01. Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Struct.pb.h">
       <Filter>소스 파일\Protocol</Filter>
-    </ClInclude>
-    <ClInclude Include="GameSession.h">
-      <Filter>소스 파일\Main</Filter>
-    </ClInclude>
-    <ClInclude Include="GameSessionManager.h">
-      <Filter>소스 파일\Main</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>소스 파일\Main</Filter>
-    </ClInclude>
-    <ClInclude Include="ServerPacketHandler.h">
-      <Filter>소스 파일\Main</Filter>
     </ClInclude>
     <ClInclude Include="Protocol.pb.h">
       <Filter>소스 파일\Protocol</Filter>
@@ -88,19 +88,34 @@
       <Filter>소스 파일\Protocol</Filter>
     </ClInclude>
     <ClInclude Include="GameRoom.h">
-      <Filter>소스 파일\Game\Room</Filter>
+      <Filter>소스 파일\03. Network\Room</Filter>
     </ClInclude>
     <ClInclude Include="Tilemap.h">
-      <Filter>소스 파일\Game\Room</Filter>
+      <Filter>소스 파일\03. Network\Room</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>소스 파일\99. Header</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>소스 파일\Game\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Monster.h">
-      <Filter>소스 파일\Game\Object</Filter>
+      <Filter>소스 파일\02. Objects</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>소스 파일\Game\Object</Filter>
+      <Filter>소스 파일\02. Objects\Creature</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>소스 파일\02. Objects\Creature</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerPacketHandler.h">
+      <Filter>소스 파일\03. Network</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSessionManager.h">
+      <Filter>소스 파일\03. Network</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSession.h">
+      <Filter>소스 파일\03. Network</Filter>
+    </ClInclude>
+    <ClInclude Include="SpawnMgr.h">
+      <Filter>소스 파일\01. Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
