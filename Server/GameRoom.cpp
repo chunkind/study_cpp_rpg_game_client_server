@@ -21,26 +21,13 @@ void GameRoom::Init()
 {
 	_tilemap.LoadFile(L"C:\\git\\study_cpp_rpg_game_client_server\\Resources\\Tilemap\\Tilemap_01.txt");
 
-	Vec2Int size = _tilemap.GetMapSize();
-
 	for (int32 i = 0; i < 100; ++i)
 	{
-		int32 randX = 0;
-		int32 randY = 0;
-		while (true) {
-			randX = CoreUtil::GetRandom(0, size.x-1);
-			randY = CoreUtil::GetRandom(0, size.y-1);
-
-			Vec2Int pos = { randX, randY };
-			Tile* tile = _tilemap.GetTileAt(pos);
-			if (tile->value == 0) {
-				break;
-			}
-		}
+		Vec2Int pos = GetRandomEmptyCellPos();
 
 		MonsterRef monster = GameObject::CreateMonster();
-		monster->info.set_posx(randX);
-		monster->info.set_posy(randY);
+		monster->info.set_posx(pos.x);
+		monster->info.set_posy(pos.y);
 		AddObject(monster);
 	}
 }
@@ -62,7 +49,7 @@ void GameRoom::EnterRoom(GameSessionRef session)
 {
 	PlayerRef player = GameObject::CreatePlayer();
 
-	// ¼­·ÎÀÇ Á¸Àç¸¦ ¿¬°á
+	// ì–‘ë°©í–¥ ì—°ê²°ì„ ì„¤ì •
 	session->gameRoom = GetRoomRef();
 	session->player = player;
 	player->session = session;
@@ -71,12 +58,12 @@ void GameRoom::EnterRoom(GameSessionRef session)
 	player->info.set_posx(5);
 	player->info.set_posy(5);
 
-	// ÀÔÀåÇÑ Å¬¶ó¿¡°Ô Á¤º¸¸¦ º¸³»ÁÖ±â
+	// í”Œë ˆì´ì–´ í´ë¼ì—ê²Œ ë³¸ì¸ì„ ì•Œë ¤ì£¼ê¸°
 	{
 		SendBufferRef sendBuffer = ServerPacketHandler::Make_S_MyPlayer(player->info);
 		session->Send(sendBuffer);
 	}
-	// ¸ğµç ¿ÀºêÁ§Æ® Á¤º¸ Àü¼Û
+	// ëª¨ë“  ì˜¤ë¸Œì íŠ¸ ì •ë³´ ì „ì†¡
 	{
 		Protocol::S_AddObject pkt;
 
@@ -165,7 +152,7 @@ void GameRoom::AddObject(GameObjectRef gameObject)
 
 	gameObject->room = GetRoomRef();
 
-	// ½Å±Ô ¿ÀºêÁ§Æ® Á¤º¸ Àü¼Û
+	// íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ ì •ë³´ ì „ì†¡
 	{
 		Protocol::S_AddObject pkt;
 
@@ -197,7 +184,7 @@ void GameRoom::RemoveObject(uint64 id)
 
 	gameObject->room = nullptr;
 
-	// ¿ÀºêÁ§Æ® »èÁ¦ Àü¼Û
+	// ì˜¤ë¸Œì íŠ¸ ì œê±° ì „ì†¡
 	{
 		Protocol::S_RemoveObject pkt;
 		pkt.add_ids(id);
@@ -248,7 +235,7 @@ bool GameRoom::FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32 
 	map<Vec2Int, int32> best;
 	map<Vec2Int, Vec2Int> parent;
 
-	// ÃÊ±â°ª
+	// ì´ˆê¸°ê°’
 	{
 		int32 cost = abs(dest.y - src.y) + abs(dest.x - src.x);
 
@@ -269,22 +256,22 @@ bool GameRoom::FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32 
 
 	while (pq.empty() == false)
 	{
-		// Á¦ÀÏ ÁÁÀº ÈÄº¸¸¦ Ã£´Â´Ù
+		// ì œì¼ ì¢‹ì€ í›„ë³´ë¥¼ ì°¾ëŠ”ë‹¤
 		PQNode node = pq.top();
 		pq.pop();
 
-		// ´õ ÂªÀº °æ·Î¸¦ µÚ´Ê°Ô Ã£¾Ò´Ù¸é ½ºÅµ
+		// ë” ì§§ì€ ê²½ë¡œë¥¼ ë’¤ëŠ¦ê²Œ ì°¾ì•˜ë‹¤ë©´ ìŠ¤í‚µ
 		if (best[node.pos] < node.cost)
 			continue;
 
-		// ¸ñÀûÁö¿¡ µµÂøÇßÀ¸¸é ¹Ù·Î Á¾·á
+		// ëª©ì ì§€ì— ë„ì°©í–ˆìœ¼ë©´ ë°”ë¡œ ì¢…ë£Œ
 		if (node.pos == dest)
 		{
 			found = true;
 			break;
 		}
 
-		// ¹æ¹®
+		// ë°©ë¬¸
 		for (int32 dir = 0; dir < 4; dir++)
 		{
 			Vec2Int nextPos = node.pos + front[dir];
@@ -300,12 +287,12 @@ bool GameRoom::FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32 
 			int32 bestValue = best[nextPos];
 			if (bestValue != 0)
 			{
-				// ´Ù¸¥ °æ·Î¿¡¼­ ´õ ºü¸¥ ±æÀ» Ã£¾ÒÀ¸¸é ½ºÅµ
+				// ë‹¤ë¥¸ ê²½ë¡œì—ì„œ ë” ë¹ ë¥¸ ê¸¸ì„ ì°¾ì•˜ìœ¼ë©´ ìŠ¤í‚µ
 				if (bestValue <= cost)
 					continue;
 			}
 
-			// ¿¹¾à ÁøÇà
+			// ì˜ˆì•½ ì§„í–‰
 			best[nextPos] = cost;
 			pq.push(PQNode(cost, nextPos));
 			parent[nextPos] = node.pos;
@@ -321,7 +308,7 @@ bool GameRoom::FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32 
 			Vec2Int pos = item.first;
 			int32 score = item.second;
 
-			// µ¿Á¡ÀÌ¶ó¸é, ÃÖÃÊ À§Ä¡¿¡¼­ °¡Àå ´ú ÀÌµ¿ÇÏ´Â ÂÊÀ¸·Î
+			// ë™ì ì´ë¼ë©´, ì‹œì‘ ìœ„ì¹˜ì—ì„œ ê°€ì¥ ëœ ì´ë™í•˜ëŠ” ë°©í–¥ìœ¼ë¡œ
 			if (bestScore == score)
 			{
 				int32 dist1 = abs(dest.x - src.x) + abs(dest.y - src.y);
@@ -344,7 +331,7 @@ bool GameRoom::FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32 
 	{
 		path.push_back(pos);
 
-		// ½ÃÀÛÁ¡
+		// ì‹œì‘ì 
 		if (pos == parent[pos])
 			break;
 
@@ -361,7 +348,7 @@ bool GameRoom::CanGo(Vec2Int cellPos)
 	if (tile == nullptr)
 		return false;
 
-	// ¸ó½ºÅÍ Ãæµ¹?
+	// ì˜¤ë¸Œì íŠ¸ ì¶©ëŒ?
 	if (GetGameObjectAt(cellPos) != nullptr)
 		return false;
 
@@ -374,7 +361,7 @@ Vec2Int GameRoom::GetRandomEmptyCellPos()
 
 	Vec2Int size = _tilemap.GetMapSize();
 
-	// ¸î ¹ø ½Ãµµ?
+	// ëª‡ ë²ˆ ì‹œë„?
 	while (true)
 	{
 		int32 x = rand() % size.x;
