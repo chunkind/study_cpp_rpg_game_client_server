@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Monster.h"
 #include "GameSession.h"
+#include "CoreUtil.h"
 
 GameRoomRef GRoom = make_shared<GameRoom>();
 
@@ -18,12 +19,30 @@ GameRoom::~GameRoom()
 
 void GameRoom::Init()
 {
-	MonsterRef monster = GameObject::CreateMonster();
-	monster->info.set_posx(8);
-	monster->info.set_posy(8);
-	AddObject(monster);
+	_tilemap.LoadFile(L"C:\\git\\study_cpp_rpg_game_client_server\\Resources\\Tilemap\\Tilemap_01.txt");
 
-	_tilemap.LoadFile(L"C:\\Users\\Rookiss\\Desktop\\Server\\Server\\Client\\Resources\\Tilemap\\Tilemap_01.txt");
+	Vec2Int size = _tilemap.GetMapSize();
+
+	for (int32 i = 0; i < 100; ++i)
+	{
+		int32 randX = 0;
+		int32 randY = 0;
+		while (true) {
+			randX = CoreUtil::GetRandom(0, size.x-1);
+			randY = CoreUtil::GetRandom(0, size.y-1);
+
+			Vec2Int pos = { randX, randY };
+			Tile* tile = _tilemap.GetTileAt(pos);
+			if (tile->value == 0) {
+				break;
+			}
+		}
+
+		MonsterRef monster = GameObject::CreateMonster();
+		monster->info.set_posx(randX);
+		monster->info.set_posy(randY);
+		AddObject(monster);
+	}
 }
 
 void GameRoom::Update()

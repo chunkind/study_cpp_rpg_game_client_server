@@ -3,6 +3,7 @@
 #include "ThreadManager.h"
 #include "Service.h"
 #include "Session.h"
+#include "CoreUtil.h"
 
 char sendData[] = "Hello World";
 
@@ -47,7 +48,7 @@ public:
 	}
 };
 
-int main()
+void initDummyClient()
 {
 	this_thread::sleep_for(1s);
 
@@ -74,4 +75,32 @@ int main()
 
 	GThreadManager->Join();
 	SocketUtils::Clear();
+}
+
+int main()
+{
+	//initDummyClient();
+
+	// CoreUtil::GetRandom 테스트
+	cout << "=== CoreUtil::GetRandom 테스트 ===" << endl;
+
+	// 1부터 10 사이의 랜덤 숫자 10개 생성
+	cout << "1~10 사이의 랜덤 숫자 10개:" << endl;
+	for (int i = 0; i < 10; i++)
+	{
+		int32 randomValue = CoreUtil::GetRandom(1, 10);
+		cout << "랜덤 값 " << i + 1 << ": " << randomValue << endl;
+	}
+
+	cout << endl;
+
+	// 0부터 100 사이의 랜덤 숫자 5개 생성
+	cout << "0~100 사이의 랜덤 숫자 5개:" << endl;
+	for (int i = 0; i < 5; i++)
+	{
+		int32 randomValue = CoreUtil::GetRandom(0, 100);
+		cout << "랜덤 값 " << i + 1 << ": " << randomValue << endl;
+	}
+
+	return 0;
 }
