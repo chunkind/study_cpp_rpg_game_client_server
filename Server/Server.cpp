@@ -20,7 +20,7 @@ int main()
 	GRoom->Init();
 
 	ServerServiceRef service = make_shared<ServerService>(
-		NetAddress(L"127.0.0.1", 7777),
+		NetAddress(L"192.168.45.92", 7777),
 		make_shared<IocpCore>(),
 		[]() { return make_shared<GameSession>(); }, // TODO : SessionManager µî
 		100);
