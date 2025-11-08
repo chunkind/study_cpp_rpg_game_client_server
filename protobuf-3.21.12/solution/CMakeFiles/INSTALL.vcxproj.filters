@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\bf6f82b6d55ea268b722bada69aa36b2\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{FD2B2435-168C-3F42-85BE-460F9AB5C137}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

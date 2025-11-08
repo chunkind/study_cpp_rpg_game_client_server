@@ -1,0 +1,17 @@
+C:/git/study_cpp_rpg_game_client_server/protobuf-3.21.12/solution/CMakeFiles/CMakeFiles/libprotobuf-lite.dir
+C:/git/study_cpp_rpg_game_client_server/protobuf-3.21.12/solution/CMakeFiles/CMakeFiles/libprotobuf.dir
+C:/git/study_cpp_rpg_game_client_server/protobuf-3.21.12/solution/CMakeFiles/CMakeFiles/libprotoc.dir
+C:/git/study_cpp_rpg_game_client_server/protobuf-3.21.12/solution/CMakeFiles/CMakeFiles/protoc.dir
+C:/git/study_cpp_rpg_game_client_server/protobuf-3.21.12/solution/CMakeFiles/CMakeFiles/gmock.dir
+C:/git/study_cpp_rpg_game_client_server/protobuf-3.21.12/solution/CMakeFiles/CMakeFiles/gmock_main.dir
+C:/git/study_cpp_rpg_game_client_server/protobuf-3.21.12/solution/CMakeFiles/CMakeFiles/protobuf-lite-test-common.dir
+C:/git/study_cpp_rpg_game_client_server/protobuf-3.21.12/solution/CMakeFiles/CMakeFiles/protobuf-test-common.dir
+C:/git/study_cpp_rpg_game_client_server/protobuf-3.21.12/solution/CMakeFiles/CMakeFiles/tests.dir
+C:/git/study_cpp_rpg_game_client_server/protobuf-3.21.12/solution/CMakeFiles/CMakeFiles/test_plugin.dir
+C:/git/study_cpp_rpg_game_client_server/protobuf-3.21.12/solution/CMakeFiles/CMakeFiles/lite-test.dir
+C:/git/study_cpp_rpg_game_client_server/protobuf-3.21.12/solution/CMakeFiles/CMakeFiles/lite-arena-test.dir
+C:/git/study_cpp_rpg_game_client_server/protobuf-3.21.12/solution/CMakeFiles/CMakeFiles/check.dir
+C:/git/study_cpp_rpg_game_client_server/protobuf-3.21.12/solution/CMakeFiles/CMakeFiles/RUN_TESTS.dir
+C:/git/study_cpp_rpg_game_client_server/protobuf-3.21.12/solution/CMakeFiles/CMakeFiles/INSTALL.dir
+C:/git/study_cpp_rpg_game_client_server/protobuf-3.21.12/solution/CMakeFiles/CMakeFiles/ALL_BUILD.dir
+C:/git/study_cpp_rpg_game_client_server/protobuf-3.21.12/solution/CMakeFiles/CMakeFiles/ZERO_CHECK.dir

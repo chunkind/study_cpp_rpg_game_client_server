@@ -122,6 +122,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\Libs\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PreBuildEvent>
+      <Command>call "$(SolutionDir)\Common\protoc\bin\GenPackets.bat"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -143,6 +146,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\Libs\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PreBuildEvent>
+      <Command>call "$(SolutionDir)\Common\protoc\bin\GenPackets.bat"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Enum.pb.cc">
@@ -188,10 +194,10 @@
     <ClInclude Include="Tilemap.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Enum.proto" />
-    <None Include="GenPackets.bat" />
-    <None Include="Protocol.proto" />
-    <None Include="Struct.proto" />
+    <None Include="..\Common\protoc\bin\Enum.proto" />
+    <None Include="..\Common\protoc\bin\GenPackets.bat" />
+    <None Include="..\Common\protoc\bin\Protocol.proto" />
+    <None Include="..\Common\protoc\bin\Struct.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

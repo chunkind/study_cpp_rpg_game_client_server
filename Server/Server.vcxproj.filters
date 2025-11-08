@@ -119,16 +119,16 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="GenPackets.bat">
+    <None Include="..\Common\protoc\bin\GenPackets.bat">
       <Filter>소스 파일\Protocol</Filter>
     </None>
-    <None Include="Enum.proto">
+    <None Include="..\Common\protoc\bin\Protocol.proto">
       <Filter>소스 파일\Protocol\Proto</Filter>
     </None>
-    <None Include="Protocol.proto">
+    <None Include="..\Common\protoc\bin\Struct.proto">
       <Filter>소스 파일\Protocol\Proto</Filter>
     </None>
-    <None Include="Struct.proto">
+    <None Include="..\Common\protoc\bin\Enum.proto">
       <Filter>소스 파일\Protocol\Proto</Filter>
     </None>
   </ItemGroup>

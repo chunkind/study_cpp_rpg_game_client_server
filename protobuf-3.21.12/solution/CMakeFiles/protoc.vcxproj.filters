@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\compiler\main.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\cmake\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\version.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{69492217-9B06-3422-8D6A-7BAD7205D12C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

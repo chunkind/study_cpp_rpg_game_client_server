@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\arena_test_util.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\map_lite_test_util.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\test_util_lite.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\compiler\mock_code_generator.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\reflection_tester.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\test_util.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\testing\file.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\testing\googletest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\any_test.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\compiler\cpp\test_bad_identifiers.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\compiler\cpp\test_large_enum_value.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\map_proto2_unittest.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\map_unittest.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_arena.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_custom_options.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_drop_unknown_fields.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_embed_optimize_for.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_empty.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_enormous_descriptor.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_import.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_import_public.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_lazy_dependencies.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_lazy_dependencies_custom_option.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_lazy_dependencies_enum.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_lite_imports_nonlite.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_mset.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_mset_wire_format.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_no_field_presence.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_no_generic_services.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_optimize_for.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_preserve_unknown_enum.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_preserve_unknown_enum2.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_proto3.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_proto3_arena.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_proto3_arena_lite.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_proto3_lite.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_proto3_optional.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\unittest_well_known_types.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\util\internal\testdata\anys.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\util\internal\testdata\books.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\util\internal\testdata\default_value.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\util\internal\testdata\default_value_test.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\util\internal\testdata\field_mask.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\util\internal\testdata\maps.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\util\internal\testdata\oneofs.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\util\internal\testdata\proto3.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\util\internal\testdata\struct.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\util\internal\testdata\timestamp_duration.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\util\internal\testdata\wrappers.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\util\json_format.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\util\json_format_proto3.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\util\message_differencer_unittest.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\any_test.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\61dd1f985283762d2ef0749777f45058\test_bad_identifiers.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\61dd1f985283762d2ef0749777f45058\test_large_enum_value.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\map_proto2_unittest.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\map_unittest.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_arena.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_custom_options.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_drop_unknown_fields.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_embed_optimize_for.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_empty.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_enormous_descriptor.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_import.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_import_public.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_lazy_dependencies.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_lazy_dependencies_custom_option.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_lazy_dependencies_enum.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_lite_imports_nonlite.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_mset.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_mset_wire_format.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_no_field_presence.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_no_generic_services.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_optimize_for.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_preserve_unknown_enum.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_preserve_unknown_enum2.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_proto3.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_proto3_arena.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_proto3_arena_lite.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_proto3_lite.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_proto3_optional.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\89e57b1217cfc03fd0284536c729f7e1\unittest_well_known_types.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\bfb7941f4fbc77a18b067f6b8e0ae912\anys.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\bfb7941f4fbc77a18b067f6b8e0ae912\books.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\bfb7941f4fbc77a18b067f6b8e0ae912\default_value.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\bfb7941f4fbc77a18b067f6b8e0ae912\default_value_test.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\bfb7941f4fbc77a18b067f6b8e0ae912\field_mask.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\bfb7941f4fbc77a18b067f6b8e0ae912\maps.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\bfb7941f4fbc77a18b067f6b8e0ae912\oneofs.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\bfb7941f4fbc77a18b067f6b8e0ae912\proto3.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\bfb7941f4fbc77a18b067f6b8e0ae912\struct.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\bfb7941f4fbc77a18b067f6b8e0ae912\timestamp_duration.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\bfb7941f4fbc77a18b067f6b8e0ae912\wrappers.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\b48937a94d7b4d8c3ae4444a6728a197\json_format.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\b48937a94d7b4d8c3ae4444a6728a197\json_format_proto3.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\solution\CMakeFiles\CMakeFiles\b48937a94d7b4d8c3ae4444a6728a197\message_differencer_unittest.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\cmake\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\git\study_cpp_rpg_game_client_server\protobuf-3.21.12\src\google\protobuf\map_test_util.inc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{FD2B2435-168C-3F42-85BE-460F9AB5C137}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{69492217-9B06-3422-8D6A-7BAD7205D12C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

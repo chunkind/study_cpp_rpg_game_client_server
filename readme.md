@@ -28,6 +28,9 @@ $(SolutionDir)Libraries\Include\;$(SolutionDir)ServerCore\;%(AdditionalIncludeDi
 링커 -> 일반 -> 추가 라이브러리 디렉터리
 $(SolutionDir)Libraries\Libs\;%(AdditionalLibraryDirectories)
 
+구성 속성 -> 빌드 이벤트 -> 빌드 전 이벤트 -> 명령줄
+call "$(SolutionDir)\Common\protoc\bin\GenPackets.bat"
+
 * ServerCore
 일반 -> 출력 디렉토리
 $(SolutionDir)Libraries\ServerCore\$(Configuration)\

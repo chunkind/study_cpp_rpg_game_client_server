@@ -166,7 +166,7 @@ SendBufferRef ClientPacketHandler::Make_C_Move()
 	return MakeSendBuffer(pkt, C_Move);
 }
 
-SendBufferRef ClientPacketHandler::Make_C_Attack()
-{
-
-}
+//SendBufferRef ClientPacketHandler::Make_C_Attack()
+//{
+//
+//}
