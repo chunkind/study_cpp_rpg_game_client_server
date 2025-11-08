@@ -253,7 +253,7 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "\003(\004\",\n\006C_Move\022\"\n\004info\030\001 \001(\0132\024.Protocol.O"
   "bjectInfo\",\n\006S_Move\022\"\n\004info\030\001 \001(\0132\024.Prot"
   "ocol.ObjectInfo\".\n\010C_Attack\022\"\n\004info\030\001 \001("
-  "\0132\024.Protocol.ObjectInfo\".\n\010S_Attack\022\"\n\004i"
+  "\0132\024.Protocol.AttackInfo\".\n\010S_Attack\022\"\n\004i"
   "nfo\030\001 \001(\0132\024.Protocol.ObjectInfob\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_deps[2] = {
@@ -1742,10 +1742,10 @@ void S_Move::InternalSwap(S_Move* other) {
 
 class C_Attack::_Internal {
  public:
-  static const ::Protocol::ObjectInfo& info(const C_Attack* msg);
+  static const ::Protocol::AttackInfo& info(const C_Attack* msg);
 };
 
-const ::Protocol::ObjectInfo&
+const ::Protocol::AttackInfo&
 C_Attack::_Internal::info(const C_Attack* msg) {
   return *msg->_impl_.info_;
 }
@@ -1770,7 +1770,7 @@ C_Attack::C_Attack(const C_Attack& from)
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_info()) {
-    _this->_impl_.info_ = new ::Protocol::ObjectInfo(*from._impl_.info_);
+    _this->_impl_.info_ = new ::Protocol::AttackInfo(*from._impl_.info_);
   }
   // @@protoc_insertion_point(copy_constructor:Protocol.C_Attack)
 }
@@ -1822,7 +1822,7 @@ const char* C_Attack::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .Protocol.ObjectInfo info = 1;
+      // .Protocol.AttackInfo info = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_info(), ptr);
@@ -1859,7 +1859,7 @@ uint8_t* C_Attack::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .Protocol.ObjectInfo info = 1;
+  // .Protocol.AttackInfo info = 1;
   if (this->_internal_has_info()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(1, _Internal::info(this),
@@ -1882,7 +1882,7 @@ size_t C_Attack::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .Protocol.ObjectInfo info = 1;
+  // .Protocol.AttackInfo info = 1;
   if (this->_internal_has_info()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -1908,7 +1908,7 @@ void C_Attack::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTO
   (void) cached_has_bits;
 
   if (from._internal_has_info()) {
-    _this->_internal_mutable_info()->::Protocol::ObjectInfo::MergeFrom(
+    _this->_internal_mutable_info()->::Protocol::AttackInfo::MergeFrom(
         from._internal_info());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);

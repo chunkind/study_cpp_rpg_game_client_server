@@ -385,6 +385,11 @@ void GameScene::Handle_S_RemoveObject(Protocol::S_RemoveObject& pkt)
 	}
 }
 
+void GameScene::Handle_S_Attack(Protocol::S_Attack& pkt)
+{
+
+}
+
 GameObject* GameScene::GetObject(uint64 id)
 {
 	for (Actor* actor : _actors[LAYER_OBJECT])

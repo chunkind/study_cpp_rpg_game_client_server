@@ -9,8 +9,11 @@ Sound::Sound()
 
 Sound::~Sound()
 {
-	if (_soundBuffer)
+	if (_soundBuffer) {
 		_soundBuffer->Release();
+		_soundBuffer = nullptr;
+	}
+		
 }
 
 bool Sound::LoadWave(fs::path fullPath)

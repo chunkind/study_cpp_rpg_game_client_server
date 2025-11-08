@@ -10,8 +10,11 @@ SoundMgr::SoundMgr()
 
 SoundMgr::~SoundMgr()
 {
-	if (_soundDevice)
+	if (_soundDevice) {
 		_soundDevice->Release();
+		_soundDevice = nullptr;
+	}
+		
 }
 
 void SoundMgr::Init(HWND hwnd)

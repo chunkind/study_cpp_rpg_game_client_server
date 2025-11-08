@@ -107,7 +107,7 @@ void Player::TickSkill()
 		if (scene == nullptr)
 			return;
 
-		if (_weaponType == WeaponType::Sword)
+		/*if (_weaponType == WeaponType::Sword)
 		{
 			Creature* creature = scene->GetCreatureAt(GetFrontCellPos());
 			if (creature)
@@ -120,7 +120,7 @@ void Player::TickSkill()
 		{
 			Arrow* arrow = scene->SpawnObject<Arrow>(GetCellPos());
 			arrow->SetDir(info.dir());
-		}
+		}*/
 
 		SetState(IDLE);
 	}

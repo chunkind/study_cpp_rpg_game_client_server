@@ -68,6 +68,7 @@ public:
 public:
 	void Handle_S_AddObject(Protocol::S_AddObject& pkt);
 	void Handle_S_RemoveObject(Protocol::S_RemoveObject& pkt);
+	void Handle_S_Attack(Protocol::S_Attack& pkt);
 
 public:
 	GameObject* GetObject(uint64 id);

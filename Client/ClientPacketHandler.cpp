@@ -4,6 +4,9 @@
 #include "GameScene.h"
 #include "MyPlayer.h"
 #include "SceneMgr.h"
+#include "ObjMgr.h"
+
+/******* Server -> Client *******/
 
 void ClientPacketHandler::HandlePacket(ServerSessionRef session, BYTE* buffer, int32 len)
 {
@@ -28,6 +31,9 @@ void ClientPacketHandler::HandlePacket(ServerSessionRef session, BYTE* buffer, i
 		break;
 	case S_Move:
 		Handle_S_Move(session, buffer, len);
+		break;
+	case S_Attack:
+		Handle_S_Attack(session, buffer, len);
 		break;
 	}
 }
@@ -135,7 +141,7 @@ void ClientPacketHandler::Handle_S_Move(ServerSessionRef session, BYTE* buffer, 
 
 	Protocol::S_Move pkt;
 	pkt.ParseFromArray(&header[1], size - sizeof(PacketHeader));
-	//
+	
 	const Protocol::ObjectInfo& info = pkt.info();
 
 	GameScene* scene = GET(SceneMgr)->GetGameScene();
@@ -155,6 +161,38 @@ void ClientPacketHandler::Handle_S_Move(ServerSessionRef session, BYTE* buffer, 
 	}
 }
 
+void ClientPacketHandler::Handle_S_Attack(ServerSessionRef session, BYTE* buffer, int32 len)
+{
+	PacketHeader* header = (PacketHeader*)buffer;
+	uint16 id = header->id;
+	uint16 size = header->size;
+
+	Protocol::S_Attack pkt;
+	pkt.ParseFromArray(&header[1], size - sizeof(PacketHeader));
+
+	const Protocol::ObjectInfo& info = pkt.info();
+
+	GameScene* scene = GET(SceneMgr)->GetGameScene();
+	if (scene)
+	{
+		uint64 myPlayerId = GET(SceneMgr)->GetMyPlayerId();
+		if (myPlayerId == info.objectid())
+			return;
+
+		GameObject* gameObject = scene->GetObject(info.objectid());
+		if (gameObject)
+		{
+			gameObject->SetDir(info.dir());
+			gameObject->SetState(info.state());
+			gameObject->SetCellPos(Vec2Int{ info.posx(), info.posy() });
+			gameObject->info = info;
+		}
+	}
+}
+
+
+/******* Client -> Server *******/
+
 SendBufferRef ClientPacketHandler::Make_C_Move()
 {
 	Protocol::C_Move pkt;
@@ -166,7 +204,15 @@ SendBufferRef ClientPacketHandler::Make_C_Move()
 	return MakeSendBuffer(pkt, C_Move);
 }
 
-//SendBufferRef ClientPacketHandler::Make_C_Attack()
-//{
-//
-//}
+SendBufferRef ClientPacketHandler::Make_C_Attack()
+{
+	Protocol::C_Attack pkt;
+
+	MyPlayer* myPlayer = GET(SceneMgr)->GetMyPlayer();
+
+	pkt.mutable_info()->set_objectid(2);
+	pkt.mutable_info()->set_targetid(1);
+	pkt.mutable_info()->set_damege(10);
+
+	return MakeSendBuffer(pkt, C_Attack);
+}

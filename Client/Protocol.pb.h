@@ -1352,23 +1352,23 @@ class C_Attack final :
   enum : int {
     kInfoFieldNumber = 1,
   };
-  // .Protocol.ObjectInfo info = 1;
+  // .Protocol.AttackInfo info = 1;
   bool has_info() const;
   private:
   bool _internal_has_info() const;
   public:
   void clear_info();
-  const ::Protocol::ObjectInfo& info() const;
-  PROTOBUF_NODISCARD ::Protocol::ObjectInfo* release_info();
-  ::Protocol::ObjectInfo* mutable_info();
-  void set_allocated_info(::Protocol::ObjectInfo* info);
+  const ::Protocol::AttackInfo& info() const;
+  PROTOBUF_NODISCARD ::Protocol::AttackInfo* release_info();
+  ::Protocol::AttackInfo* mutable_info();
+  void set_allocated_info(::Protocol::AttackInfo* info);
   private:
-  const ::Protocol::ObjectInfo& _internal_info() const;
-  ::Protocol::ObjectInfo* _internal_mutable_info();
+  const ::Protocol::AttackInfo& _internal_info() const;
+  ::Protocol::AttackInfo* _internal_mutable_info();
   public:
   void unsafe_arena_set_allocated_info(
-      ::Protocol::ObjectInfo* info);
-  ::Protocol::ObjectInfo* unsafe_arena_release_info();
+      ::Protocol::AttackInfo* info);
+  ::Protocol::AttackInfo* unsafe_arena_release_info();
 
   // @@protoc_insertion_point(class_scope:Protocol.C_Attack)
  private:
@@ -1378,7 +1378,7 @@ class C_Attack final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::Protocol::ObjectInfo* info_;
+    ::Protocol::AttackInfo* info_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2056,24 +2056,24 @@ inline void S_Move::set_allocated_info(::Protocol::ObjectInfo* info) {
 
 // C_Attack
 
-// .Protocol.ObjectInfo info = 1;
+// .Protocol.AttackInfo info = 1;
 inline bool C_Attack::_internal_has_info() const {
   return this != internal_default_instance() && _impl_.info_ != nullptr;
 }
 inline bool C_Attack::has_info() const {
   return _internal_has_info();
 }
-inline const ::Protocol::ObjectInfo& C_Attack::_internal_info() const {
-  const ::Protocol::ObjectInfo* p = _impl_.info_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Protocol::ObjectInfo&>(
-      ::Protocol::_ObjectInfo_default_instance_);
+inline const ::Protocol::AttackInfo& C_Attack::_internal_info() const {
+  const ::Protocol::AttackInfo* p = _impl_.info_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Protocol::AttackInfo&>(
+      ::Protocol::_AttackInfo_default_instance_);
 }
-inline const ::Protocol::ObjectInfo& C_Attack::info() const {
+inline const ::Protocol::AttackInfo& C_Attack::info() const {
   // @@protoc_insertion_point(field_get:Protocol.C_Attack.info)
   return _internal_info();
 }
 inline void C_Attack::unsafe_arena_set_allocated_info(
-    ::Protocol::ObjectInfo* info) {
+    ::Protocol::AttackInfo* info) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.info_);
   }
@@ -2085,9 +2085,9 @@ inline void C_Attack::unsafe_arena_set_allocated_info(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Protocol.C_Attack.info)
 }
-inline ::Protocol::ObjectInfo* C_Attack::release_info() {
+inline ::Protocol::AttackInfo* C_Attack::release_info() {
   
-  ::Protocol::ObjectInfo* temp = _impl_.info_;
+  ::Protocol::AttackInfo* temp = _impl_.info_;
   _impl_.info_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
@@ -2100,27 +2100,27 @@ inline ::Protocol::ObjectInfo* C_Attack::release_info() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::Protocol::ObjectInfo* C_Attack::unsafe_arena_release_info() {
+inline ::Protocol::AttackInfo* C_Attack::unsafe_arena_release_info() {
   // @@protoc_insertion_point(field_release:Protocol.C_Attack.info)
   
-  ::Protocol::ObjectInfo* temp = _impl_.info_;
+  ::Protocol::AttackInfo* temp = _impl_.info_;
   _impl_.info_ = nullptr;
   return temp;
 }
-inline ::Protocol::ObjectInfo* C_Attack::_internal_mutable_info() {
+inline ::Protocol::AttackInfo* C_Attack::_internal_mutable_info() {
   
   if (_impl_.info_ == nullptr) {
-    auto* p = CreateMaybeMessage<::Protocol::ObjectInfo>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::Protocol::AttackInfo>(GetArenaForAllocation());
     _impl_.info_ = p;
   }
   return _impl_.info_;
 }
-inline ::Protocol::ObjectInfo* C_Attack::mutable_info() {
-  ::Protocol::ObjectInfo* _msg = _internal_mutable_info();
+inline ::Protocol::AttackInfo* C_Attack::mutable_info() {
+  ::Protocol::AttackInfo* _msg = _internal_mutable_info();
   // @@protoc_insertion_point(field_mutable:Protocol.C_Attack.info)
   return _msg;
 }
-inline void C_Attack::set_allocated_info(::Protocol::ObjectInfo* info) {
+inline void C_Attack::set_allocated_info(::Protocol::AttackInfo* info) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.info_);

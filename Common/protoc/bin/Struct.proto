@@ -24,3 +24,10 @@ message ObjectInfo
 	int32 posX = 10;
 	int32 posY = 11;
 }
+
+message AttackInfo
+{
+	uint64 objectId = 1;
+	uint64 targetId = 2;
+	int32 damege = 3;
+}

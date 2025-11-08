@@ -134,6 +134,23 @@ void GameRoom::Handle_C_Move(Protocol::C_Move& pkt)
 	}
 }
 
+void GameRoom::Handle_C_Attack(Protocol::C_Attack& pkt)
+{
+	uint64 objectId = pkt.info().objectid();
+	uint64 targetId = pkt.info().targetid();
+	int32 damage = pkt.info().damege();
+
+	GameObjectRef gameObject = FindObject(targetId);
+	if (gameObject == nullptr)
+		return;
+
+	gameObject->info.set_hp(gameObject->info.hp() - damage);
+
+
+	SendBufferRef sendBuffer = ServerPacketHandler::Make_S_Attack(gameObject->info);
+	Broadcast(sendBuffer);
+}
+
 void GameRoom::AddObject(GameObjectRef gameObject)
 {
 	uint64 id = gameObject->info.objectid();

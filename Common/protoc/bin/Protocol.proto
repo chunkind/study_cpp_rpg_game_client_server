@@ -45,7 +45,7 @@ message S_Move
 
 message C_Attack
 {
-	ObjectInfo info = 1;
+	AttackInfo info = 1;
 }
 
 message S_Attack

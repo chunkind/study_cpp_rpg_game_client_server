@@ -17,6 +17,9 @@ void ServerPacketHandler::HandlePacket(GameSessionRef session, BYTE* buffer, int
 	case C_Move:
 		Handle_C_Move(session, buffer, len);
 		break;
+	case C_Attack:
+		Handle_C_Attack(session, buffer, len);
+		break;
 	default:
 		break;
 	}
@@ -37,6 +40,20 @@ void ServerPacketHandler::Handle_C_Move(GameSessionRef session, BYTE* buffer, in
 		room->Handle_C_Move(pkt);
 
 	// ·Î±× Âï±â
+}
+
+void ServerPacketHandler::Handle_C_Attack(GameSessionRef session, BYTE* buffer, int32 len)
+{
+	PacketHeader* header = (PacketHeader*)buffer;
+	uint16 id = header->id;
+	uint16 size = header->size;
+
+	Protocol::C_Attack pkt;
+	pkt.ParseFromArray(&header[1], size - sizeof(PacketHeader));
+
+	GameRoomRef room = session->gameRoom.lock();
+	if (room)
+		room->Handle_C_Attack(pkt);
 }
 
 SendBufferRef ServerPacketHandler::Make_S_TEST(uint64 id, uint32 hp, uint16 attack, vector<BuffData> buffs)
@@ -105,4 +122,14 @@ SendBufferRef ServerPacketHandler::Make_S_Move(const Protocol::ObjectInfo& info)
 	*objectInfo = info;
 
 	return MakeSendBuffer(pkt, S_Move);
+}
+
+SendBufferRef ServerPacketHandler::Make_S_Attack(const Protocol::ObjectInfo& info)
+{
+	Protocol::S_Attack pkt;
+
+	Protocol::ObjectInfo* attackInfo = pkt.mutable_info();
+	*attackInfo = info;
+
+	return MakeSendBuffer(pkt, S_Attack);
 }
