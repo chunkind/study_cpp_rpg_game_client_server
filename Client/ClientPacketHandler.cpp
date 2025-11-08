@@ -85,8 +85,16 @@ void ClientPacketHandler::Handle_S_MyPlayer(ServerSessionRef session, BYTE* buff
 	GameScene* scene = GET(SceneMgr)->GetGameScene();
 	if (scene)
 	{
+		
 		MyPlayer* myPlayer = scene->SpawnObject<MyPlayer>(Vec2Int{ info.posx(), info.posy() });
 		myPlayer->info = info;
+
+		Stat pStat = {};
+		pStat.hp = info.hp();
+		pStat.maxHp = info.maxhp();
+		pStat.attack = info.attack();
+		myPlayer->SetStat(pStat);
+
 		GET(SceneMgr)->SetMyPlayer(myPlayer);
 	}
 }
@@ -156,4 +164,9 @@ SendBufferRef ClientPacketHandler::Make_C_Move()
 	*pkt.mutable_info() = myPlayer->info;
 
 	return MakeSendBuffer(pkt, C_Move);
+}
+
+SendBufferRef ClientPacketHandler::Make_C_Attack()
+{
+
 }
