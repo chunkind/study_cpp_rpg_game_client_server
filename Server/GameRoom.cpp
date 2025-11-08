@@ -21,13 +21,15 @@ void GameRoom::Init()
 {
 	_tilemap.LoadFile(L"C:\\git\\study_cpp_rpg_game_client_server\\Resources\\Tilemap\\Tilemap_01.txt");
 
-	for (int32 i = 0; i < 100; ++i)
+	for (int32 i = 0; i < 1; ++i)
 	{
 		Vec2Int pos = GetRandomEmptyCellPos();
 
 		MonsterRef monster = GameObject::CreateMonster();
-		monster->info.set_posx(pos.x);
-		monster->info.set_posy(pos.y);
+		/*monster->info.set_posx(pos.x);
+		monster->info.set_posy(pos.y);*/
+		monster->info.set_posx(8);
+		monster->info.set_posy(8);
 		AddObject(monster);
 	}
 }
