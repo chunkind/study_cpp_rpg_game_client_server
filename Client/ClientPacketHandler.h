@@ -28,6 +28,7 @@ public:
 
 	// º¸³»±â
 	static SendBufferRef Make_C_Move();
+	static SendBufferRef Make_C_Attack();
 
 	template<typename T>
 	static SendBufferRef MakeSendBuffer(T& pkt, uint16 pktId)
