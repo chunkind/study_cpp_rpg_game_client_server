@@ -25,14 +25,14 @@ void RectBar::Render(HDC hdc)
 	if (!_uiName.empty() && GET(SceneMgr)->GetMyPlayer() != nullptr) {
 		if (_uiName == "HpBar") {
 			//Player 에너지바 그리기
-			Stat playerStat = GET(SceneMgr)->GetMyPlayer()->GetStat();
-			float hpRt = ((float)playerStat.hp / (float)playerStat.maxHp) * 100;
+			Protocol::ObjectInfo info = GET(SceneMgr)->GetMyPlayer()->info;
+			float hpRt = ((float)info.hp() / (float)info.maxhp()) * 100;
 			SetWidth(hpRt);
 		}
 		else if (_uiName == "MpBar") {
 			//Player 에너지바 그리기
-			Stat playerStat = GET(SceneMgr)->GetMyPlayer()->GetStat();
-			float mpRt = ((float)playerStat.mp / (float)playerStat.maxMp) * 100;
+			Protocol::ObjectInfo info = GET(SceneMgr)->GetMyPlayer()->info;
+			float mpRt = ((float)info.hp() / (float)info.maxhp()) * 100;
 			SetWidth(mpRt);
 		}
 	}

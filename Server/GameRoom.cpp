@@ -144,11 +144,19 @@ void GameRoom::Handle_C_Attack(Protocol::C_Attack& pkt)
 	if (gameObject == nullptr)
 		return;
 
-	gameObject->info.set_hp(gameObject->info.hp() - damage);
+	int32 mhp = gameObject->info.hp() - damage;
 
+	if (mhp <= 0)
+	{
+		RemoveObject(targetId);
+	}
+	else 
+	{
+		gameObject->info.set_hp(mhp);
 
-	SendBufferRef sendBuffer = ServerPacketHandler::Make_S_Attack(gameObject->info);
-	Broadcast(sendBuffer);
+		SendBufferRef sendBuffer = ServerPacketHandler::Make_S_Attack(gameObject->info);
+		Broadcast(sendBuffer);
+	}	
 }
 
 void GameRoom::AddObject(GameObjectRef gameObject)

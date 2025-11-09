@@ -46,8 +46,10 @@ void Creature::OnDamaged(Creature* attacker)
 	if (damage <= 0)
 		return;
 
-	stat.hp = max(0, stat.hp - damage);
-	if (stat.hp == 0)
+	int32 hp = info.hp();
+	int32 afterHp = max(0, hp - damage);
+	info.set_hp(afterHp);
+	if (afterHp == 0)
 	{
 		Scene* scene = GET(SceneMgr)->GetCurrentScene();
 		if (scene)
