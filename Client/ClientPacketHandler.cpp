@@ -217,3 +217,14 @@ SendBufferRef ClientPacketHandler::Make_C_Attack()
 
 	return MakeSendBuffer(pkt, C_Attack);
 }
+
+SendBufferRef ClientPacketHandler::Make_C_RemoveObject()
+{
+	Protocol::C_RemoveObject pkt;
+
+	MyPlayer* myPlayer = GET(SceneMgr)->GetMyPlayer();
+
+	pkt.add_ids(myPlayer->info.objectid());
+
+	return MakeSendBuffer(pkt, C_RemoveObject);
+}

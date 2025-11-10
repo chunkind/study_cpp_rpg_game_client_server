@@ -7,7 +7,9 @@ enum
 
 	S_MyPlayer = 4,
 	S_AddObject = 5,
-	S_RemoveObject = 6,
+
+	C_RemoveObject = 6,
+	S_RemoveObject = 7,
 
 	C_Move = 10,
 	S_Move = 11,
@@ -33,6 +35,7 @@ public:
 	// º¸³»±â
 	static SendBufferRef Make_C_Move();
 	static SendBufferRef Make_C_Attack();
+	static SendBufferRef Make_C_RemoveObject();
 
 	template<typename T>
 	static SendBufferRef MakeSendBuffer(T& pkt, uint16 pktId)

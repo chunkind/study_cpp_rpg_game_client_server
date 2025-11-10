@@ -51,6 +51,8 @@ void Creature::OnDamaged(Creature* attacker)
 	info.set_hp(afterHp);
 	if (afterHp == 0)
 	{
+		_dirtyFlag = true;
+		info.set_state(Protocol::OBJECT_STATE_TYPE_DEAD);
 		Scene* scene = GET(SceneMgr)->GetCurrentScene();
 		if (scene)
 		{

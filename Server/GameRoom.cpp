@@ -146,18 +146,31 @@ void GameRoom::Handle_C_Attack(Protocol::C_Attack& pkt)
 
 	int32 mhp = gameObject->info.hp() - damage;
 
-	if (mhp <= 0)
-	{
-		RemoveObject(targetId);
-	}
-	else 
-	{
-		gameObject->info.set_hp(mhp);
+	gameObject->info.set_hp(mhp);
 
-		SendBufferRef sendBuffer = ServerPacketHandler::Make_S_Attack(gameObject->info);
-		Broadcast(sendBuffer);
-	}	
+	SendBufferRef sendBuffer = ServerPacketHandler::Make_S_Attack(gameObject->info);
+	Broadcast(sendBuffer);
 }
+
+void GameRoom::Handle_C_RemoveObject(Protocol::C_RemoveObject& pkt)
+{
+	Protocol::S_RemoveObject bpkt;
+
+	const int32 size = pkt.ids_size();
+	for (int32 i = 0; i < size; i++)
+	{
+		uint64 id = pkt.ids(i);
+		bpkt.add_ids(id);
+		RemoveObject(id);
+	}
+
+	SendBufferRef sendBuffer = ServerPacketHandler::Make_S_RemoveObject(bpkt);
+	Broadcast(sendBuffer);
+}
+
+
+
+
 
 void GameRoom::AddObject(GameObjectRef gameObject)
 {

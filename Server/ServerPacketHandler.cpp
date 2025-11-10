@@ -20,6 +20,8 @@ void ServerPacketHandler::HandlePacket(GameSessionRef session, BYTE* buffer, int
 	case C_Attack:
 		Handle_C_Attack(session, buffer, len);
 		break;
+	case C_RemoveObject:
+		Handle_C_RemoveObject(session, buffer, len);
 	default:
 		break;
 	}
@@ -55,6 +57,21 @@ void ServerPacketHandler::Handle_C_Attack(GameSessionRef session, BYTE* buffer, 
 	if (room)
 		room->Handle_C_Attack(pkt);
 }
+
+void ServerPacketHandler::Handle_C_RemoveObject(GameSessionRef session, BYTE* buffer, int32 len)
+{
+	PacketHeader* header = (PacketHeader*)buffer;
+	uint16 id = header->id;
+	uint16 size = header->size;
+
+	Protocol::C_RemoveObject pkt;
+	pkt.ParseFromArray(&header[1], size - sizeof(PacketHeader));
+
+	GameRoomRef room = session->gameRoom.lock();
+	if (room)
+		room->Handle_C_RemoveObject(pkt);
+}
+
 
 SendBufferRef ServerPacketHandler::Make_S_TEST(uint64 id, uint32 hp, uint16 attack, vector<BuffData> buffs)
 {

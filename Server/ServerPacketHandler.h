@@ -7,8 +7,10 @@ enum
 
 	S_MyPlayer = 4,
 	S_AddObject = 5,
-	S_RemoveObject = 6,
 
+	C_RemoveObject = 6,
+	S_RemoveObject = 7,
+	
 	C_Move = 10,
 	S_Move = 11,
 
@@ -30,6 +32,7 @@ public:
 	// 받기
 	static void Handle_C_Move(GameSessionRef session, BYTE* buffer, int32 len);
 	static void Handle_C_Attack(GameSessionRef session, BYTE* buffer, int32 len);
+	static void Handle_C_RemoveObject(GameSessionRef session, BYTE* buffer, int32 len);
 
 	// 보내기
 	static SendBufferRef Make_S_TEST(uint64 id, uint32 hp, uint16 attack, vector<BuffData> buffs);

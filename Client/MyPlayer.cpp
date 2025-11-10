@@ -146,6 +146,12 @@ void MyPlayer::TickSkill()
 
 void MyPlayer::SyncToServer()
 {
+
+	if (info.state() == Protocol::OBJECT_STATE_TYPE_DEAD || info.hp() <= 0) {
+		SendBufferRef send = ClientPacketHandler::Make_C_RemoveObject();
+		GET(NetMgr)->SendPacket(send);
+	}
+
 	if (_dirtyFlag == false)
 		return;
 
@@ -154,7 +160,9 @@ void MyPlayer::SyncToServer()
 
 	if (info.state() == SKILL)
 	{
-		SendBufferRef sendBuffer2 = ClientPacketHandler::Make_C_Attack();
-		GET(NetMgr)->SendPacket(sendBuffer2);
+		SendBufferRef send = ClientPacketHandler::Make_C_Attack();
+		GET(NetMgr)->SendPacket(send);
 	}
+
+	
 }
