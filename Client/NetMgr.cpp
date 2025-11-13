@@ -22,11 +22,9 @@ void NetMgr::Init()
 	_service = make_shared<ClientService>(
 		NetAddress(L"127.0.0.1", 8989),
 		make_shared<IocpCore>(),
-		[=]() { return CreateSession(); }, // TODO : SessionManager 등
+		[=]() { return CreateSession(); },
 		1);
 
-	// [Release 모드 버그 수정]
-	// Release 모드에서는 assert()가 제거되므로, assert 안에 있던 Start() 함수가 실행되지 않음
 	bool startResult = _service->Start();
 	assert(startResult);
 

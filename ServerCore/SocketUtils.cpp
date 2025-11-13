@@ -12,9 +12,6 @@ LPFN_ACCEPTEX		SocketUtils::AcceptEx = nullptr;
 void SocketUtils::Init()
 {
 	WSADATA wsaData;
-	// [Release 모드 버그 수정]
-	// Release 모드에서는 assert()가 제거되므로, assert 안에 있던 함수 호출이 실행되지 않음
-	// 따라서 함수 결과를 변수에 먼저 저장한 후, assert로 검증하는 방식으로 수정
 	int32 result = ::WSAStartup(MAKEWORD(2, 2), OUT & wsaData);
 	assert(result == 0);
 

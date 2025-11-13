@@ -22,11 +22,9 @@ int main()
 	ServerServiceRef service = make_shared<ServerService>(
 		NetAddress(L"127.0.0.1", 8989),
 		make_shared<IocpCore>(),
-		[]() { return make_shared<GameSession>(); }, // TODO : SessionManager 등
+		[]() { return make_shared<GameSession>(); },
 		100);
 
-	// [Release 모드 버그 수정]
-	// Release 모드에서는 assert()가 제거되므로, assert 안에 있던 Start() 함수가 실행되지 않음
 	bool startResult = service->Start();
 	assert(startResult);
 

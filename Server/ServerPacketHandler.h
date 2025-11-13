@@ -54,10 +54,7 @@ public:
 		PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->Buffer());
 		header->size = packetSize;
 		header->id = pktId;
-		// [Release 모드 버그 수정]
-		// Release 모드에서는 assert()가 제거되므로, assert 안에 있던 SerializeToArray 함수가 실행되지 않아
-		// 빈 패킷(모든 바이트가 0)이 전송되던 문제가 있었음
-		// 따라서 함수 결과를 변수에 먼저 저장한 후, assert로 검증하는 방식으로 수정
+		
 		bool serializeResult = pkt.SerializeToArray(&header[1], dataSize);
 		assert(serializeResult);
 		sendBuffer->Close(packetSize);

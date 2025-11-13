@@ -23,7 +23,7 @@ class ClientPacketHandler
 public:
 	static void HandlePacket(ServerSessionRef session, BYTE* buffer, int32 len);
 
-	// �ޱ�
+	// 받기
 	static void Handle_S_TEST(ServerSessionRef session, BYTE* buffer, int32 len);
 	static void Handle_S_EnterGame(ServerSessionRef session, BYTE* buffer, int32 len);
 	static void Handle_S_MyPlayer(ServerSessionRef session, BYTE* buffer, int32 len);
@@ -32,7 +32,7 @@ public:
 	static void Handle_S_Move(ServerSessionRef session, BYTE* buffer, int32 len);
 	static void Handle_S_Attack(ServerSessionRef session, BYTE* buffer, int32 len);
 
-	// ������
+	// 보내기
 	static SendBufferRef Make_C_Move();
 	static SendBufferRef Make_C_Attack();
 	static SendBufferRef Make_C_RemoveObject();
@@ -47,10 +47,6 @@ public:
 		PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->Buffer());
 		header->size = packetSize;
 		header->id = pktId;
-		// [Release 모드 버그 수정]
-		// Release 모드에서는 assert()가 제거되므로, assert 안에 있던 SerializeToArray 함수가 실행되지 않아
-		// 빈 패킷(모든 바이트가 0)이 전송되던 문제가 있었음
-		// 따라서 함수 결과를 변수에 먼저 저장한 후, assert로 검증하는 방식으로 수정
 		bool serializeResult = pkt.SerializeToArray(&header[1], dataSize);
 		assert(serializeResult);
 		sendBuffer->Close(packetSize);
