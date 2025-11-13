@@ -10,12 +10,14 @@ ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 
-void OnDebugMode()
+void OnDebugMode(bool isOn)
 {
-    // 디버그용 콘솔 창 띄우기
-    AllocConsole();
-    FILE* fp;
-    freopen_s(&fp, "CONOUT$", "w", stdout);
+    if (isOn) {
+        // 디버그용 콘솔 창 띄우기
+        AllocConsole();
+        FILE* fp;
+        freopen_s(&fp, "CONOUT$", "w", stdout);
+    }
 }
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -23,8 +25,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     _In_ LPWSTR    lpCmdLine,
     _In_ int       nCmdShow)
 {
-    // 디버그용 콘솔
-    OnDebugMode();
+    OnDebugMode(false); // 디버그용 콘솔
 
     // 1) 윈도우 창 정보 등록
     MyRegisterClass(hInstance);
