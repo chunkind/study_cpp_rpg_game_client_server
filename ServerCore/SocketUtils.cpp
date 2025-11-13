@@ -12,13 +12,20 @@ LPFN_ACCEPTEX		SocketUtils::AcceptEx = nullptr;
 void SocketUtils::Init()
 {
 	WSADATA wsaData;
-	assert(::WSAStartup(MAKEWORD(2, 2), OUT & wsaData) == 0);
+	// [Release 모드 버그 수정]
+	// Release 모드에서는 assert()가 제거되므로, assert 안에 있던 함수 호출이 실행되지 않음
+	// 따라서 함수 결과를 변수에 먼저 저장한 후, assert로 검증하는 방식으로 수정
+	int32 result = ::WSAStartup(MAKEWORD(2, 2), OUT & wsaData);
+	assert(result == 0);
 
-	/* ��Ÿ�ӿ� �ּ� ������ API */
+	/* 런타임에 주소 얻어오는 API */
 	SOCKET dummySocket = CreateSocket();
-	assert(BindWindowsFunction(dummySocket, WSAID_CONNECTEX, reinterpret_cast<LPVOID*>(&ConnectEx)));
-	assert(BindWindowsFunction(dummySocket, WSAID_DISCONNECTEX, reinterpret_cast<LPVOID*>(&DisconnectEx)));
-	assert(BindWindowsFunction(dummySocket, WSAID_ACCEPTEX, reinterpret_cast<LPVOID*>(&AcceptEx)));
+	bool connectResult = BindWindowsFunction(dummySocket, WSAID_CONNECTEX, reinterpret_cast<LPVOID*>(&ConnectEx));
+	assert(connectResult);
+	bool disconnectResult = BindWindowsFunction(dummySocket, WSAID_DISCONNECTEX, reinterpret_cast<LPVOID*>(&DisconnectEx));
+	assert(disconnectResult);
+	bool acceptResult = BindWindowsFunction(dummySocket, WSAID_ACCEPTEX, reinterpret_cast<LPVOID*>(&AcceptEx));
+	assert(acceptResult);
 
 	Close(dummySocket);
 }
@@ -67,7 +74,6 @@ bool SocketUtils::SetTcpNoDelay(SOCKET socket, bool flag)
 	return SetSockOpt(socket, SOL_SOCKET, TCP_NODELAY, flag);
 }
 
-// ListenSocket�� Ư���� ClientSocket�� �״�� ����
 bool SocketUtils::SetUpdateAcceptSocket(SOCKET socket, SOCKET listenSocket)
 {
 	return SetSockOpt(socket, SOL_SOCKET, SO_UPDATE_ACCEPT_CONTEXT, listenSocket);
@@ -76,11 +82,6 @@ bool SocketUtils::SetUpdateAcceptSocket(SOCKET socket, SOCKET listenSocket)
 bool SocketUtils::Bind(SOCKET socket, NetAddress netAddr)
 {
 	return SOCKET_ERROR != ::bind(socket, reinterpret_cast<const SOCKADDR*>(&netAddr.GetSockAddr()), sizeof(SOCKADDR_IN));
-}
-
-bool SocketUtils::Bind(SOCKET socket, SOCKADDR_IN sockAddr)
-{
-	return SOCKET_ERROR != ::bind(socket, (SOCKADDR*)&sockAddr, sizeof(SOCKADDR_IN));
 }
 
 bool SocketUtils::BindAnyAddress(SOCKET socket, uint16 port)

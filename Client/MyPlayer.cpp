@@ -161,8 +161,8 @@ void MyPlayer::SyncToServer()
 	if (info.state() == SKILL)
 	{
 		SendBufferRef send = ClientPacketHandler::Make_C_Attack();
-		GET(NetMgr)->SendPacket(send);
+		if (send != nullptr)
+			GET(NetMgr)->SendPacket(send);
 	}
 
-	
 }

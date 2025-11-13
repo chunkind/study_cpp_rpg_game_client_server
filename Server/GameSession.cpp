@@ -10,7 +10,7 @@ void GameSession::OnConnected()
 
 	Send(ServerPacketHandler::Make_S_EnterGame());
 
-	// °ÔÀÓ ÀÔÀå
+	// ë°©ì— ìž…ìž¥
 	GRoom->EnterRoom(GetSessionRef());
 }
 
@@ -18,7 +18,7 @@ void GameSession::OnDisconnected()
 {
 	GSessionManager.Remove(static_pointer_cast<GameSession>(shared_from_this()));
 
-	// °ÔÀÓ ³ª°¡±â
+	// ë°©ì—ì„œ í‡´ìž¥
 	GRoom->LeaveRoom(GetSessionRef());
 }
 

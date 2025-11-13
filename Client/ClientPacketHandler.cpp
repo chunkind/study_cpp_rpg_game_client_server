@@ -91,7 +91,7 @@ void ClientPacketHandler::Handle_S_MyPlayer(ServerSessionRef session, BYTE* buff
 	GameScene* scene = GET(SceneMgr)->GetGameScene();
 	if (scene)
 	{
-		
+
 		MyPlayer* myPlayer = scene->SpawnObject<MyPlayer>(Vec2Int{ info.posx(), info.posy() });
 		myPlayer->info = info;
 
@@ -141,7 +141,7 @@ void ClientPacketHandler::Handle_S_Move(ServerSessionRef session, BYTE* buffer, 
 
 	Protocol::S_Move pkt;
 	pkt.ParseFromArray(&header[1], size - sizeof(PacketHeader));
-	
+
 	const Protocol::ObjectInfo& info = pkt.info();
 
 	GameScene* scene = GET(SceneMgr)->GetGameScene();
@@ -211,9 +211,18 @@ SendBufferRef ClientPacketHandler::Make_C_Attack()
 
 	MyPlayer* myPlayer = GET(SceneMgr)->GetMyPlayer();
 
-	pkt.mutable_info()->set_objectid(2);
-	pkt.mutable_info()->set_targetid(1);
-	pkt.mutable_info()->set_damege(10);
+	Vec2Int frontPos = myPlayer->GetFrontCellPos();
+	GameScene* scene = dynamic_cast<GameScene*>(GET(SceneMgr)->GetCurrentScene());
+	if (scene == nullptr)
+		return nullptr;
+
+	GameObject* target = scene->GetGameObjectAt(frontPos);
+	if (target == nullptr)
+		return nullptr;
+
+	pkt.mutable_info()->set_objectid(myPlayer->GetObjectID());
+	pkt.mutable_info()->set_targetid(target->GetObjectID());
+	pkt.mutable_info()->set_damege(myPlayer->info.attack());
 
 	return MakeSendBuffer(pkt, C_Attack);
 }

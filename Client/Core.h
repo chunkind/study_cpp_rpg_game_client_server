@@ -12,6 +12,9 @@ public:
 	int32 GetScreenWidth() { return _rect.right - _rect.left; }
 	int32 GetScreenHeight() { return _rect.bottom - _rect.top; }
 
+	HDC GetHdc() { return hdc; }
+	HWND GetHwnd() { return _hwnd; }
+
 private:
 	HWND _hwnd = {};
 	HDC hdc = {};

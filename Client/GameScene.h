@@ -78,6 +78,7 @@ public:
 	bool CanGo(Vec2Int cellPos);
 	Vec2 ConvertPos(Vec2Int cellPos);
 	Vec2Int GetRandomEmptyCellPos();
+	GameObject* GetGameObjectAt(Vec2Int cellPos);
 
 private:
 	void TickMonsterSpawn();

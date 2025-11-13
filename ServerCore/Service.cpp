@@ -43,7 +43,10 @@ void Service::AddSession(SessionRef session)
 void Service::ReleaseSession(SessionRef session)
 {
 	WRITE_LOCK;
-	assert(_sessions.erase(session) != 0);
+	// [Release 모드 버그 수정]
+	// Release 모드에서는 assert()가 제거되므로, assert 안에 있던 erase() 함수가 실행되지 않음
+	size_t eraseCount = _sessions.erase(session);
+	assert(eraseCount != 0);
 	_sessionCount--;
 }
 

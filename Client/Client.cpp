@@ -15,6 +15,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     _In_ LPWSTR    lpCmdLine,
     _In_ int       nCmdShow)
 {
+    // 디버그용 콘솔 창 띄우기
+    //AllocConsole();
+    //FILE* fp;
+    //freopen_s(&fp, "CONOUT$", "w", stdout);
+
     // 1) 윈도우 창 정보 등록
     MyRegisterClass(hInstance);
 

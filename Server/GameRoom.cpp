@@ -140,16 +140,32 @@ void GameRoom::Handle_C_Attack(Protocol::C_Attack& pkt)
 	uint64 targetId = pkt.info().targetid();
 	int32 damage = pkt.info().damege();
 
-	GameObjectRef gameObject = FindObject(targetId);
-	if (gameObject == nullptr)
+	GameObjectRef gameObject = FindObject(objectId);
+	GameObjectRef targetObject = FindObject(targetId);
+
+	if (gameObject == nullptr || targetObject == nullptr)
 		return;
 
-	int32 mhp = gameObject->info.hp() - damage;
+	Vec2Int frontPos = gameObject->GetFrontCellPos();
+	if (frontPos == targetObject->GetCellPos()) {
+		int32 mhp = targetObject->info.hp() - damage;
 
-	gameObject->info.set_hp(mhp);
-
-	SendBufferRef sendBuffer = ServerPacketHandler::Make_S_Attack(gameObject->info);
-	Broadcast(sendBuffer);
+		if (mhp <= 0)
+		{
+			uint64 id = targetObject->info.objectid();
+			Protocol::S_RemoveObject bpkt;
+			bpkt.add_ids(id);
+			RemoveObject(id);
+			SendBufferRef sendBuffer = ServerPacketHandler::Make_S_RemoveObject(bpkt);
+			Broadcast(sendBuffer);
+		}
+		else
+		{
+			targetObject->info.set_hp(mhp);
+			SendBufferRef sendBuffer = ServerPacketHandler::Make_S_Attack(targetObject->info);
+			Broadcast(sendBuffer);
+		}
+	}
 }
 
 void GameRoom::Handle_C_RemoveObject(Protocol::C_RemoveObject& pkt)

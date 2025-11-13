@@ -613,6 +613,18 @@ Vec2Int GameScene::GetRandomEmptyCellPos()
 	}
 }
 
+GameObject* GameScene::GetGameObjectAt(Vec2Int cellPos)
+{
+	for (Actor* actor : _actors[LAYER_OBJECT])
+	{
+		GameObject* gameObject = dynamic_cast<GameObject*>(actor);
+		if (gameObject && gameObject->info.posx() == cellPos.x && gameObject->info.posy() == cellPos.y)
+			return gameObject;
+	}
+
+	return nullptr;
+}
+
 void GameScene::TickMonsterSpawn()
 {
 	return;
