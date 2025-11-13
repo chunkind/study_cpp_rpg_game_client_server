@@ -33,9 +33,6 @@
     <Filter Include="소스 파일\04. Resources">
       <UniqueIdentifier>{3bdaf571-306c-426a-ae3b-b8434b80ceed}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\04. Resources\Game">
-      <UniqueIdentifier>{608654ab-d2f7-42f4-b8a5-ea53de90880f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\05. Component">
       <UniqueIdentifier>{37af1333-4e1c-48ee-8d1a-ec188694b301}</UniqueIdentifier>
     </Filter>

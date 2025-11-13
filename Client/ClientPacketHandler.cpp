@@ -72,8 +72,6 @@ void ClientPacketHandler::Handle_S_EnterGame(ServerSessionRef session, BYTE* buf
 	bool success = pkt.success();
 	uint64 accountId = pkt.accountid();
 
-	// TODO
-
 }
 
 void ClientPacketHandler::Handle_S_MyPlayer(ServerSessionRef session, BYTE* buffer, int32 len)
