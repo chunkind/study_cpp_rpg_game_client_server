@@ -40,9 +40,9 @@ void Core::Init(HWND hwnd)
 
 	GET(SoundMgr)->Init(hwnd);
 
-	GET(SceneMgr)->ChangeScene(SceneType::GameScene);
+	GET(SceneMgr)->ChangeScene(SceneType::MapEditScene);
 
-	GET(NetMgr)->Init();
+	//GET(NetMgr)->Init();
 }
 
 void Core::Update()
@@ -50,7 +50,7 @@ void Core::Update()
 	GET(TimeMgr)->Update();
 	GET(InputMgr)->Update();
 	GET(SceneMgr)->Update();
-	GET(NetMgr)->Update();
+	//GET(NetMgr)->Update();
 }
 
 void Core::Render()

@@ -2,6 +2,7 @@
 #include "SceneMgr.h"
 #include "GameScene.h"
 #include "EditScene.h"
+#include "MapEditScene.h"
 #include "MyPlayer.h"
 
 SceneMgr::SceneMgr()
@@ -50,6 +51,9 @@ void SceneMgr::ChangeScene(SceneType sceneType)
 		break;
 	case SceneType::EditScene:
 		newScene = new EditScene();
+		break;
+	case SceneType::MapEditScene:
+		newScene = new MapEditScene();
 		break;
 	}
 

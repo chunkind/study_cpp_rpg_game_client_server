@@ -233,6 +233,9 @@
     <ClInclude Include="Projectile.h">
       <Filter>소스 파일\03. Objects\Game</Filter>
     </ClInclude>
+    <ClInclude Include="MapEditScene.h">
+      <Filter>소스 파일\02. Scene\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -375,6 +378,9 @@
     </ClCompile>
     <ClCompile Include="Projectile.cpp">
       <Filter>소스 파일\03. Objects\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="MapEditScene.cpp">
+      <Filter>소스 파일\02. Scene\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

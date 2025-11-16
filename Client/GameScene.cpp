@@ -33,7 +33,7 @@ GameScene::~GameScene()
 
 void GameScene::Init()
 {
-	GET(ResMgr)->LoadTexture(L"Stage01", L"Sprite\\Map\\Stage01.bmp");
+	GET(ResMgr)->LoadTexture(L"Stage01", L"Sprite\\Map\\map1.bmp");
 	GET(ResMgr)->LoadTexture(L"Tile", L"Sprite\\Map\\Tile.bmp", RGB(128, 128, 128));
 	GET(ResMgr)->LoadTexture(L"Sword", L"Sprite\\Item\\Sword.bmp");
 	GET(ResMgr)->LoadTexture(L"Arrow", L"Sprite\\Item\\Arrow.bmp", RGB(128, 128, 128));
@@ -307,8 +307,8 @@ void GameScene::LoadTilemap()
 	_tilemapActor = actor;
 	{
 		auto* tm = GET(ResMgr)->CreateTilemap(L"Tilemap_01");
-		tm->SetMapSize({ 63, 43 });
-		tm->SetTileSize(48);
+		tm->SetMapSize({50, 40});
+		tm->SetTileSize(32);
 
 		GET(ResMgr)->LoadTilemap(L"Tilemap_01", L"Tilemap\\Tilemap_01.txt");
 

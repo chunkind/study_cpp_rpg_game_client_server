@@ -5,6 +5,7 @@
 #include "Sprite.h"
 #include "SceneMgr.h"
 #include "InputMgr.h"
+#include "MapEditScene.h"
 
 
 TilemapActor::TilemapActor()
@@ -25,7 +26,7 @@ void TilemapActor::Tick()
 {
 	Super::Tick();
 
-	//TickPicking();
+	TickPicking();
 }
 
 void TilemapActor::Render(HDC hdc)
@@ -111,13 +112,16 @@ void TilemapActor::TickPicking()
 {
 	if (GET(InputMgr)->GetButtonDown(KeyType::LeftMouse))
 	{
+		MapEditScene* scene = (MapEditScene*)GET(SceneMgr)->GetCurrentScene();
+		Vec2 backgroundPos = scene->GetPos();
+
 		Vec2 cameraPos = GET(SceneMgr)->GetCameraPos();
 		int32 screenX = cameraPos.x - GWinSizeX / 2;
 		int32 screenY = cameraPos.y - GWinSizeY / 2;
 
 		POINT mousePos = GET(InputMgr)->GetMousePos();
-		int32 posX = mousePos.x + screenX;
-		int32 posY = mousePos.y + screenY;
+		int32 posX = mousePos.x - screenX - backgroundPos.x;
+		int32 posY = mousePos.y - screenY - backgroundPos.y;
 
 		int32 x = posX / TILE_SIZEX;
 		int32 y = posY / TILE_SIZEY;
@@ -125,7 +129,15 @@ void TilemapActor::TickPicking()
 		Tile* tile = _tilemap->GetTileAt({ x, y });
 		if (tile)
 		{
-			tile->value = 1;
+			if (tile->value == 0)
+			{
+				tile->value = 1;
+			}
+			else
+			{
+				tile->value = 0;
+			}
+			
 		}
 
 

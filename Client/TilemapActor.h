@@ -5,10 +5,10 @@ class Tilemap;
 
 enum TILE_SIZE
 {
-	TILE_WIDTH = 63,
-	TILE_HEIGHT = 43,
-	TILE_SIZEX = 48,
-	TILE_SIZEY = 48,
+	TILE_WIDTH = 50,
+	TILE_HEIGHT = 40,
+	TILE_SIZEX = 32,
+	TILE_SIZEY = 32,
 };
 
 class TilemapActor : public Actor
