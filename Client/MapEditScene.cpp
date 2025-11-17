@@ -19,8 +19,8 @@ MapEditScene::~MapEditScene()
 
 void MapEditScene::Init()
 {
-	GET(ResMgr)->LoadTexture(L"Stage01", L"Sprite\\Map\\map1.bmp");
-	GET(ResMgr)->LoadTexture(L"Tile", L"Sprite\\Map\\Tile.bmp", RGB(255, 0, 255));
+	GET(ResMgr)->LoadTexture(L"Stage01", L"Sprite\\Map\\main01.bmp");
+	GET(ResMgr)->LoadTexture(L"Tile", L"Sprite\\Map\\tile.bmp", RGB(255, 0, 255));
 
 	GET(ResMgr)->CreateSprite(L"Stage01", GET(ResMgr)->GetTexture(L"Stage01"));
 	GET(ResMgr)->CreateSprite(L"TileO", GET(ResMgr)->GetTexture(L"Tile"), 0, 0, 32, 32);

@@ -5,8 +5,8 @@ class Tilemap;
 
 enum TILE_SIZE
 {
-	TILE_WIDTH = 50,
-	TILE_HEIGHT = 40,
+	TILE_WIDTH = 100,
+	TILE_HEIGHT = 100,
 	TILE_SIZEX = 32,
 	TILE_SIZEY = 32,
 };
