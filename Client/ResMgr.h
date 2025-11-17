@@ -39,10 +39,10 @@ private:
 	HWND _hwnd;
 	fs::path _resourcePath;
 
-	unordered_map<wstring, Texture*> _textures;
-	unordered_map<wstring, Sprite*> _sprites;
-	unordered_map<wstring, Flipbook*> _flipbooks;
-	unordered_map<wstring, Tilemap*> _tilemaps;
-	unordered_map<wstring, Sound*> _sounds;
+	unordered_map<wstring, Texture*>	_textures;
+	unordered_map<wstring, Sprite*>		_sprites;
+	unordered_map<wstring, Flipbook*>	_flipbooks;
+	unordered_map<wstring, Tilemap*>	_tilemaps;
+	unordered_map<wstring, Sound*>		_sounds;
 };
 

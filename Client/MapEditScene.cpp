@@ -28,7 +28,10 @@ void MapEditScene::Init()
 
 	LoadMap();
 
-	Tilemap* tm = new Tilemap();
+	/*Tilemap* tm = new Tilemap();
+	tm->SetMapSize(Vec2Int{ TILE_SIZE::TILE_WIDTH , TILE_SIZE::TILE_HEIGHT });
+	tm->SetTileSize(TILE_SIZE::TILE_SIZEX);*/
+	Tilemap* tm = GET(ResMgr)->CreateTilemap(L"Tilemap_01");
 	tm->SetMapSize(Vec2Int{ TILE_SIZE::TILE_WIDTH , TILE_SIZE::TILE_HEIGHT });
 	tm->SetTileSize(TILE_SIZE::TILE_SIZEX);
 
@@ -45,7 +48,7 @@ void MapEditScene::Init()
 
 void MapEditScene::Update()
 {
-	if (GET(InputMgr)->GetButton(KeyType::W))
+	if (GET(InputMgr)->GetButton(KeyType::Up))
 	{
 		_pos.y += 10;
 
@@ -55,7 +58,7 @@ void MapEditScene::Update()
 			_actors[LAYER_OBJECT][i]->SetPos(Vec2{ pos.x , pos.y + 10 });
 		}
 	}
-	else  if (GET(InputMgr)->GetButton(KeyType::S))
+	else  if (GET(InputMgr)->GetButton(KeyType::Down))
 	{
 		_pos.y -= 10;
 
@@ -65,7 +68,7 @@ void MapEditScene::Update()
 			_actors[LAYER_OBJECT][i]->SetPos(Vec2{ pos.x , pos.y - 10 });
 		}
 	}
-	else if (GET(InputMgr)->GetButton(KeyType::A))
+	else if (GET(InputMgr)->GetButton(KeyType::Left))
 	{
 		_pos.x += 10;
 
@@ -75,7 +78,7 @@ void MapEditScene::Update()
 			_actors[LAYER_OBJECT][i]->SetPos(Vec2{ pos.x + 10, pos.y});
 		}
 	}
-	else if (GET(InputMgr)->GetButton(KeyType::D))
+	else if (GET(InputMgr)->GetButton(KeyType::Right))
 	{
 		_pos.x -= 10;
 
@@ -84,6 +87,14 @@ void MapEditScene::Update()
 			Vec2 pos = _actors[LAYER_OBJECT][i]->GetPos();
 			_actors[LAYER_OBJECT][i]->SetPos(Vec2{ pos.x - 10, pos.y });
 		}
+	}
+	else if (GET(InputMgr)->GetButton(KeyType::S))
+	{
+		GET(ResMgr)->SaveTilemap(L"Tilemap_01", L"Tilemap\\Tilemap_01.txt");
+	}
+	else if (GET(InputMgr)->GetButton(KeyType::L))
+	{
+		GET(ResMgr)->LoadTilemap(L"Tilemap_01", L"Tilemap\\Tilemap_01.txt");
 	}
 
 	background->SetPos(_pos);

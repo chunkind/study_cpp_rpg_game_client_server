@@ -14,13 +14,43 @@ enum class KeyType
 	KEY_1 = '1',
 	KEY_2 = '2',
 	KEY_3 = '3',
+	KEY_4 = '4',
+	KEY_5 = '5',
+	KEY_6 = '6',
+	KEY_7 = '7',
+	KEY_8 = '8',
+	KEY_9 = '9',
+	KEY_0 = '0',
 
+	Q = 'Q',
 	W = 'W',
+	E = 'E',
+	R = 'R',
+	T = 'T',
+	Y = 'Y',
+	U = 'U',
+	I = 'I',
+	O = 'O',
+	P = 'P',
+	
 	A = 'A',
 	S = 'S',
 	D = 'D',
-	Q = 'Q',
-	E = 'E'
+	F = 'F',
+	G = 'G',
+	H = 'H',
+	J = 'J',
+	K = 'K',
+	L = 'L',
+
+	Z = 'Z',
+	X = 'X',
+	C = 'C',
+	V = 'V',
+	B = 'B',
+	N = 'N',
+	M = 'M',
+	
 };
 
 enum class KeyState
