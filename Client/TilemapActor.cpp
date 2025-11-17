@@ -49,7 +49,7 @@ void TilemapActor::Render(HDC hdc)
 	Vec2Int size = spriteO->GetSize();
 	Vec2 cameraPos = GET(SceneMgr)->GetCameraPos();
 
-	// ÄÃ¸µ : º¸¿©¾ß ÇÒ ¾Öµé¸¸ º¸¿©ÁÖ±â
+	// ï¿½Ã¸ï¿½ : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµé¸¸ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 	int32 leftX = ((int32)cameraPos.x - GWinSizeX / 2);
 	int32 leftY = ((int32)cameraPos.y - GWinSizeY / 2);
 	int32 rightX = ((int32)cameraPos.x + GWinSizeX / 2);
@@ -71,7 +71,7 @@ void TilemapActor::Render(HDC hdc)
 				continue;
 			if (y < 0 || y >= mapSize.y)
 				continue;
-			// ¿ÞÂÊ »ó´Ü ¸ð¼­¸®¸¦ ±âÁØÀ¸·Î ¸ÂÃßÀÚ
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ð¼­¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			switch (tiles[y][x].value)
 			{
 			case 0:
