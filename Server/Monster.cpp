@@ -55,6 +55,10 @@ void Monster::UpdateIdle()
 			SetState(SKILL, true);
 			_waitUntil = GetTickCount64() + 1000;
 		}
+		else if (dist >= 10)
+		{
+			_target.reset();
+		}
 		else
 		{
 			vector<Vec2Int> path;
