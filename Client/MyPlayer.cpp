@@ -31,7 +31,10 @@ void MyPlayer::Tick()
 {
 	Super::Tick();
 
-	SyncToServer();
+	if (info.state() == Protocol::OBJECT_STATE_TYPE_DEAD || info.hp() <= 0) {
+		SendBufferRef send = ClientPacketHandler::Make_C_RemoveObject();
+		GET(NetMgr)->SendPacket(send);
+	}
 }
 
 void MyPlayer::Render(HDC hdc)
@@ -71,10 +74,6 @@ void MyPlayer::TickInput()
 	else if (GET(InputMgr)->GetButtonDown(KeyType::KEY_2))
 	{
 		SetWeaponType(WeaponType::Bow);
-	}
-	else if (GET(InputMgr)->GetButtonDown(KeyType::KEY_3))
-	{
-		SetWeaponType(WeaponType::Staff);
 	}
 
 	if (GET(InputMgr)->GetButton(KeyType::SpaceBar))
@@ -126,6 +125,8 @@ void MyPlayer::TryMove()
 			SetState(MOVE);
 		}
 	}
+
+	GET(NetMgr)->SendPacket(ClientPacketHandler::Make_C_Move());
 }
 
 void MyPlayer::TickIdle()
@@ -142,27 +143,4 @@ void MyPlayer::TickMove()
 void MyPlayer::TickSkill()
 {
 	Super::TickSkill();
-}
-
-void MyPlayer::SyncToServer()
-{
-
-	if (info.state() == Protocol::OBJECT_STATE_TYPE_DEAD || info.hp() <= 0) {
-		SendBufferRef send = ClientPacketHandler::Make_C_RemoveObject();
-		GET(NetMgr)->SendPacket(send);
-	}
-
-	if (_dirtyFlag == false)
-		return;
-
-	SendBufferRef sendBuffer = ClientPacketHandler::Make_C_Move();
-	GET(NetMgr)->SendPacket(sendBuffer);
-
-	if (info.state() == SKILL)
-	{
-		SendBufferRef send = ClientPacketHandler::Make_C_Attack();
-		if (send != nullptr)
-			GET(NetMgr)->SendPacket(send);
-	}
-
 }

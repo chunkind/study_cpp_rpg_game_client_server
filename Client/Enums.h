@@ -51,6 +51,5 @@ using ObjectState = Protocol::OBJECT_STATE_TYPE;
 enum class WeaponType
 {
 	Sword,
-	Bow,
-	Staff
+	Bow
 };

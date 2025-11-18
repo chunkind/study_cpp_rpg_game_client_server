@@ -9,6 +9,7 @@ class NetMgr
 public:
 	void Init();
 	void Update();
+	void SyncToServer();
 
 	ServerSessionRef CreateSession();
 	void SendPacket(SendBufferRef sendBuffer);
@@ -16,5 +17,6 @@ public:
 private:
 	ClientServiceRef _service;
 	ServerSessionRef _session;
+	queue<SendBufferRef> _sendQueue;
 };
 

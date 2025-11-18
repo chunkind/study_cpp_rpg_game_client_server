@@ -215,8 +215,8 @@ SendBufferRef ClientPacketHandler::Make_C_Attack()
 		return nullptr;
 
 	GameObject* target = scene->GetGameObjectAt(frontPos);
-	if (target == nullptr)
-		return nullptr;
+	//if (target == nullptr)
+		//return nullptr;
 
 	pkt.mutable_info()->set_objectid(myPlayer->GetObjectID());
 	pkt.mutable_info()->set_targetid(target->GetObjectID());

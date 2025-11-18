@@ -107,20 +107,23 @@ void Player::TickSkill()
 		if (scene == nullptr)
 			return;
 
-		/*if (_weaponType == WeaponType::Sword)
+		if (_weaponType == WeaponType::Sword)
 		{
 			Creature* creature = scene->GetCreatureAt(GetFrontCellPos());
 			if (creature)
 			{
-				scene->SpawnObject<HitEffect>(GetFrontCellPos());
-				creature->OnDamaged(this);
+				/*scene->SpawnObject<HitEffect>(GetFrontCellPos());
+				creature->OnDamaged(this);*/
+				GET(NetMgr)->SendPacket(ClientPacketHandler::Make_C_Attack());
 			}
 		}
 		else if (_weaponType == WeaponType::Bow)
 		{
 			Arrow* arrow = scene->SpawnObject<Arrow>(GetCellPos());
 			arrow->SetDir(info.dir());
-		}*/
+
+			GET(NetMgr)->SendPacket(ClientPacketHandler::Make_C_Attack());
+		}
 
 		SetState(IDLE);
 	}
@@ -141,8 +144,6 @@ void Player::UpdateAnimation()
 			SetFlipbook(_flipbookAttack[info.dir()]);
 		else if (_weaponType == WeaponType::Bow)
 			SetFlipbook(_flipbookBow[info.dir()]);
-		else
-			SetFlipbook(_flipbookStaff[info.dir()]);
 		break;
 	}
 }

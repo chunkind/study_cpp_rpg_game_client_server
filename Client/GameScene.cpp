@@ -196,22 +196,22 @@ void GameScene::LoadPlayer()
 	}
 	// BOW
 	{
-		Texture* texture = GET(ResMgr)->GetTexture(L"PlayerUp");
+		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_BowUp");
 		fb->SetInfo({ texture, L"FB_BowUp", {32 * 2, 32 * 2}, 0, 4, 12, 0.5f, false });
 	}
 	{
-		Texture* texture = GET(ResMgr)->GetTexture(L"PlayerDown");
+		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_BowDown");
 		fb->SetInfo({ texture, L"FB_BowDown", {32 * 2, 32 * 2}, 0, 4, 13, 0.5f, false });
 	}
 	{
-		Texture* texture = GET(ResMgr)->GetTexture(L"PlayerLeft");
+		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_BowLeft");
 		fb->SetInfo({ texture, L"FB_BowLeft", {32 * 2, 32 * 2}, 0, 4, 14, 0.5f, false });
 	}
 	{
-		Texture* texture = GET(ResMgr)->GetTexture(L"PlayerRight");
+		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_BowRight");
 		fb->SetInfo({ texture, L"FB_BowRight", {32 * 2, 32 * 2}, 0, 4, 15, 0.5f, false });
 	}

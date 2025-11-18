@@ -43,6 +43,26 @@ void NetMgr::Init()
 void NetMgr::Update()
 {
 	_service->GetIocpCore()->Dispatch(0);
+
+	// 패킷 서버로 전송
+	SyncToServer();
+}
+
+void NetMgr::SyncToServer()
+{
+	if (!_session)
+		return;
+
+	if (_sendQueue.empty())
+		return;
+
+	while (!_sendQueue.empty())
+	{
+		SendBufferRef sendBuff = _sendQueue.front();
+		_sendQueue.pop();
+
+		_session->Send(sendBuff);
+	}
 }
 
 ServerSessionRef NetMgr::CreateSession()
@@ -52,6 +72,6 @@ ServerSessionRef NetMgr::CreateSession()
 
 void NetMgr::SendPacket(SendBufferRef sendBuffer)
 {
-	if (_session)
-		_session->Send(sendBuffer);
+	if (sendBuffer != nullptr)
+		_sendQueue.push(sendBuffer);
 }
