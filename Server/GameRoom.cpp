@@ -147,7 +147,7 @@ void GameRoom::Handle_C_Attack(Protocol::C_Attack& pkt)
 		return;
 
 	Vec2Int frontPos = gameObject->GetFrontCellPos();
-	if (frontPos == targetObject->GetCellPos()) {
+	//if (frontPos == targetObject->GetCellPos()) {
 		int32 mhp = targetObject->info.hp() - damage;
 
 		if (mhp <= 0)
@@ -165,7 +165,7 @@ void GameRoom::Handle_C_Attack(Protocol::C_Attack& pkt)
 			SendBufferRef sendBuffer = ServerPacketHandler::Make_S_Attack(targetObject->info);
 			Broadcast(sendBuffer);
 		}
-	}
+	//}
 }
 
 void GameRoom::Handle_C_RemoveObject(Protocol::C_RemoveObject& pkt)

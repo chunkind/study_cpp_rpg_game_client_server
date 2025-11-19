@@ -5,6 +5,7 @@
 #include "MyPlayer.h"
 #include "SceneMgr.h"
 #include "ObjMgr.h"
+#include "GameObject.h"
 
 /******* Server -> Client *******/
 
@@ -203,20 +204,15 @@ SendBufferRef ClientPacketHandler::Make_C_Move()
 	return MakeSendBuffer(pkt, C_Move);
 }
 
-SendBufferRef ClientPacketHandler::Make_C_Attack()
+SendBufferRef ClientPacketHandler::Make_C_Attack(GameObject* target)
 {
 	Protocol::C_Attack pkt;
 
 	MyPlayer* myPlayer = GET(SceneMgr)->GetMyPlayer();
 
-	Vec2Int frontPos = myPlayer->GetFrontCellPos();
 	GameScene* scene = dynamic_cast<GameScene*>(GET(SceneMgr)->GetCurrentScene());
 	if (scene == nullptr)
 		return nullptr;
-
-	GameObject* target = scene->GetGameObjectAt(frontPos);
-	//if (target == nullptr)
-		//return nullptr;
 
 	pkt.mutable_info()->set_objectid(myPlayer->GetObjectID());
 	pkt.mutable_info()->set_targetid(target->GetObjectID());

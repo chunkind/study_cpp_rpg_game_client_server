@@ -20,7 +20,7 @@ void NetMgr::Init()
 	SocketUtils::Init();
 
 	_service = make_shared<ClientService>(
-		NetAddress(L"127.0.0.1", 8989),
+		NetAddress(L"192.168.45.148", 8989),
 		make_shared<IocpCore>(),
 		[=]() { return CreateSession(); },
 		1);

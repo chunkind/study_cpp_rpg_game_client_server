@@ -100,7 +100,6 @@ void Player::TickSkill()
 	if (_flipbook == nullptr)
 		return;
 
-	// TODO : Damage?
 	if (IsAnimationEnded())
 	{
 		GameScene* scene = dynamic_cast<GameScene*>(GET(SceneMgr)->GetCurrentScene());
@@ -114,15 +113,18 @@ void Player::TickSkill()
 			{
 				/*scene->SpawnObject<HitEffect>(GetFrontCellPos());
 				creature->OnDamaged(this);*/
-				GET(NetMgr)->SendPacket(ClientPacketHandler::Make_C_Attack());
+
+				Vec2Int frontPos = GetFrontCellPos();
+
+				GameObject* target = scene->GetGameObjectAt(frontPos);
+				if (target != nullptr)
+					GET(NetMgr)->SendPacket(ClientPacketHandler::Make_C_Attack(target));
 			}
 		}
 		else if (_weaponType == WeaponType::Bow)
 		{
 			Arrow* arrow = scene->SpawnObject<Arrow>(GetCellPos());
 			arrow->SetDir(info.dir());
-
-			GET(NetMgr)->SendPacket(ClientPacketHandler::Make_C_Attack());
 		}
 
 		SetState(IDLE);

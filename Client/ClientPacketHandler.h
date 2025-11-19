@@ -1,5 +1,7 @@
 #pragma once
 
+class GameObject;
+
 enum
 {
 	S_TEST = 1,
@@ -34,7 +36,7 @@ public:
 
 	// 보내기
 	static SendBufferRef Make_C_Move();
-	static SendBufferRef Make_C_Attack();
+	static SendBufferRef Make_C_Attack(GameObject* target);
 	static SendBufferRef Make_C_RemoveObject();
 
 	template<typename T>

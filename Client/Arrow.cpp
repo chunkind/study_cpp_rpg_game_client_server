@@ -62,6 +62,7 @@ void Arrow::TickIdle()
 		{
 			scene->SpawnObject<HitEffect>(nextPos);
 			//creature->OnDamaged(this);
+			GET(NetMgr)->SendPacket(ClientPacketHandler::Make_C_Attack(creature));
 		}
 
 		scene->RemoveActor(this);
