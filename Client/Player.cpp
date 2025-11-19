@@ -70,7 +70,7 @@ void Player::TickIdle()
 void Player::TickMove()
 {
 	Vec2 dir = (_destPos - _pos);
-	if (dir.Length() < 4.f)
+	if (dir.Length() < 4.f || dir.Length() > 32.f)
 	{
 		SetState(IDLE);
 		_pos = _destPos;
