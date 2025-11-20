@@ -5,6 +5,7 @@
 #include "Sprite.h"
 #include "TimeMgr.h"
 #include "SceneMgr.h"
+#include "TilemapActor.h"
 
 FlipbookActor::FlipbookActor()
 {
@@ -56,7 +57,7 @@ void FlipbookActor::Render(HDC hdc)
 
 	::TransparentBlt(hdc,
 		(int32)_pos.x - info.size.x / 2 - ((int32)cameraPos.x - GWinSizeX / 2),
-		(int32)_pos.y - info.size.y / 2 - ((int32)cameraPos.y - GWinSizeY / 2),
+		(int32)_pos.y - info.size.y + (TILE_SIZE::TILE_SIZEX/2)  - ((int32)cameraPos.y - GWinSizeY / 2),
 		info.size.x,
 		info.size.y,
 		info.texture->GetDC(),
@@ -65,6 +66,12 @@ void FlipbookActor::Render(HDC hdc)
 		info.size.x,
 		info.size.y,
 		info.texture->GetTransparent());
+	/*::Rectangle(hdc,
+		(int32)_pos.x - info.size.x/2,
+		(int32)_pos.y - info.size.y,
+		(int32)_pos.x + info.size.x/2,
+		(int32)_pos.y
+	);*/
 }
 
 void FlipbookActor::SetFlipbook(Flipbook* flipbook)

@@ -57,8 +57,8 @@ void GameRoom::EnterRoom(GameSessionRef session)
 	player->session = session;
 
 	// TEMP
-	player->info.set_posx(10);
-	player->info.set_posy(10);
+	player->info.set_posx(7);
+	player->info.set_posy(7);
 
 	// 플레이어 클라에게 본인을 알려주기
 	{

@@ -50,7 +50,7 @@ void MyPlayer::TickInput()
 	{
 		SetDir(DIR_UP);
 	}
-	else  if (GET(InputMgr)->GetButton(KeyType::S))
+	else if (GET(InputMgr)->GetButton(KeyType::S))
 	{
 		SetDir(DIR_DOWN);
 	}

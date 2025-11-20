@@ -286,7 +286,7 @@ void GameScene::LoadTilemap()
 	{
 		auto* tm = GET(ResMgr)->CreateTilemap(L"Tilemap_01");
 		tm->SetMapSize({100, 100});
-		tm->SetTileSize(32);
+		tm->SetTileSize(TILE_SIZE::TILE_SIZEX);
 
 		GET(ResMgr)->LoadTilemap(L"Tilemap_01", L"Tilemap\\Tilemap_01.txt");
 
