@@ -2,11 +2,14 @@
 #include "Arrow.h"
 #include "TimeMgr.h"
 #include "ResMgr.h"
-#include "Flipbook.h"
 #include "SceneMgr.h"
 #include "GameScene.h"
 #include "Creature.h"
 #include "HitEffect.h"
+#include "TilemapActor.h"
+#include "FlipbookActor.h"
+#include "Flipbook.h"
+#include "Texture.h"
 
 Arrow::Arrow()
 {
@@ -36,9 +39,25 @@ void Arrow::Tick()
 
 void Arrow::Render(HDC hdc)
 {
-	Super::Render(hdc);
+	//Super::Render(hdc);
 
+	if (_flipbook == nullptr)
+		return;
 
+	const FlipbookInfo& info = _flipbook->GetInfo();
+	Vec2 cameraPos = GET(SceneMgr)->GetCameraPos();
+
+	::TransparentBlt(hdc,
+		(int32)_pos.x - info.size.x / 2 - ((int32)cameraPos.x - GWinSizeX / 2),
+		(int32)_pos.y - info.size.y  - ((int32)cameraPos.y - GWinSizeY / 2),
+		info.size.x,
+		info.size.y,
+		info.texture->GetDC(),
+		(info.start + _idx) * info.size.x,
+		info.line * info.size.y,
+		info.size.x,
+		info.size.y,
+		info.texture->GetTransparent());
 }
 
 void Arrow::TickIdle()

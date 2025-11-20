@@ -36,7 +36,7 @@ void GameScene::Init()
 	GET(ResMgr)->LoadTexture(L"Stage01", L"Sprite\\Map\\main01.bmp");
 	GET(ResMgr)->LoadTexture(L"Tile", L"Sprite\\Map\\tile.bmp", RGB(255, 0, 255));
 	GET(ResMgr)->LoadTexture(L"Sword", L"Sprite\\Item\\Sword.bmp");
-	GET(ResMgr)->LoadTexture(L"Arrow", L"Sprite\\Item\\Arrow.bmp", RGB(128, 128, 128));
+	GET(ResMgr)->LoadTexture(L"Arrow", L"Sprite\\Item\\Arrow.bmp", RGB(255, 0, 255));
 	GET(ResMgr)->LoadTexture(L"Potion", L"Sprite\\UI\\Mp.bmp");
 
 	GET(ResMgr)->LoadTexture(L"Player", L"Sprite\\Player\\player.bmp", RGB(255, 0, 255));
@@ -249,22 +249,22 @@ void GameScene::LoadProjectiles()
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Arrow");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_ArrowUp");
-		fb->SetInfo({ texture, L"FB_ArrowUp", {100, 100}, 0, 0, 3, 0.5f });
+		fb->SetInfo({ texture, L"FB_ArrowUp", {32, 32}, 0, 0, 3, 0.5f });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Arrow");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_ArrowDown");
-		fb->SetInfo({ texture, L"FB_ArrowDown", {100, 100}, 0, 0, 0, 0.5f });
+		fb->SetInfo({ texture, L"FB_ArrowDown", {32, 32}, 0, 0, 0, 0.5f });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Arrow");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_ArrowLeft");
-		fb->SetInfo({ texture, L"FB_ArrowLeft", {100, 100}, 0, 0, 1, 0.5f });
+		fb->SetInfo({ texture, L"FB_ArrowLeft", {32, 32}, 0, 0, 1, 0.5f });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Arrow");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_ArrowRight");
-		fb->SetInfo({ texture, L"FB_ArrowRight", {100, 100}, 0, 0, 2, 0.5f });
+		fb->SetInfo({ texture, L"FB_ArrowRight", {32, 32}, 0, 0, 2, 0.5f });
 	}
 }
 
