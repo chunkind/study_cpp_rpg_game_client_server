@@ -33,7 +33,7 @@ void MyPlayer::Tick()
 
 	if (info.state() == Protocol::OBJECT_STATE_TYPE_DEAD || info.hp() <= 0) {
 		SendBufferRef send = ClientPacketHandler::Make_C_RemoveObject();
-		GET(NetMgr)->SendPacket(send);
+		GET(NetMgr)->RegisterPacket(send);
 	}
 }
 
@@ -126,7 +126,7 @@ void MyPlayer::TryMove()
 		}
 	}
 
-	GET(NetMgr)->SendPacket(ClientPacketHandler::Make_C_Move());
+	GET(NetMgr)->RegisterPacket(ClientPacketHandler::Make_C_Move());
 }
 
 void MyPlayer::TickIdle()

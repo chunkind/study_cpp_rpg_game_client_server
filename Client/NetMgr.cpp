@@ -70,7 +70,7 @@ ServerSessionRef NetMgr::CreateSession()
 	return _session = make_shared<ServerSession>();
 }
 
-void NetMgr::SendPacket(SendBufferRef sendBuffer)
+void NetMgr::RegisterPacket(SendBufferRef sendBuffer)
 {
 	if (sendBuffer != nullptr)
 		_sendQueue.push(sendBuffer);

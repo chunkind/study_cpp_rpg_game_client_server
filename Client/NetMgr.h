@@ -12,7 +12,7 @@ public:
 	void SyncToServer();
 
 	ServerSessionRef CreateSession();
-	void SendPacket(SendBufferRef sendBuffer);
+	void RegisterPacket(SendBufferRef sendBuffer);
 
 private:
 	ClientServiceRef _service;

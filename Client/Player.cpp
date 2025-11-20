@@ -118,7 +118,7 @@ void Player::TickSkill()
 
 				GameObject* target = scene->GetGameObjectAt(frontPos);
 				if (target != nullptr)
-					GET(NetMgr)->SendPacket(ClientPacketHandler::Make_C_Attack(target));
+					GET(NetMgr)->RegisterPacket(ClientPacketHandler::Make_C_Attack(target));
 			}
 		}
 		else if (_weaponType == WeaponType::Bow)
