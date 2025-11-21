@@ -16,6 +16,7 @@ PlayerRef GameObject::CreatePlayer()
 	PlayerRef player = make_shared<Player>();
 	player->info.set_objectid(s_idGenerator++);
 	player->info.set_objecttype(Protocol::OBJECT_TYPE_PLAYER);
+	player->info.set_name("Player " + std::to_string(s_idGenerator));
 	player->info.set_hp(50);
 	player->info.set_maxhp(50);
 	player->info.set_attack(20);
@@ -28,6 +29,7 @@ MonsterRef GameObject::CreateMonster()
 	MonsterRef monster = make_shared<Monster>();
 	monster->info.set_objectid(s_idGenerator++);
 	monster->info.set_objecttype(Protocol::OBJECT_TYPE_MONSTER);
+	monster->info.set_name("Monster " + std::to_string(s_idGenerator));
 
 	return monster;
 }

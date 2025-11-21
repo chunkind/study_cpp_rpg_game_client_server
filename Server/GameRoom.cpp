@@ -122,7 +122,6 @@ void GameRoom::Handle_C_Move(Protocol::C_Move& pkt)
 	if (gameObject == nullptr)
 		return;
 
-	// TODO : Validation
 	gameObject->info.set_state(pkt.info().state());
 	gameObject->info.set_dir(pkt.info().dir());
 	gameObject->info.set_posx(pkt.info().posx());
@@ -183,10 +182,6 @@ void GameRoom::Handle_C_RemoveObject(Protocol::C_RemoveObject& pkt)
 	SendBufferRef sendBuffer = ServerPacketHandler::Make_S_RemoveObject(bpkt);
 	Broadcast(sendBuffer);
 }
-
-
-
-
 
 void GameRoom::AddObject(GameObjectRef gameObject)
 {

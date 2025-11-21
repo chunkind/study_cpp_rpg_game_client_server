@@ -13,6 +13,7 @@
 #include <assert.h>
 #include "ClientPacketHandler.h"
 #include "NetMgr.h"
+#include "CoreUtil.h"
 
 // C++20
 #include <format>

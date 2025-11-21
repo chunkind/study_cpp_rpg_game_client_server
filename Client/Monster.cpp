@@ -44,11 +44,15 @@ void Monster::Render(HDC hdc)
 
 	// 에너지바
 	Vec2 cameraPos = GET(SceneMgr)->GetCameraPos();
+	string name = info.name();
 	float hp = info.hp();
 	float maxHp = info.maxhp();
 	float hpRt = (hp / maxHp) * 100;
+	Utils::DrawTextW(hdc
+		, Vec2(static_cast<float>(_pos.x - 35 - ((int32)cameraPos.x - GWinSizeX / 2)), static_cast<float>(_pos.y - 90 - ((int32)cameraPos.y - GWinSizeY / 2)))
+		, CoreUtil::TrnWstr(name));
 	Utils::DrawRectColored(hdc
-		, Vec2(static_cast<float>(_pos.x + 8 - ((int32)cameraPos.x - GWinSizeX / 2)), static_cast<float>(_pos.y - 25 - ((int32)cameraPos.y - GWinSizeY / 2)))
+		, Vec2(static_cast<float>(_pos.x - ((int32)cameraPos.x - GWinSizeX / 2)), static_cast<float>(_pos.y - 60 - ((int32)cameraPos.y - GWinSizeY / 2)))
 		, hpRt
 		, 13
 		, RGB(255, 0, 0), false);
