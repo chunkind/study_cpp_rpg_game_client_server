@@ -42,6 +42,7 @@ public:
 	static SendBufferRef Make_S_RemoveObject(const Protocol::S_RemoveObject& pkt);
 	static SendBufferRef Make_S_Move(const Protocol::ObjectInfo& info);
 	static SendBufferRef Make_S_Attack(const Protocol::ObjectInfo& info);
+	static SendBufferRef Make_S_Attack_Arrow(const Protocol::ObjectInfo& info);
 
 
 	template<typename T>

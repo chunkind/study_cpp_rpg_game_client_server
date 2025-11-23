@@ -57,3 +57,13 @@ message S_Attack
 {
 	ObjectInfo info = 1;
 }
+
+message C_Attack_Arrow
+{
+	AttackArrowInfo info = 1;
+}
+
+message S_Attack_Arrow
+{
+	AttackArrowInfo info = 1;
+}

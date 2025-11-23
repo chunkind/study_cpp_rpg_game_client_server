@@ -150,3 +150,8 @@ SendBufferRef ServerPacketHandler::Make_S_Attack(const Protocol::ObjectInfo& inf
 
 	return MakeSendBuffer(pkt, S_Attack);
 }
+
+SendBufferRef ServerPacketHandler::Make_S_Attack_Arrow(const Protocol::ObjectInfo& info)
+{
+
+}
