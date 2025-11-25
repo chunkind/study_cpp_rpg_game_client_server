@@ -31,6 +31,7 @@ public:
 	void Handle_C_Move(Protocol::C_Move& pkt);
 	void Handle_C_Attack(Protocol::C_Attack& pkt);
 	void Handle_C_RemoveObject(Protocol::C_RemoveObject& pkt);
+	void Handle_C_Attack_Arrow(Protocol::C_Attack_Arrow& pkt);
 
 public:
 	void AddObject(GameObjectRef gameObject);

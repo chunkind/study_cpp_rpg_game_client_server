@@ -22,6 +22,10 @@ void ServerPacketHandler::HandlePacket(GameSessionRef session, BYTE* buffer, int
 		break;
 	case C_RemoveObject:
 		Handle_C_RemoveObject(session, buffer, len);
+		break;
+	case C_Attack_Arrow:
+		Handle_C_Attack_Arrow(session, buffer, len);
+		break;
 	default:
 		break;
 	}
@@ -70,6 +74,20 @@ void ServerPacketHandler::Handle_C_RemoveObject(GameSessionRef session, BYTE* bu
 	GameRoomRef room = session->gameRoom.lock();
 	if (room)
 		room->Handle_C_RemoveObject(pkt);
+}
+
+void ServerPacketHandler::Handle_C_Attack_Arrow(GameSessionRef session, BYTE* buffer, int32 len)
+{
+	PacketHeader* header = (PacketHeader*)buffer;
+	uint16 id = header->id;
+	uint16 size = header->size;
+
+	Protocol::C_Attack_Arrow pkt;
+	pkt.ParseFromArray(&header[1], size - sizeof(PacketHeader));
+
+	GameRoomRef room = session->gameRoom.lock();
+	if (room)
+		room->Handle_C_Attack_Arrow(pkt);
 }
 
 
@@ -151,12 +169,7 @@ SendBufferRef ServerPacketHandler::Make_S_Attack(const Protocol::ObjectInfo& inf
 	return MakeSendBuffer(pkt, S_Attack);
 }
 
-SendBufferRef ServerPacketHandler::Make_S_Attack_Arrow(const Protocol::AttackArrowInfo& info)
+SendBufferRef ServerPacketHandler::Make_S_Attack_Arrow(const Protocol::S_Attack_Arrow& pkt)
 {
-	Protocol::S_Attack_Arrow pkt;
-
-	Protocol::AttackArrowInfo* attackArrowInfo = pkt.mutable_info();
-	*attackArrowInfo = info;
-
 	return MakeSendBuffer(pkt, S_Attack_Arrow);
 }

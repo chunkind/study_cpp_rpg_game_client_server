@@ -18,7 +18,11 @@ public:
 
 	virtual void UpdateAnimation() override;
 
+public:
+	void SetHit(bool hit) { _hit = hit; }
+
 protected:
 	Flipbook* _flipbookMove[4] = {};
+	bool _hit = false;
 };
 

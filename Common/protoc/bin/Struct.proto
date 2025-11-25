@@ -37,4 +37,5 @@ message AttackArrowInfo
 	uint64 objectId = 1;
 	uint64 targetId = 2;
 	int32 damege = 3;
+	bool hitFlag = 4;
 }

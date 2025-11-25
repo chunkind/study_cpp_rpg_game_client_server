@@ -108,27 +108,13 @@ void Player::TickSkill()
 
 		if (_weaponType == WeaponType::Sword)
 		{
-			Creature* creature = scene->GetCreatureAt(GetFrontCellPos());
-			if (creature)
-			{
-				/*scene->SpawnObject<HitEffect>(GetFrontCellPos());
+			/*scene->SpawnObject<HitEffect>(GetFrontCellPos());
 				creature->OnDamaged(this);*/
-
-				Vec2Int frontPos = GetFrontCellPos();
-
-				GameObject* target = scene->GetGameObjectAt(frontPos);
-				if (target != nullptr)
-					GET(NetMgr)->RegisterPacket(ClientPacketHandler::Make_C_Attack(target));
-			}
 		}
 		else if (_weaponType == WeaponType::Bow)
 		{
-			Arrow* arrow = scene->SpawnObject<Arrow>(GetCellPos());
-			arrow->SetDir(info.dir());
-
-			Creature* target = scene->GetCreatureAt(GetLineCellPos());
-			if (target != nullptr)
-				GET(NetMgr)->RegisterPacket(ClientPacketHandler::Make_C_Attack_Arrow(target));
+			/*Arrow* arrow = scene->SpawnObject<Arrow>(GetCellPos());
+			arrow->SetDir(info.dir());*/
 		}
 
 		SetState(IDLE);

@@ -80,6 +80,7 @@ PROTOBUF_CONSTEXPR AttackArrowInfo::AttackArrowInfo(
     /*decltype(_impl_.objectid_)*/uint64_t{0u}
   , /*decltype(_impl_.targetid_)*/uint64_t{0u}
   , /*decltype(_impl_.damege_)*/0
+  , /*decltype(_impl_.hitflag_)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct AttackArrowInfoDefaultTypeInternal {
   PROTOBUF_CONSTEXPR AttackArrowInfoDefaultTypeInternal()
@@ -140,6 +141,7 @@ const uint32_t TableStruct_Struct_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(p
   PROTOBUF_FIELD_OFFSET(::Protocol::AttackArrowInfo, _impl_.objectid_),
   PROTOBUF_FIELD_OFFSET(::Protocol::AttackArrowInfo, _impl_.targetid_),
   PROTOBUF_FIELD_OFFSET(::Protocol::AttackArrowInfo, _impl_.damege_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::AttackArrowInfo, _impl_.hitflag_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Protocol::BuffData)},
@@ -166,16 +168,16 @@ const char descriptor_table_protodef_Struct_2eproto[] PROTOBUF_SECTION_VARIABLE(
   "\022\r\n\005maxHp\030\007 \001(\005\022\016\n\006attack\030\010 \001(\005\022\017\n\007defen"
   "ce\030\t \001(\005\022\014\n\004posX\030\n \001(\005\022\014\n\004posY\030\013 \001(\005\"@\n\n"
   "AttackInfo\022\020\n\010objectId\030\001 \001(\004\022\020\n\010targetId"
-  "\030\002 \001(\004\022\016\n\006damege\030\003 \001(\005\"E\n\017AttackArrowInf"
+  "\030\002 \001(\004\022\016\n\006damege\030\003 \001(\005\"V\n\017AttackArrowInf"
   "o\022\020\n\010objectId\030\001 \001(\004\022\020\n\010targetId\030\002 \001(\004\022\016\n"
-  "\006damege\030\003 \001(\005b\006proto3"
+  "\006damege\030\003 \001(\005\022\017\n\007hitFlag\030\004 \001(\010b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Struct_2eproto_deps[1] = {
   &::descriptor_table_Enum_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_Struct_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Struct_2eproto = {
-    false, false, 501, descriptor_table_protodef_Struct_2eproto,
+    false, false, 518, descriptor_table_protodef_Struct_2eproto,
     "Struct.proto",
     &descriptor_table_Struct_2eproto_once, descriptor_table_Struct_2eproto_deps, 1, 4,
     schemas, file_default_instances, TableStruct_Struct_2eproto::offsets,
@@ -1173,12 +1175,13 @@ AttackArrowInfo::AttackArrowInfo(const AttackArrowInfo& from)
       decltype(_impl_.objectid_){}
     , decltype(_impl_.targetid_){}
     , decltype(_impl_.damege_){}
+    , decltype(_impl_.hitflag_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&_impl_.objectid_, &from._impl_.objectid_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.damege_) -
-    reinterpret_cast<char*>(&_impl_.objectid_)) + sizeof(_impl_.damege_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.hitflag_) -
+    reinterpret_cast<char*>(&_impl_.objectid_)) + sizeof(_impl_.hitflag_));
   // @@protoc_insertion_point(copy_constructor:Protocol.AttackArrowInfo)
 }
 
@@ -1190,6 +1193,7 @@ inline void AttackArrowInfo::SharedCtor(
       decltype(_impl_.objectid_){uint64_t{0u}}
     , decltype(_impl_.targetid_){uint64_t{0u}}
     , decltype(_impl_.damege_){0}
+    , decltype(_impl_.hitflag_){false}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -1218,8 +1222,8 @@ void AttackArrowInfo::Clear() {
   (void) cached_has_bits;
 
   ::memset(&_impl_.objectid_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.damege_) -
-      reinterpret_cast<char*>(&_impl_.objectid_)) + sizeof(_impl_.damege_));
+      reinterpret_cast<char*>(&_impl_.hitflag_) -
+      reinterpret_cast<char*>(&_impl_.objectid_)) + sizeof(_impl_.hitflag_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1249,6 +1253,14 @@ const char* AttackArrowInfo::_InternalParse(const char* ptr, ::_pbi::ParseContex
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
           _impl_.damege_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool hitFlag = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          _impl_.hitflag_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1300,6 +1312,12 @@ uint8_t* AttackArrowInfo::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_damege(), target);
   }
 
+  // bool hitFlag = 4;
+  if (this->_internal_hitflag() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(4, this->_internal_hitflag(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1331,6 +1349,11 @@ size_t AttackArrowInfo::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_damege());
   }
 
+  // bool hitFlag = 4;
+  if (this->_internal_hitflag() != 0) {
+    total_size += 1 + 1;
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -1358,6 +1381,9 @@ void AttackArrowInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const 
   if (from._internal_damege() != 0) {
     _this->_internal_set_damege(from._internal_damege());
   }
+  if (from._internal_hitflag() != 0) {
+    _this->_internal_set_hitflag(from._internal_hitflag());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1376,8 +1402,8 @@ void AttackArrowInfo::InternalSwap(AttackArrowInfo* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(AttackArrowInfo, _impl_.damege_)
-      + sizeof(AttackArrowInfo::_impl_.damege_)
+      PROTOBUF_FIELD_OFFSET(AttackArrowInfo, _impl_.hitflag_)
+      + sizeof(AttackArrowInfo::_impl_.hitflag_)
       - PROTOBUF_FIELD_OFFSET(AttackArrowInfo, _impl_.objectid_)>(
           reinterpret_cast<char*>(&_impl_.objectid_),
           reinterpret_cast<char*>(&other->_impl_.objectid_));

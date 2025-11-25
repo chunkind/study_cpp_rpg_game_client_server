@@ -28,7 +28,7 @@ protected:
 	void SetWeaponType(WeaponType weaponType) { _weaponType = weaponType; }
 	WeaponType GetWeaponType() { return _weaponType; }
 
-private:
+protected:
 	Flipbook* _flipbookIdle[4] = {};
 	Flipbook* _flipbookMove[4] = {};
 	Flipbook* _flipbookAttack[4] = {};

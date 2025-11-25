@@ -21,15 +21,15 @@ void GameRoom::Init()
 {
 	_tilemap.LoadFile(L"C:\\git\\study_cpp_rpg_game_client_server\\Resources\\Tilemap\\Tilemap_01.txt");
 
-	for (int32 i = 0; i < 20; ++i)
+	for (int32 i = 0; i < 1; ++i)
 	{
 		Vec2Int pos = GetRandomEmptyCellPos();
 
 		MonsterRef monster = GameObject::CreateMonster();
-		monster->info.set_posx(pos.x);
-		monster->info.set_posy(pos.y);
-		/*monster->info.set_posx(15);
-		monster->info.set_posy(15);*/
+		//monster->info.set_posx(pos.x);
+		//monster->info.set_posy(pos.y);
+		monster->info.set_posx(15);
+		monster->info.set_posy(15);
 		AddObject(monster);
 	}
 }
@@ -180,6 +180,29 @@ void GameRoom::Handle_C_RemoveObject(Protocol::C_RemoveObject& pkt)
 	}
 
 	SendBufferRef sendBuffer = ServerPacketHandler::Make_S_RemoveObject(bpkt);
+	Broadcast(sendBuffer);
+}
+
+void GameRoom::Handle_C_Attack_Arrow(Protocol::C_Attack_Arrow& pkt)
+{
+	Protocol::S_Attack_Arrow bpkt;
+
+	uint64 objectId = pkt.info().objectid();
+	uint64 targetId = pkt.info().targetid();
+	int32 damage = pkt.info().damege();
+	bool hitFlag = true;
+
+	GameObjectRef gameObject = FindObject(objectId);
+	GameObjectRef targetObject = FindObject(targetId);
+
+	if (gameObject == nullptr || targetObject == nullptr)
+		hitFlag = false;
+	else if (targetObject->info.hp() <= 0)
+		hitFlag = false;
+
+	bpkt.mutable_info()->CopyFrom(pkt.info());
+	bpkt.mutable_info()->set_hitflag(hitFlag);
+	SendBufferRef sendBuffer = ServerPacketHandler::Make_S_Attack_Arrow(bpkt);
 	Broadcast(sendBuffer);
 }
 

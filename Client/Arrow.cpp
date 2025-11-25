@@ -77,7 +77,7 @@ void Arrow::TickIdle()
 	else
 	{
 		Creature* creature = scene->GetCreatureAt(nextPos);
-		if (creature->info.objecttype() == Protocol::OBJECT_TYPE_PLAYER)
+		if (creature == nullptr || creature->info.objecttype() == Protocol::OBJECT_TYPE_PLAYER)
 			return;
 		if (creature)
 		{

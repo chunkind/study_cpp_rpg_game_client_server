@@ -79,6 +79,31 @@ void MyPlayer::TickInput()
 	if (GET(InputMgr)->GetButton(KeyType::SpaceBar))
 	{
 		SetState(SKILL);
+
+		GameScene* scene = dynamic_cast<GameScene*>(GET(SceneMgr)->GetCurrentScene());
+		if (scene == nullptr)
+			return;
+
+		if (_weaponType == WeaponType::Sword)
+		{
+
+			Creature* creature = scene->GetCreatureAt(GetFrontCellPos());
+			if (creature)
+			{
+				Vec2Int frontPos = GetFrontCellPos();
+				GameObject* target = scene->GetGameObjectAt(frontPos);
+				if (target != nullptr)
+					GET(NetMgr)->RegisterPacket(ClientPacketHandler::Make_C_Attack(target));
+			}
+
+			
+		}
+		else if (_weaponType == WeaponType::Bow)
+		{
+			Creature* target = scene->GetCreatureAt(GetLineCellPos());
+			GET(NetMgr)->RegisterPacket(ClientPacketHandler::Make_C_Attack_Arrow(target));
+		}
+		
 	}
 }
 

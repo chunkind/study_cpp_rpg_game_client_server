@@ -810,6 +810,7 @@ class AttackArrowInfo final :
     kObjectIdFieldNumber = 1,
     kTargetIdFieldNumber = 2,
     kDamegeFieldNumber = 3,
+    kHitFlagFieldNumber = 4,
   };
   // uint64 objectId = 1;
   void clear_objectid();
@@ -838,6 +839,15 @@ class AttackArrowInfo final :
   void _internal_set_damege(int32_t value);
   public:
 
+  // bool hitFlag = 4;
+  void clear_hitflag();
+  bool hitflag() const;
+  void set_hitflag(bool value);
+  private:
+  bool _internal_hitflag() const;
+  void _internal_set_hitflag(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Protocol.AttackArrowInfo)
  private:
   class _Internal;
@@ -849,6 +859,7 @@ class AttackArrowInfo final :
     uint64_t objectid_;
     uint64_t targetid_;
     int32_t damege_;
+    bool hitflag_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1332,6 +1343,26 @@ inline void AttackArrowInfo::_internal_set_damege(int32_t value) {
 inline void AttackArrowInfo::set_damege(int32_t value) {
   _internal_set_damege(value);
   // @@protoc_insertion_point(field_set:Protocol.AttackArrowInfo.damege)
+}
+
+// bool hitFlag = 4;
+inline void AttackArrowInfo::clear_hitflag() {
+  _impl_.hitflag_ = false;
+}
+inline bool AttackArrowInfo::_internal_hitflag() const {
+  return _impl_.hitflag_;
+}
+inline bool AttackArrowInfo::hitflag() const {
+  // @@protoc_insertion_point(field_get:Protocol.AttackArrowInfo.hitFlag)
+  return _internal_hitflag();
+}
+inline void AttackArrowInfo::_internal_set_hitflag(bool value) {
+  
+  _impl_.hitflag_ = value;
+}
+inline void AttackArrowInfo::set_hitflag(bool value) {
+  _internal_set_hitflag(value);
+  // @@protoc_insertion_point(field_set:Protocol.AttackArrowInfo.hitFlag)
 }
 
 #ifdef __GNUC__

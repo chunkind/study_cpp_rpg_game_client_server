@@ -6,6 +6,9 @@
 #include "SceneMgr.h"
 #include "ObjMgr.h"
 #include "GameObject.h"
+#include "HitEffect.h"
+#include "Scene.h"
+#include "Arrow.h"
 
 /******* Server -> Client *******/
 
@@ -35,6 +38,9 @@ void ClientPacketHandler::HandlePacket(ServerSessionRef session, BYTE* buffer, i
 		break;
 	case S_Attack:
 		Handle_S_Attack(session, buffer, len);
+		break;
+	case S_Attack_Arrow:
+		Handle_S_Attack_Arrow(session, buffer, len);
 		break;
 	}
 }
@@ -201,7 +207,18 @@ void ClientPacketHandler::Handle_S_Attack_Arrow(ServerSessionRef session, BYTE* 
 
 	const Protocol::AttackArrowInfo& info = pkt.info();
 
-	
+	GameScene* scene = (GameScene*)GET(SceneMgr)->GetCurrentScene();
+	GameObject* creature = scene->GetObject(info.targetid());
+	GameObject* player = scene->GetObject(info.objectid());
+
+	Arrow* clientArrow = scene->SpawnObject<Arrow>(player->GetCellPos());
+	clientArrow->SetHit(info.hitflag());
+	clientArrow->SetDir(player->info.dir());
+
+	player->SetState(SKILL);
+
+	/*scene->SpawnObject<HitEffect>(creature->GetCellPos());
+	((Creature*)creature)->OnDamaged(player);*/
 }
 
 
@@ -250,5 +267,14 @@ SendBufferRef ClientPacketHandler::Make_C_Attack_Arrow(GameObject* target)
 {
 	Protocol::C_Attack_Arrow pkt;
 
-	return nullptr;
+	MyPlayer* myPlayer = GET(SceneMgr)->GetMyPlayer();
+
+	pkt.mutable_info()->set_objectid(myPlayer->GetObjectID());
+	if (nullptr == target)
+		pkt.mutable_info()->set_targetid(-1);
+	else
+		pkt.mutable_info()->set_targetid(target->GetObjectID());
+	pkt.mutable_info()->set_damege(myPlayer->info.attack());
+
+	return MakeSendBuffer(pkt, C_Attack_Arrow);
 }
