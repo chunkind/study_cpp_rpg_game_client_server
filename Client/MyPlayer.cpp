@@ -69,11 +69,12 @@ void MyPlayer::TickInput()
 
 	if (GET(InputMgr)->GetButtonDown(KeyType::KEY_1))
 	{
-		SetWeaponType(WeaponType::Sword);
+		SetWeaponType(WeaponType::OBJECT_WEAPON_TYPE_SWORD);
+		GET(NetMgr)->RegisterPacket(ClientPacketHandler::Make_C_ObjectWeaponChange(info.objectid(), WeaponType::OBJECT_WEAPON_TYPE_SWORD));
 	}
 	else if (GET(InputMgr)->GetButtonDown(KeyType::KEY_2))
 	{
-		SetWeaponType(WeaponType::Bow);
+		SetWeaponType(WeaponType::OBJECT_WEAPON_TYPE_BOW);
 	}
 
 	if (GET(InputMgr)->GetButton(KeyType::SpaceBar))
@@ -84,7 +85,7 @@ void MyPlayer::TickInput()
 		if (scene == nullptr)
 			return;
 
-		if (_weaponType == WeaponType::Sword)
+		if (_weaponType == WeaponType::OBJECT_WEAPON_TYPE_SWORD)
 		{
 
 			Creature* creature = scene->GetCreatureAt(GetFrontCellPos());
@@ -98,7 +99,7 @@ void MyPlayer::TickInput()
 
 			
 		}
-		else if (_weaponType == WeaponType::Bow)
+		else if (_weaponType == WeaponType::OBJECT_WEAPON_TYPE_BOW)
 		{
 			Creature* target = scene->GetCreatureAt(GetLineCellPos());
 			GET(NetMgr)->RegisterPacket(ClientPacketHandler::Make_C_Attack_Arrow(target));

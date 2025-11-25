@@ -47,6 +47,9 @@ struct TableStruct_Protocol_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Protocol_2eproto;
 namespace Protocol {
+class A_ObjectWeaponChange;
+struct A_ObjectWeaponChangeDefaultTypeInternal;
+extern A_ObjectWeaponChangeDefaultTypeInternal _A_ObjectWeaponChange_default_instance_;
 class C_Attack;
 struct C_AttackDefaultTypeInternal;
 extern C_AttackDefaultTypeInternal _C_Attack_default_instance_;
@@ -85,6 +88,7 @@ struct S_TESTDefaultTypeInternal;
 extern S_TESTDefaultTypeInternal _S_TEST_default_instance_;
 }  // namespace Protocol
 PROTOBUF_NAMESPACE_OPEN
+template<> ::Protocol::A_ObjectWeaponChange* Arena::CreateMaybeMessage<::Protocol::A_ObjectWeaponChange>(Arena*);
 template<> ::Protocol::C_Attack* Arena::CreateMaybeMessage<::Protocol::C_Attack>(Arena*);
 template<> ::Protocol::C_Attack_Arrow* Arena::CreateMaybeMessage<::Protocol::C_Attack_Arrow>(Arena*);
 template<> ::Protocol::C_Move* Arena::CreateMaybeMessage<::Protocol::C_Move>(Arena*);
@@ -2029,6 +2033,165 @@ class S_Attack_Arrow final :
   union { Impl_ _impl_; };
   friend struct ::TableStruct_Protocol_2eproto;
 };
+// -------------------------------------------------------------------
+
+class A_ObjectWeaponChange final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.A_ObjectWeaponChange) */ {
+ public:
+  inline A_ObjectWeaponChange() : A_ObjectWeaponChange(nullptr) {}
+  ~A_ObjectWeaponChange() override;
+  explicit PROTOBUF_CONSTEXPR A_ObjectWeaponChange(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  A_ObjectWeaponChange(const A_ObjectWeaponChange& from);
+  A_ObjectWeaponChange(A_ObjectWeaponChange&& from) noexcept
+    : A_ObjectWeaponChange() {
+    *this = ::std::move(from);
+  }
+
+  inline A_ObjectWeaponChange& operator=(const A_ObjectWeaponChange& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline A_ObjectWeaponChange& operator=(A_ObjectWeaponChange&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const A_ObjectWeaponChange& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const A_ObjectWeaponChange* internal_default_instance() {
+    return reinterpret_cast<const A_ObjectWeaponChange*>(
+               &_A_ObjectWeaponChange_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    12;
+
+  friend void swap(A_ObjectWeaponChange& a, A_ObjectWeaponChange& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(A_ObjectWeaponChange* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(A_ObjectWeaponChange* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  A_ObjectWeaponChange* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<A_ObjectWeaponChange>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const A_ObjectWeaponChange& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const A_ObjectWeaponChange& from) {
+    A_ObjectWeaponChange::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(A_ObjectWeaponChange* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Protocol.A_ObjectWeaponChange";
+  }
+  protected:
+  explicit A_ObjectWeaponChange(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kObjectIdFieldNumber = 1,
+    kStateFieldNumber = 2,
+  };
+  // uint64 objectId = 1;
+  void clear_objectid();
+  uint64_t objectid() const;
+  void set_objectid(uint64_t value);
+  private:
+  uint64_t _internal_objectid() const;
+  void _internal_set_objectid(uint64_t value);
+  public:
+
+  // .Protocol.OBJECT_WEAPON_TYPE state = 2;
+  void clear_state();
+  ::Protocol::OBJECT_WEAPON_TYPE state() const;
+  void set_state(::Protocol::OBJECT_WEAPON_TYPE value);
+  private:
+  ::Protocol::OBJECT_WEAPON_TYPE _internal_state() const;
+  void _internal_set_state(::Protocol::OBJECT_WEAPON_TYPE value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Protocol.A_ObjectWeaponChange)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    uint64_t objectid_;
+    int state_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_Protocol_2eproto;
+};
 // ===================================================================
 
 
@@ -2947,9 +3110,55 @@ inline void S_Attack_Arrow::set_allocated_info(::Protocol::AttackArrowInfo* info
   // @@protoc_insertion_point(field_set_allocated:Protocol.S_Attack_Arrow.info)
 }
 
+// -------------------------------------------------------------------
+
+// A_ObjectWeaponChange
+
+// uint64 objectId = 1;
+inline void A_ObjectWeaponChange::clear_objectid() {
+  _impl_.objectid_ = uint64_t{0u};
+}
+inline uint64_t A_ObjectWeaponChange::_internal_objectid() const {
+  return _impl_.objectid_;
+}
+inline uint64_t A_ObjectWeaponChange::objectid() const {
+  // @@protoc_insertion_point(field_get:Protocol.A_ObjectWeaponChange.objectId)
+  return _internal_objectid();
+}
+inline void A_ObjectWeaponChange::_internal_set_objectid(uint64_t value) {
+  
+  _impl_.objectid_ = value;
+}
+inline void A_ObjectWeaponChange::set_objectid(uint64_t value) {
+  _internal_set_objectid(value);
+  // @@protoc_insertion_point(field_set:Protocol.A_ObjectWeaponChange.objectId)
+}
+
+// .Protocol.OBJECT_WEAPON_TYPE state = 2;
+inline void A_ObjectWeaponChange::clear_state() {
+  _impl_.state_ = 0;
+}
+inline ::Protocol::OBJECT_WEAPON_TYPE A_ObjectWeaponChange::_internal_state() const {
+  return static_cast< ::Protocol::OBJECT_WEAPON_TYPE >(_impl_.state_);
+}
+inline ::Protocol::OBJECT_WEAPON_TYPE A_ObjectWeaponChange::state() const {
+  // @@protoc_insertion_point(field_get:Protocol.A_ObjectWeaponChange.state)
+  return _internal_state();
+}
+inline void A_ObjectWeaponChange::_internal_set_state(::Protocol::OBJECT_WEAPON_TYPE value) {
+  
+  _impl_.state_ = value;
+}
+inline void A_ObjectWeaponChange::set_state(::Protocol::OBJECT_WEAPON_TYPE value) {
+  _internal_set_state(value);
+  // @@protoc_insertion_point(field_set:Protocol.A_ObjectWeaponChange.state)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

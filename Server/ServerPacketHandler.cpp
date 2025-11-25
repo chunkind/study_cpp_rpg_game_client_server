@@ -26,10 +26,15 @@ void ServerPacketHandler::HandlePacket(GameSessionRef session, BYTE* buffer, int
 	case C_Attack_Arrow:
 		Handle_C_Attack_Arrow(session, buffer, len);
 		break;
+	case C_ObjectWeaponChange:
+		Handle_C_ObjectWeaponChange(session, buffer, len);
+		break;
 	default:
 		break;
 	}
 }
+
+/******** Client -> Server ********/
 
 void ServerPacketHandler::Handle_C_Move(GameSessionRef session, BYTE* buffer, int32 len)
 {
@@ -90,6 +95,14 @@ void ServerPacketHandler::Handle_C_Attack_Arrow(GameSessionRef session, BYTE* bu
 		room->Handle_C_Attack_Arrow(pkt);
 }
 
+void ServerPacketHandler::Handle_C_ObjectWeaponChange(GameSessionRef session, BYTE* buffer, int32 len)
+{
+}
+
+
+
+
+/******** Server -> Client ********/
 
 SendBufferRef ServerPacketHandler::Make_S_TEST(uint64 id, uint32 hp, uint16 attack, vector<BuffData> buffs)
 {
@@ -172,4 +185,9 @@ SendBufferRef ServerPacketHandler::Make_S_Attack(const Protocol::ObjectInfo& inf
 SendBufferRef ServerPacketHandler::Make_S_Attack_Arrow(const Protocol::S_Attack_Arrow& pkt)
 {
 	return MakeSendBuffer(pkt, S_Attack_Arrow);
+}
+
+SendBufferRef ServerPacketHandler::Make_S_ObjectWeaponChange(int32 objectId, Protocol::OBJECT_WEAPON_TYPE type)
+{
+	return SendBufferRef();
 }

@@ -32,3 +32,27 @@ using SendBufferRef = std::shared_ptr<class SendBuffer>;
 #define size32(val)		static_cast<int32>(sizeof(val))
 #define len16(arr)		static_cast<int16>(sizeof(arr)/sizeof(arr[0]))
 #define len32(arr)		static_cast<int32>(sizeof(arr)/sizeof(arr[0]))
+
+enum
+{
+	S_TEST = 1,
+	S_EnterGame = 2,
+
+	S_MyPlayer = 4,
+	S_AddObject = 5,
+
+	C_RemoveObject = 6,
+	S_RemoveObject = 7,
+
+	C_Move = 10,
+	S_Move = 11,
+
+	C_Attack = 12,
+	S_Attack = 13,
+
+	C_Attack_Arrow = 14,
+	S_Attack_Arrow = 15,
+
+	C_ObjectWeaponChange = 16,
+	S_ObjectWeaponChange = 17
+};

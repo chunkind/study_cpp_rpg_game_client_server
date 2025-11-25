@@ -48,8 +48,4 @@ using Dir = Protocol::DIR_TYPE;
 
 using ObjectState = Protocol::OBJECT_STATE_TYPE;
 
-enum class WeaponType
-{
-	Sword,
-	Bow
-};
+using WeaponType = Protocol::OBJECT_WEAPON_TYPE;

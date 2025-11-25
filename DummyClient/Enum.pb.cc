@@ -22,7 +22,7 @@ namespace _pbi = _pb::internal;
 
 namespace Protocol {
 }  // namespace Protocol
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_Enum_2eproto[4];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_Enum_2eproto[5];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_Enum_2eproto = nullptr;
 const uint32_t TableStruct_Enum_2eproto::offsets[1] = {};
 static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
@@ -39,12 +39,15 @@ const char descriptor_table_protodef_Enum_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "_TYPE_MOVE\020\001\022\033\n\027OBJECT_STATE_TYPE_SKILL\020"
   "\002\022\032\n\026OBJECT_STATE_TYPE_DEAD\020\003*U\n\010DIR_TYP"
   "E\022\017\n\013DIR_TYPE_UP\020\000\022\021\n\rDIR_TYPE_DOWN\020\001\022\021\n"
-  "\rDIR_TYPE_LEFT\020\002\022\022\n\016DIR_TYPE_RIGHT\020\003b\006pr"
-  "oto3"
+  "\rDIR_TYPE_LEFT\020\002\022\022\n\016DIR_TYPE_RIGHT\020\003*\211\001\n"
+  "\022OBJECT_WEAPON_TYPE\022\033\n\027OBJECT_WEAPON_TYP"
+  "E_NONE\020\000\022\034\n\030OBJECT_WEAPON_TYPE_SWORD\020\001\022\034"
+  "\n\030OBJECT_WEAPON_TYPE_STAFF\020\002\022\032\n\026OBJECT_W"
+  "EAPON_TYPE_BOW\020\003b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_Enum_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Enum_2eproto = {
-    false, false, 444, descriptor_table_protodef_Enum_2eproto,
+    false, false, 584, descriptor_table_protodef_Enum_2eproto,
     "Enum.proto",
     &descriptor_table_Enum_2eproto_once, nullptr, 0, 0,
     schemas, file_default_instances, TableStruct_Enum_2eproto::offsets,
@@ -110,6 +113,22 @@ const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* DIR_TYPE_descriptor() {
   return file_level_enum_descriptors_Enum_2eproto[3];
 }
 bool DIR_TYPE_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* OBJECT_WEAPON_TYPE_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_Enum_2eproto);
+  return file_level_enum_descriptors_Enum_2eproto[4];
+}
+bool OBJECT_WEAPON_TYPE_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:

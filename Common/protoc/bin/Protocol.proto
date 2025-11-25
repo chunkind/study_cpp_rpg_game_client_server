@@ -67,3 +67,9 @@ message S_Attack_Arrow
 {
 	AttackArrowInfo info = 1;
 }
+
+message A_ObjectWeaponChange
+{
+	uint64 objectId = 1;
+	OBJECT_WEAPON_TYPE state = 2;
+}

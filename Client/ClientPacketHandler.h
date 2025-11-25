@@ -2,27 +2,6 @@
 
 class GameObject;
 
-enum
-{
-	S_TEST = 1,
-	S_EnterGame = 2,
-
-	S_MyPlayer = 4,
-	S_AddObject = 5,
-
-	C_RemoveObject = 6,
-	S_RemoveObject = 7,
-
-	C_Move = 10,
-	S_Move = 11,
-
-	C_Attack = 12,
-	S_Attack = 13,
-
-	C_Attack_Arrow = 14,
-	S_Attack_Arrow = 15
-};
-
 class ClientPacketHandler
 {
 public:
@@ -37,12 +16,14 @@ public:
 	static void Handle_S_Move(ServerSessionRef session, BYTE* buffer, int32 len);
 	static void Handle_S_Attack(ServerSessionRef session, BYTE* buffer, int32 len);
 	static void Handle_S_Attack_Arrow(ServerSessionRef session, BYTE* buffer, int32 len);
+	static void Handle_S_ObjectWeaponChange(ServerSessionRef session, BYTE* buffer, int32 len);
 
 	// 보내기
 	static SendBufferRef Make_C_Move();
 	static SendBufferRef Make_C_Attack(GameObject* target);
 	static SendBufferRef Make_C_RemoveObject();
 	static SendBufferRef Make_C_Attack_Arrow(GameObject* target);
+	static SendBufferRef Make_C_ObjectWeaponChange(int32 objectId, Protocol::OBJECT_WEAPON_TYPE type);
 
 	template<typename T>
 	static SendBufferRef MakeSendBuffer(T& pkt, uint16 pktId)

@@ -42,6 +42,11 @@ void ClientPacketHandler::HandlePacket(ServerSessionRef session, BYTE* buffer, i
 	case S_Attack_Arrow:
 		Handle_S_Attack_Arrow(session, buffer, len);
 		break;
+	case S_ObjectWeaponChange:
+		Handle_S_ObjectWeaponChange(session, buffer, len);
+		break;
+	default:
+		break;
 	}
 }
 
@@ -221,6 +226,11 @@ void ClientPacketHandler::Handle_S_Attack_Arrow(ServerSessionRef session, BYTE* 
 	((Creature*)creature)->OnDamaged(player);*/
 }
 
+void ClientPacketHandler::Handle_S_ObjectWeaponChange(ServerSessionRef session, BYTE* buffer, int32 len)
+{
+	
+}
+
 
 /******* Client -> Server *******/
 
@@ -277,4 +287,13 @@ SendBufferRef ClientPacketHandler::Make_C_Attack_Arrow(GameObject* target)
 	pkt.mutable_info()->set_damege(myPlayer->info.attack());
 
 	return MakeSendBuffer(pkt, C_Attack_Arrow);
+}
+
+SendBufferRef ClientPacketHandler::Make_C_ObjectWeaponChange(int32 objectId, Protocol::OBJECT_WEAPON_TYPE type)
+{
+	Protocol::A_ObjectWeaponChange pkt;
+
+
+
+	return SendBufferRef();
 }

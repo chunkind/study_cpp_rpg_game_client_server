@@ -1,26 +1,5 @@
 #pragma once
 
-enum
-{
-	S_TEST = 1,
-	S_EnterGame = 2,
-
-	S_MyPlayer = 4,
-	S_AddObject = 5,
-
-	C_RemoveObject = 6,
-	S_RemoveObject = 7,
-
-	C_Move = 10,
-	S_Move = 11,
-
-	C_Attack = 12,
-	S_Attack = 13,
-
-	C_Attack_Arrow = 14,
-	S_Attack_Arrow = 15
-};
-
 struct BuffData
 {
 	uint64 buffId;
@@ -37,6 +16,7 @@ public:
 	static void Handle_C_Attack(GameSessionRef session, BYTE* buffer, int32 len);
 	static void Handle_C_RemoveObject(GameSessionRef session, BYTE* buffer, int32 len);
 	static void Handle_C_Attack_Arrow(GameSessionRef session, BYTE* buffer, int32 len);
+	static void Handle_C_ObjectWeaponChange(GameSessionRef session, BYTE* buffer, int32 len);
 
 	// 보내기
 	static SendBufferRef Make_S_TEST(uint64 id, uint32 hp, uint16 attack, vector<BuffData> buffs);
@@ -47,7 +27,7 @@ public:
 	static SendBufferRef Make_S_Move(const Protocol::ObjectInfo& info);
 	static SendBufferRef Make_S_Attack(const Protocol::ObjectInfo& info);
 	static SendBufferRef Make_S_Attack_Arrow(const Protocol::S_Attack_Arrow& info);
-
+	static SendBufferRef Make_S_ObjectWeaponChange(int32 objectId, Protocol::OBJECT_WEAPON_TYPE state);
 
 	template<typename T>
 	static SendBufferRef MakeSendBuffer(T& pkt, uint16 pktId)

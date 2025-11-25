@@ -154,6 +154,33 @@ inline bool DIR_TYPE_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<DIR_TYPE>(
     DIR_TYPE_descriptor(), name, value);
 }
+enum OBJECT_WEAPON_TYPE : int {
+  OBJECT_WEAPON_TYPE_NONE = 0,
+  OBJECT_WEAPON_TYPE_SWORD = 1,
+  OBJECT_WEAPON_TYPE_STAFF = 2,
+  OBJECT_WEAPON_TYPE_BOW = 3,
+  OBJECT_WEAPON_TYPE_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  OBJECT_WEAPON_TYPE_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool OBJECT_WEAPON_TYPE_IsValid(int value);
+constexpr OBJECT_WEAPON_TYPE OBJECT_WEAPON_TYPE_MIN = OBJECT_WEAPON_TYPE_NONE;
+constexpr OBJECT_WEAPON_TYPE OBJECT_WEAPON_TYPE_MAX = OBJECT_WEAPON_TYPE_BOW;
+constexpr int OBJECT_WEAPON_TYPE_ARRAYSIZE = OBJECT_WEAPON_TYPE_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* OBJECT_WEAPON_TYPE_descriptor();
+template<typename T>
+inline const std::string& OBJECT_WEAPON_TYPE_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, OBJECT_WEAPON_TYPE>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function OBJECT_WEAPON_TYPE_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    OBJECT_WEAPON_TYPE_descriptor(), enum_t_value);
+}
+inline bool OBJECT_WEAPON_TYPE_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, OBJECT_WEAPON_TYPE* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<OBJECT_WEAPON_TYPE>(
+    OBJECT_WEAPON_TYPE_descriptor(), name, value);
+}
 // ===================================================================
 
 
@@ -195,6 +222,11 @@ template <> struct is_proto_enum< ::Protocol::DIR_TYPE> : ::std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::Protocol::DIR_TYPE>() {
   return ::Protocol::DIR_TYPE_descriptor();
+}
+template <> struct is_proto_enum< ::Protocol::OBJECT_WEAPON_TYPE> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::Protocol::OBJECT_WEAPON_TYPE>() {
+  return ::Protocol::OBJECT_WEAPON_TYPE_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

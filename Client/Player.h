@@ -36,6 +36,6 @@ protected:
 	Flipbook* _flipbookStaff[4] = {};
 
 	bool _keyPressed = false;
-	WeaponType _weaponType = WeaponType::Sword;
+	WeaponType _weaponType = WeaponType::OBJECT_WEAPON_TYPE_SWORD;
 };
 
