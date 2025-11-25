@@ -125,6 +125,10 @@ void Player::TickSkill()
 		{
 			Arrow* arrow = scene->SpawnObject<Arrow>(GetCellPos());
 			arrow->SetDir(info.dir());
+
+			Creature* target = scene->GetCreatureAt(GetLineCellPos());
+			if (target != nullptr)
+				GET(NetMgr)->RegisterPacket(ClientPacketHandler::Make_C_Attack_Arrow(target));
 		}
 
 		SetState(IDLE);

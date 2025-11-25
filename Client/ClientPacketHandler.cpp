@@ -190,6 +190,20 @@ void ClientPacketHandler::Handle_S_Attack(ServerSessionRef session, BYTE* buffer
 	}
 }
 
+void ClientPacketHandler::Handle_S_Attack_Arrow(ServerSessionRef session, BYTE* buffer, int32 len)
+{
+	PacketHeader* header = (PacketHeader*)buffer;
+	uint16 id = header->id;
+	uint16 size = header->size;
+
+	Protocol::S_Attack_Arrow pkt;
+	pkt.ParseFromArray(&header[1], size - sizeof(PacketHeader));
+
+	const Protocol::AttackArrowInfo& info = pkt.info();
+
+	
+}
+
 
 /******* Client -> Server *******/
 
@@ -230,4 +244,11 @@ SendBufferRef ClientPacketHandler::Make_C_RemoveObject()
 	pkt.add_ids(myPlayer->info.objectid());
 
 	return MakeSendBuffer(pkt, C_RemoveObject);
+}
+
+SendBufferRef ClientPacketHandler::Make_C_Attack_Arrow(GameObject* target)
+{
+	Protocol::C_Attack_Arrow pkt;
+
+	return nullptr;
 }

@@ -18,6 +18,9 @@ enum
 
 	C_Attack = 12,
 	S_Attack = 13,
+
+	C_Attack_Arrow = 14,
+	S_Attack_Arrow = 15
 };
 
 class ClientPacketHandler
@@ -33,11 +36,13 @@ public:
 	static void Handle_S_RemoveObject(ServerSessionRef session, BYTE* buffer, int32 len);
 	static void Handle_S_Move(ServerSessionRef session, BYTE* buffer, int32 len);
 	static void Handle_S_Attack(ServerSessionRef session, BYTE* buffer, int32 len);
+	static void Handle_S_Attack_Arrow(ServerSessionRef session, BYTE* buffer, int32 len);
 
 	// 보내기
 	static SendBufferRef Make_C_Move();
 	static SendBufferRef Make_C_Attack(GameObject* target);
 	static SendBufferRef Make_C_RemoveObject();
+	static SendBufferRef Make_C_Attack_Arrow(GameObject* target);
 
 	template<typename T>
 	static SendBufferRef MakeSendBuffer(T& pkt, uint16 pktId)

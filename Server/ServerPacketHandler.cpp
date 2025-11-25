@@ -151,7 +151,12 @@ SendBufferRef ServerPacketHandler::Make_S_Attack(const Protocol::ObjectInfo& inf
 	return MakeSendBuffer(pkt, S_Attack);
 }
 
-SendBufferRef ServerPacketHandler::Make_S_Attack_Arrow(const Protocol::ObjectInfo& info)
+SendBufferRef ServerPacketHandler::Make_S_Attack_Arrow(const Protocol::AttackArrowInfo& info)
 {
+	Protocol::S_Attack_Arrow pkt;
 
+	Protocol::AttackArrowInfo* attackArrowInfo = pkt.mutable_info();
+	*attackArrowInfo = info;
+
+	return MakeSendBuffer(pkt, S_Attack_Arrow);
 }

@@ -46,6 +46,9 @@ struct TableStruct_Struct_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Struct_2eproto;
 namespace Protocol {
+class AttackArrowInfo;
+struct AttackArrowInfoDefaultTypeInternal;
+extern AttackArrowInfoDefaultTypeInternal _AttackArrowInfo_default_instance_;
 class AttackInfo;
 struct AttackInfoDefaultTypeInternal;
 extern AttackInfoDefaultTypeInternal _AttackInfo_default_instance_;
@@ -57,6 +60,7 @@ struct ObjectInfoDefaultTypeInternal;
 extern ObjectInfoDefaultTypeInternal _ObjectInfo_default_instance_;
 }  // namespace Protocol
 PROTOBUF_NAMESPACE_OPEN
+template<> ::Protocol::AttackArrowInfo* Arena::CreateMaybeMessage<::Protocol::AttackArrowInfo>(Arena*);
 template<> ::Protocol::AttackInfo* Arena::CreateMaybeMessage<::Protocol::AttackInfo>(Arena*);
 template<> ::Protocol::BuffData* Arena::CreateMaybeMessage<::Protocol::BuffData>(Arena*);
 template<> ::Protocol::ObjectInfo* Arena::CreateMaybeMessage<::Protocol::ObjectInfo>(Arena*);
@@ -680,6 +684,176 @@ class AttackInfo final :
   union { Impl_ _impl_; };
   friend struct ::TableStruct_Struct_2eproto;
 };
+// -------------------------------------------------------------------
+
+class AttackArrowInfo final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.AttackArrowInfo) */ {
+ public:
+  inline AttackArrowInfo() : AttackArrowInfo(nullptr) {}
+  ~AttackArrowInfo() override;
+  explicit PROTOBUF_CONSTEXPR AttackArrowInfo(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AttackArrowInfo(const AttackArrowInfo& from);
+  AttackArrowInfo(AttackArrowInfo&& from) noexcept
+    : AttackArrowInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline AttackArrowInfo& operator=(const AttackArrowInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AttackArrowInfo& operator=(AttackArrowInfo&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AttackArrowInfo& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AttackArrowInfo* internal_default_instance() {
+    return reinterpret_cast<const AttackArrowInfo*>(
+               &_AttackArrowInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(AttackArrowInfo& a, AttackArrowInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AttackArrowInfo* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AttackArrowInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AttackArrowInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AttackArrowInfo>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AttackArrowInfo& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const AttackArrowInfo& from) {
+    AttackArrowInfo::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AttackArrowInfo* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Protocol.AttackArrowInfo";
+  }
+  protected:
+  explicit AttackArrowInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kObjectIdFieldNumber = 1,
+    kTargetIdFieldNumber = 2,
+    kDamegeFieldNumber = 3,
+  };
+  // uint64 objectId = 1;
+  void clear_objectid();
+  uint64_t objectid() const;
+  void set_objectid(uint64_t value);
+  private:
+  uint64_t _internal_objectid() const;
+  void _internal_set_objectid(uint64_t value);
+  public:
+
+  // uint64 targetId = 2;
+  void clear_targetid();
+  uint64_t targetid() const;
+  void set_targetid(uint64_t value);
+  private:
+  uint64_t _internal_targetid() const;
+  void _internal_set_targetid(uint64_t value);
+  public:
+
+  // int32 damege = 3;
+  void clear_damege();
+  int32_t damege() const;
+  void set_damege(int32_t value);
+  private:
+  int32_t _internal_damege() const;
+  void _internal_set_damege(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Protocol.AttackArrowInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    uint64_t objectid_;
+    uint64_t targetid_;
+    int32_t damege_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_Struct_2eproto;
+};
 // ===================================================================
 
 
@@ -1096,9 +1270,75 @@ inline void AttackInfo::set_damege(int32_t value) {
   // @@protoc_insertion_point(field_set:Protocol.AttackInfo.damege)
 }
 
+// -------------------------------------------------------------------
+
+// AttackArrowInfo
+
+// uint64 objectId = 1;
+inline void AttackArrowInfo::clear_objectid() {
+  _impl_.objectid_ = uint64_t{0u};
+}
+inline uint64_t AttackArrowInfo::_internal_objectid() const {
+  return _impl_.objectid_;
+}
+inline uint64_t AttackArrowInfo::objectid() const {
+  // @@protoc_insertion_point(field_get:Protocol.AttackArrowInfo.objectId)
+  return _internal_objectid();
+}
+inline void AttackArrowInfo::_internal_set_objectid(uint64_t value) {
+  
+  _impl_.objectid_ = value;
+}
+inline void AttackArrowInfo::set_objectid(uint64_t value) {
+  _internal_set_objectid(value);
+  // @@protoc_insertion_point(field_set:Protocol.AttackArrowInfo.objectId)
+}
+
+// uint64 targetId = 2;
+inline void AttackArrowInfo::clear_targetid() {
+  _impl_.targetid_ = uint64_t{0u};
+}
+inline uint64_t AttackArrowInfo::_internal_targetid() const {
+  return _impl_.targetid_;
+}
+inline uint64_t AttackArrowInfo::targetid() const {
+  // @@protoc_insertion_point(field_get:Protocol.AttackArrowInfo.targetId)
+  return _internal_targetid();
+}
+inline void AttackArrowInfo::_internal_set_targetid(uint64_t value) {
+  
+  _impl_.targetid_ = value;
+}
+inline void AttackArrowInfo::set_targetid(uint64_t value) {
+  _internal_set_targetid(value);
+  // @@protoc_insertion_point(field_set:Protocol.AttackArrowInfo.targetId)
+}
+
+// int32 damege = 3;
+inline void AttackArrowInfo::clear_damege() {
+  _impl_.damege_ = 0;
+}
+inline int32_t AttackArrowInfo::_internal_damege() const {
+  return _impl_.damege_;
+}
+inline int32_t AttackArrowInfo::damege() const {
+  // @@protoc_insertion_point(field_get:Protocol.AttackArrowInfo.damege)
+  return _internal_damege();
+}
+inline void AttackArrowInfo::_internal_set_damege(int32_t value) {
+  
+  _impl_.damege_ = value;
+}
+inline void AttackArrowInfo::set_damege(int32_t value) {
+  _internal_set_damege(value);
+  // @@protoc_insertion_point(field_set:Protocol.AttackArrowInfo.damege)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

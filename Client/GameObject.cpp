@@ -135,3 +135,48 @@ Vec2Int GameObject::GetFrontCellPos()
 
 	return GetCellPos();
 }
+
+Vec2Int GameObject::GetLineCellPos()
+{
+	GameScene* scene = dynamic_cast<GameScene*>(GET(SceneMgr)->GetCurrentScene());
+	if (scene == nullptr)
+		return Vec2Int(-1, -1);
+
+	vector<Actor*> list = scene->_actors[LAYER_OBJECT];
+	for (Actor* actor : list)
+	{
+		Creature* creature = dynamic_cast<Creature*>(actor);
+		if (creature == nullptr)
+			continue;
+
+		string creatureName = creature->info.name();
+		int32 creatureX = creature->info.posx();
+		int32 creatureY = creature->info.posy();
+		int32 playerX = info.posx();
+		int32 playerY = info.posy();
+
+		if (creatureX == playerX && creatureY == playerY)
+			continue;
+
+		switch (info.dir())
+		{
+		case DIR_DOWN:
+			if (playerX == creatureX && playerY < creatureY)
+				return creature->GetCellPos();
+			break;
+		case DIR_UP:
+			if (playerX == creatureX && playerY > creatureY)
+				return creature->GetCellPos();
+			break;
+		case DIR_LEFT:
+			if (playerY == creatureY && playerX > creatureX)
+				return creature->GetCellPos();
+			break;
+		case DIR_RIGHT:
+			if (playerY == creatureY && playerX < creatureX)
+				return creature->GetCellPos();
+			break;
+		}
+	}
+	return Vec2Int(-1, -1);
+}

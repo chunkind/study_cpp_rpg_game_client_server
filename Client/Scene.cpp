@@ -99,6 +99,9 @@ void Scene::RemoveUI(UI* ui)
 
 Creature* Scene::GetCreatureAt(Vec2Int cellPos)
 {
+	if (cellPos.x < 0 || cellPos.y < 0)
+		return nullptr;
+
 	for (Actor* actor : _actors[LAYER_OBJECT])
 	{
 		// GameObjectType
