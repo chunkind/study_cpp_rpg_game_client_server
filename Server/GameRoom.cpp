@@ -206,6 +206,17 @@ void GameRoom::Handle_C_Attack_Arrow(Protocol::C_Attack_Arrow& pkt)
 	Broadcast(sendBuffer);
 }
 
+void GameRoom::Handle_C_ObjectWeaponChange(Protocol::A_ObjectWeaponChange& pkt)
+{
+	//Protocol::A_ObjectWeaponChange bpkt;
+
+	uint64 objectId = pkt.objectid();
+	Protocol::OBJECT_WEAPON_TYPE weaponType = pkt.state();
+
+	SendBufferRef sendBuffer = ServerPacketHandler::Make_S_ObjectWeaponChange(objectId, weaponType);
+	Broadcast(sendBuffer);
+}
+
 void GameRoom::AddObject(GameObjectRef gameObject)
 {
 	uint64 id = gameObject->info.objectid();

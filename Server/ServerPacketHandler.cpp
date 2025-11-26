@@ -97,6 +97,16 @@ void ServerPacketHandler::Handle_C_Attack_Arrow(GameSessionRef session, BYTE* bu
 
 void ServerPacketHandler::Handle_C_ObjectWeaponChange(GameSessionRef session, BYTE* buffer, int32 len)
 {
+	PacketHeader* header = (PacketHeader*)buffer;
+	uint16 id = header->id;
+	uint16 size = header->size;
+
+	Protocol::A_ObjectWeaponChange pkt;
+	pkt.ParseFromArray(&header[1], size - sizeof(PacketHeader));
+
+	GameRoomRef room = session->gameRoom.lock();
+	if (room)
+		room->Handle_C_ObjectWeaponChange(pkt);
 }
 
 
@@ -189,5 +199,9 @@ SendBufferRef ServerPacketHandler::Make_S_Attack_Arrow(const Protocol::S_Attack_
 
 SendBufferRef ServerPacketHandler::Make_S_ObjectWeaponChange(int32 objectId, Protocol::OBJECT_WEAPON_TYPE type)
 {
-	return SendBufferRef();
+	Protocol::A_ObjectWeaponChange pkt;
+	pkt.set_objectid(objectId);
+	pkt.set_state(type);
+
+	return MakeSendBuffer(pkt, S_ObjectWeaponChange);
 }

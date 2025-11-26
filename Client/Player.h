@@ -25,6 +25,7 @@ protected:
 
 	virtual void UpdateAnimation() override;
 
+public:
 	void SetWeaponType(WeaponType weaponType) { _weaponType = weaponType; }
 	WeaponType GetWeaponType() { return _weaponType; }
 

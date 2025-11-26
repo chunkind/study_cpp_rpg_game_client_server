@@ -23,7 +23,7 @@ public:
 	static SendBufferRef Make_C_Attack(GameObject* target);
 	static SendBufferRef Make_C_RemoveObject();
 	static SendBufferRef Make_C_Attack_Arrow(GameObject* target);
-	static SendBufferRef Make_C_ObjectWeaponChange(int32 objectId, Protocol::OBJECT_WEAPON_TYPE type);
+	static SendBufferRef Make_C_ObjectWeaponChange(uint64 objectId, Protocol::OBJECT_WEAPON_TYPE type);
 
 	template<typename T>
 	static SendBufferRef MakeSendBuffer(T& pkt, uint16 pktId)

@@ -9,6 +9,7 @@
 #include "HitEffect.h"
 #include "Scene.h"
 #include "Arrow.h"
+#include "Player.h"
 
 /******* Server -> Client *******/
 
@@ -231,7 +232,22 @@ void ClientPacketHandler::Handle_S_Attack_Arrow(ServerSessionRef session, BYTE* 
 
 void ClientPacketHandler::Handle_S_ObjectWeaponChange(ServerSessionRef session, BYTE* buffer, int32 len)
 {
-	
+	PacketHeader* header = (PacketHeader*)buffer;
+	uint16 id = header->id;
+	uint16 size = header->size;
+
+	Protocol::A_ObjectWeaponChange pkt;
+	pkt.ParseFromArray(&header[1], size - sizeof(PacketHeader));
+
+	uint64 objectId = pkt.objectid();
+	WeaponType weaponType = pkt.state();
+
+	GameScene* scene = (GameScene*)GET(SceneMgr)->GetCurrentScene();
+	Player* gameObject = (Player*)scene->GetObject(objectId);
+	if (gameObject)
+	{
+		gameObject->SetWeaponType(weaponType);
+	}
 }
 
 
@@ -292,11 +308,12 @@ SendBufferRef ClientPacketHandler::Make_C_Attack_Arrow(GameObject* target)
 	return MakeSendBuffer(pkt, C_Attack_Arrow);
 }
 
-SendBufferRef ClientPacketHandler::Make_C_ObjectWeaponChange(int32 objectId, Protocol::OBJECT_WEAPON_TYPE type)
+SendBufferRef ClientPacketHandler::Make_C_ObjectWeaponChange(uint64 objectId, Protocol::OBJECT_WEAPON_TYPE type)
 {
 	Protocol::A_ObjectWeaponChange pkt;
 
+	pkt.set_objectid(objectId);
+	pkt.set_state(type);
 
-
-	return SendBufferRef();
+	return MakeSendBuffer(pkt, C_ObjectWeaponChange);
 }
