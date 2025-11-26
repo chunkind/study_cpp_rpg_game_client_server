@@ -190,6 +190,7 @@ void ClientPacketHandler::Handle_S_Attack(ServerSessionRef session, BYTE* buffer
 		if (myPlayerId == info.objectid())
 			return;
 
+		//GameObject* myPlayer = scene->GetObject(myPlayerId);
 		GameObject* gameObject = scene->GetObject(info.objectid());
 		if (gameObject)
 		{
@@ -197,6 +198,8 @@ void ClientPacketHandler::Handle_S_Attack(ServerSessionRef session, BYTE* buffer
 			gameObject->SetState(info.state());
 			gameObject->SetCellPos(Vec2Int{ info.posx(), info.posy() });
 			gameObject->info = info;
+
+			//myPlayer->SetState(SKILL);
 		}
 	}
 }

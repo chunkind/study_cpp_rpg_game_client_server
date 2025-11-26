@@ -75,33 +75,34 @@ void MyPlayer::TickInput()
 	else if (GET(InputMgr)->GetButtonDown(KeyType::KEY_2))
 	{
 		SetWeaponType(WeaponType::OBJECT_WEAPON_TYPE_BOW);
+		GET(NetMgr)->RegisterPacket(ClientPacketHandler::Make_C_ObjectWeaponChange(info.objectid(), WeaponType::OBJECT_WEAPON_TYPE_BOW));
 	}
 
 	if (GET(InputMgr)->GetButton(KeyType::SpaceBar))
 	{
-		SetState(SKILL);
-
 		GameScene* scene = dynamic_cast<GameScene*>(GET(SceneMgr)->GetCurrentScene());
 		if (scene == nullptr)
 			return;
 
 		if (_weaponType == WeaponType::OBJECT_WEAPON_TYPE_SWORD)
 		{
-
 			Creature* creature = scene->GetCreatureAt(GetFrontCellPos());
+			SetState(SKILL);
+
 			if (creature)
 			{
 				Vec2Int frontPos = GetFrontCellPos();
 				GameObject* target = scene->GetGameObjectAt(frontPos);
 				if (target != nullptr)
+				{
 					GET(NetMgr)->RegisterPacket(ClientPacketHandler::Make_C_Attack(target));
+				}
 			}
-
-			
 		}
 		else if (_weaponType == WeaponType::OBJECT_WEAPON_TYPE_BOW)
 		{
 			Creature* target = scene->GetCreatureAt(GetLineCellPos());
+			SetState(SKILL);
 			GET(NetMgr)->RegisterPacket(ClientPacketHandler::Make_C_Attack_Arrow(target));
 		}
 		

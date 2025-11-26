@@ -132,7 +132,7 @@ void Player::UpdateAnimation()
 		SetFlipbook(_flipbookMove[info.dir()]);
 		break;
 	case SKILL:
-		if (_weaponType == WeaponType::OBJECT_WEAPON_TYPE_STAFF)
+		if (_weaponType == WeaponType::OBJECT_WEAPON_TYPE_SWORD)
 			SetFlipbook(_flipbookAttack[info.dir()]);
 		else if (_weaponType == WeaponType::OBJECT_WEAPON_TYPE_BOW)
 			SetFlipbook(_flipbookBow[info.dir()]);
