@@ -12,7 +12,7 @@ public:
 
 	virtual void BeginPlay() override;
 	virtual void Tick() override;
-	virtual void Render(HDC hdc) override;
+	virtual void Render(HDC hdc);
 
 	void SetFlipbook(Flipbook* flipbook);
 	void Reset();

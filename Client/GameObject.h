@@ -11,11 +11,12 @@ public:
 
 	virtual void BeginPlay() override;
 	virtual void Tick() override;
-	virtual void Render(HDC hdc) override;
+	virtual void Render(HDC hdc);
 
 	virtual void TickIdle() {}
 	virtual void TickMove() {}
 	virtual void TickSkill() {}
+	virtual void TickDead() {}
 
 	void SetState(ObjectState state);
 	void SetDir(Dir dir);

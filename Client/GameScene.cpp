@@ -21,6 +21,7 @@
 #include "SceneMgr.h"
 #include "RectBar.h"
 #include "Core.h"
+#include "Tree.h"
 
 GameScene::GameScene()
 {
@@ -49,6 +50,8 @@ void GameScene::Init()
 	GET(ResMgr)->LoadTexture(L"Exit", L"Sprite\\UI\\Exit.bmp");
 
 	GET(ResMgr)->LoadTexture(L"RectBar", L"Sprite\\UI\\hp_mp_bar.bmp");
+	// 지형지물
+	GET(ResMgr)->LoadTexture(L"Tree", L"Sprite\\Map\\tree.bmp", RGB(255, 0, 255));
 
 	GET(ResMgr)->CreateSprite(L"Stage01", GET(ResMgr)->GetTexture(L"Stage01"));
 	GET(ResMgr)->CreateSprite(L"TileO", GET(ResMgr)->GetTexture(L"Tile"), 0, 0, 32, 32);
@@ -61,6 +64,23 @@ void GameScene::Init()
 	GET(ResMgr)->CreateSprite(L"Exit_On", GET(ResMgr)->GetTexture(L"Exit"), 150, 0, 150, 150);
 	GET(ResMgr)->CreateSprite(L"HpBar", GET(ResMgr)->GetTexture(L"RectBar"), 0, 0, 32 * 4, 32);
 	GET(ResMgr)->CreateSprite(L"MpBar", GET(ResMgr)->GetTexture(L"RectBar"), 0, 32, 32 * 4, 32);
+
+	// 지형지물
+	GET(ResMgr)->CreateSprite(L"TreeDead01", GET(ResMgr)->GetTexture(L"Tree"), 0, 0, 64, 64);
+	GET(ResMgr)->CreateSprite(L"TreeDead02", GET(ResMgr)->GetTexture(L"Tree"), 0, 64, 64, 64);
+	GET(ResMgr)->CreateSprite(L"TreeDead03", GET(ResMgr)->GetTexture(L"Tree"), 0, 64*2, 64, 64);
+	GET(ResMgr)->CreateSprite(L"TreeDead04", GET(ResMgr)->GetTexture(L"Tree"), 0, 64*3, 64, 64);
+	{
+		Texture* texture = GET(ResMgr)->GetTexture(L"Tree");
+		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_TreeDead");
+		fb->SetInfo({ texture, L"FB_TreeDead", {32*2, 32*2}, 0, 4, 0, 1.0f });
+	}
+	{
+		Texture* texture = GET(ResMgr)->GetTexture(L"Tree");
+		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_TreeIdle");
+		fb->SetInfo({ texture, L"FB_TreeIdle", {32*2, 32*2}, 1, 4, 0, 1.0f });
+	}
+	
 
 	LoadMap();
 	LoadPlayer();
@@ -76,6 +96,21 @@ void GameScene::Init()
 	//SpawnObjectAtRandomPos<MyPlayer>();
 	//SpawnObjectAtRandomPos<Monster>();
 	//SpawnObject<Monster>(Vec2Int{7, 7});
+
+	//Test
+	//SpawnObject<Tree>(Vec2Int{ 32*7,32*8 });
+
+	Sprite* sprite = GET(ResMgr)->GetSprite(L"TreeDead01");
+
+	SpriteActor* tree = new SpriteActor();
+	tree->SetSprite(sprite);
+	tree->SetLayer(LAYER_OBJECT);
+	const Vec2Int size = sprite->GetSize();
+	tree->SetPos(Vec2(64 * 7, 64 * 8));
+
+	AddActor(tree);
+
+
 
 	Super::Init();
 }
@@ -135,22 +170,22 @@ void GameScene::LoadPlayer()
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_IdleUp");
-		fb->SetInfo({ texture, L"FB_MoveUp", {32*2, 32*2}, 0, 4, 0, 0.5f });
+		fb->SetInfo({ texture, L"FB_IdleUp", {32*2, 32*2}, 0, 4, 0, 0.5f });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_IdleDown");
-		fb->SetInfo({ texture, L"FB_MoveDown", {32*2, 32*2}, 0, 4, 1, 0.5f });
+		fb->SetInfo({ texture, L"FB_IdleDown", {32*2, 32*2}, 0, 4, 1, 0.5f });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_IdleLeft");
-		fb->SetInfo({ texture, L"FB_MoveLeft", {32*2, 32*2}, 0, 4, 2, 0.5f });
+		fb->SetInfo({ texture, L"FB_IdleLeft", {32*2, 32*2}, 0, 4, 2, 0.5f });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_IdleRight");
-		fb->SetInfo({ texture, L"FB_MoveRight", {32*2, 32*2}, 0, 4, 3, 0.5f });
+		fb->SetInfo({ texture, L"FB_IdleRight", {32*2, 32*2}, 0, 4, 3, 0.5f });
 	}
 	// MOVE
 	{
@@ -177,22 +212,22 @@ void GameScene::LoadPlayer()
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_AttackUp");
-		fb->SetInfo({ texture, L"FB_MoveUp", {32*2, 32 * 2}, 0, 4, 8, 0.5f, false });
+		fb->SetInfo({ texture, L"FB_AttackUp", {32*2, 32 * 2}, 0, 4, 8, 0.5f, false });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_AttackDown");
-		fb->SetInfo({ texture, L"FB_MoveDown", {32 * 2, 32 * 2}, 0, 4, 9, 0.5f, false });
+		fb->SetInfo({ texture, L"FB_AttackDown", {32 * 2, 32 * 2}, 0, 4, 9, 0.5f, false });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_AttackLeft");
-		fb->SetInfo({ texture, L"FB_MoveLeft", {32 * 2, 32 * 2}, 0, 4, 10, 0.5f, false });
+		fb->SetInfo({ texture, L"FB_AttackLeft", {32 * 2, 32 * 2}, 0, 4, 10, 0.5f, false });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_AttackRight");
-		fb->SetInfo({ texture, L"FB_MoveRight", {32 * 2, 32 * 2}, 0, 4, 11, 0.5f, false });
+		fb->SetInfo({ texture, L"FB_AttackRight", {32 * 2, 32 * 2}, 0, 4, 11, 0.5f, false });
 	}
 	// BOW
 	{
@@ -291,7 +326,7 @@ void GameScene::LoadTilemap()
 		GET(ResMgr)->LoadTilemap(L"Tilemap_01", L"Tilemap\\Tilemap_01.txt");
 
 		_tilemapActor->SetTilemap(tm);
-		_tilemapActor->SetShowDebug(true);
+		_tilemapActor->SetShowDebug(false);
 	}
 }
 

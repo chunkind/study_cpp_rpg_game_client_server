@@ -26,11 +26,12 @@ public:
 
 	virtual void BeginPlay() override;
 	virtual void Tick() override;
-	virtual void Render(HDC hdc) override;
+	virtual void Render(HDC hdc);
 
 	virtual void TickIdle() override {}
 	virtual void TickMove() override {}
 	virtual void TickSkill() override {}
+	virtual void TickDead() override {}
 	virtual void UpdateAnimation() override {}
 
 	virtual void OnDamaged(Creature* attacker);

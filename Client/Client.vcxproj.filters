@@ -69,6 +69,9 @@
     <Filter Include="소스 파일\Protocol">
       <UniqueIdentifier>{8192dbd9-296f-4059-8d34-17efadc0a98a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\03. Objects\Env">
+      <UniqueIdentifier>{a0e7da6a-eed8-47e8-b897-1fb7e5e6abb7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -236,6 +239,9 @@
     <ClInclude Include="MapEditScene.h">
       <Filter>소스 파일\02. Scene\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>소스 파일\03. Objects\Env</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -381,6 +387,9 @@
     </ClCompile>
     <ClCompile Include="MapEditScene.cpp">
       <Filter>소스 파일\02. Scene\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>소스 파일\03. Objects\Env</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

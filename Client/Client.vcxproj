@@ -196,6 +196,7 @@
     <ClInclude Include="Tilemap.h" />
     <ClInclude Include="TilemapActor.h" />
     <ClInclude Include="TimeMgr.h" />
+    <ClInclude Include="Tree.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Utils.h" />
@@ -262,6 +263,7 @@
     <ClCompile Include="Tilemap.cpp" />
     <ClCompile Include="TilemapActor.cpp" />
     <ClCompile Include="TimeMgr.cpp" />
+    <ClCompile Include="Tree.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
