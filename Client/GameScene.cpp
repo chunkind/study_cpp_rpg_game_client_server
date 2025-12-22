@@ -170,85 +170,85 @@ void GameScene::LoadPlayer()
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_IdleUp");
-		fb->SetInfo({ texture, L"FB_IdleUp", {32*2, 32*2}, 0, 4, 0, 0.5f });
+		fb->SetInfo({ texture, L"FB_IdleUp", {32*2, 32*2}, 0, 6, 0, 0.5f });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_IdleDown");
-		fb->SetInfo({ texture, L"FB_IdleDown", {32*2, 32*2}, 0, 4, 1, 0.5f });
+		fb->SetInfo({ texture, L"FB_IdleDown", {32*2, 32*2}, 0, 6, 1, 0.5f });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_IdleLeft");
-		fb->SetInfo({ texture, L"FB_IdleLeft", {32*2, 32*2}, 0, 4, 2, 0.5f });
+		fb->SetInfo({ texture, L"FB_IdleLeft", {32*2, 32*2}, 0, 6, 2, 0.5f });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_IdleRight");
-		fb->SetInfo({ texture, L"FB_IdleRight", {32*2, 32*2}, 0, 4, 3, 0.5f });
+		fb->SetInfo({ texture, L"FB_IdleRight", {32*2, 32*2}, 0, 6, 3, 0.5f });
 	}
 	// MOVE
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_MoveUp");
-		fb->SetInfo({ texture, L"FB_MoveUp", {32*2, 32 * 2}, 0, 4, 4, 0.5f });
+		fb->SetInfo({ texture, L"FB_MoveUp", {32*2, 32 * 2}, 0, 6, 4, 0.5f });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_MoveDown");
-		fb->SetInfo({ texture, L"FB_MoveDown", {32 * 2, 32 * 2}, 0, 4, 5, 0.5f });
+		fb->SetInfo({ texture, L"FB_MoveDown", {32 * 2, 32 * 2}, 0, 6, 5, 0.5f });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_MoveLeft");
-		fb->SetInfo({ texture, L"FB_MoveLeft", {32 * 2, 32 * 2}, 0, 4, 6, 0.5f });
+		fb->SetInfo({ texture, L"FB_MoveLeft", {32 * 2, 32 * 2}, 0, 6, 6, 0.5f });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_MoveRight");
-		fb->SetInfo({ texture, L"FB_MoveRight", {32 * 2, 32 * 2}, 0, 4, 7, 0.5f });
+		fb->SetInfo({ texture, L"FB_MoveRight", {32 * 2, 32 * 2}, 0, 6, 7, 0.5f });
 	}
 	// SKILL
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_AttackUp");
-		fb->SetInfo({ texture, L"FB_AttackUp", {32*2, 32 * 2}, 0, 4, 8, 0.5f, false });
+		fb->SetInfo({ texture, L"FB_AttackUp", {32*2, 32 * 2}, 0, 6, 8, 0.5f, false });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_AttackDown");
-		fb->SetInfo({ texture, L"FB_AttackDown", {32 * 2, 32 * 2}, 0, 4, 9, 0.5f, false });
+		fb->SetInfo({ texture, L"FB_AttackDown", {32 * 2, 32 * 2}, 0, 6, 9, 0.5f, false });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_AttackLeft");
-		fb->SetInfo({ texture, L"FB_AttackLeft", {32 * 2, 32 * 2}, 0, 4, 10, 0.5f, false });
+		fb->SetInfo({ texture, L"FB_AttackLeft", {32 * 2, 32 * 2}, 0, 6, 10, 0.5f, false });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_AttackRight");
-		fb->SetInfo({ texture, L"FB_AttackRight", {32 * 2, 32 * 2}, 0, 4, 11, 0.5f, false });
+		fb->SetInfo({ texture, L"FB_AttackRight", {32 * 2, 32 * 2}, 0, 6, 11, 0.5f, false });
 	}
 	// BOW
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_BowUp");
-		fb->SetInfo({ texture, L"FB_BowUp", {32 * 2, 32 * 2}, 0, 4, 12, 0.5f, false });
+		fb->SetInfo({ texture, L"FB_BowUp", {32 * 2, 32 * 2}, 0, 6, 12, 0.5f, false });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_BowDown");
-		fb->SetInfo({ texture, L"FB_BowDown", {32 * 2, 32 * 2}, 0, 4, 13, 0.5f, false });
+		fb->SetInfo({ texture, L"FB_BowDown", {32 * 2, 32 * 2}, 0, 6, 13, 0.5f, false });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_BowLeft");
-		fb->SetInfo({ texture, L"FB_BowLeft", {32 * 2, 32 * 2}, 0, 4, 14, 0.5f, false });
+		fb->SetInfo({ texture, L"FB_BowLeft", {32 * 2, 32 * 2}, 0, 6, 14, 0.5f, false });
 	}
 	{
 		Texture* texture = GET(ResMgr)->GetTexture(L"Player");
 		Flipbook* fb = GET(ResMgr)->CreateFlipbook(L"FB_BowRight");
-		fb->SetInfo({ texture, L"FB_BowRight", {32 * 2, 32 * 2}, 0, 4, 15, 0.5f, false });
+		fb->SetInfo({ texture, L"FB_BowRight", {32 * 2, 32 * 2}, 0, 6, 15, 0.5f, false });
 	}
 
 }
