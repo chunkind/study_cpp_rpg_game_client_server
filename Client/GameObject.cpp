@@ -31,8 +31,6 @@ void GameObject::Tick()
 {
 	_dirtyFlag = false;
 
-	Super::Tick();
-
 	switch (info.state())
 	{
 	case IDLE:
@@ -45,6 +43,8 @@ void GameObject::Tick()
 		TickSkill();
 		break;
 	}
+
+	Super::Tick();
 }
 
 void GameObject::Render(HDC hdc)
