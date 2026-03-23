@@ -14,7 +14,7 @@ Core::Core()
 
 Core::~Core()
 {
-	// ªÁΩ« ∏∂¡ˆ∏∑ø° ..
+	// ÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ..
 	//GET(SceneMgr)->Clear();
 	//GET(ResMgr)->Clear();
 
@@ -28,9 +28,9 @@ void Core::Init(HWND hwnd)
 
 	::GetClientRect(hwnd, &_rect);
 
-	hdcBack = ::CreateCompatibleDC(hdc); // hdcøÕ »£»Øµ«¥¬ DC∏¶ ª˝º∫
-	_bmpBack = ::CreateCompatibleBitmap(hdc, _rect.right, _rect.bottom); // hdcøÕ »£»Øµ«¥¬ ∫Ò∆Æ∏  ª˝º∫
-	HBITMAP prev = (HBITMAP)::SelectObject(hdcBack, _bmpBack); // DCøÕ BMP∏¶ ø¨∞·
+	hdcBack = ::CreateCompatibleDC(hdc); // hdcÔøΩÔøΩ »£»ØÔøΩ«¥ÔøΩ DCÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ
+	_bmpBack = ::CreateCompatibleBitmap(hdc, _rect.right, _rect.bottom); // hdcÔøΩÔøΩ »£»ØÔøΩ«¥ÔøΩ ÔøΩÔøΩ∆ÆÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ
+	HBITMAP prev = (HBITMAP)::SelectObject(hdcBack, _bmpBack); // DCÔøΩÔøΩ BMPÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ
 	::DeleteObject(prev);
 
 	GET(TimeMgr)->Init();
@@ -71,6 +71,10 @@ void Core::Render()
 	}
 
 	// Double Buffering
-	::BitBlt(hdc, 0, 0, _rect.right, _rect.bottom, hdcBack, 0, 0, SRCCOPY); // ∫Ò∆Æ ∫Ì∏¥ : ∞Ìº” ∫πªÁ
+	RECT clientRect;
+	::GetClientRect(_hwnd, &clientRect);
+	::SetStretchBltMode(hdc, HALFTONE);
+	::StretchBlt(hdc, 0, 0, clientRect.right, clientRect.bottom,
+		hdcBack, 0, 0, _rect.right, _rect.bottom, SRCCOPY);
 	::PatBlt(hdcBack, 0, 0, _rect.right, _rect.bottom, WHITENESS);
 }
