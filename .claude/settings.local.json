@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /c/git/study_cpp_rpg_game_client_server log --oneline -20)"
+    ]
+  }
+}
