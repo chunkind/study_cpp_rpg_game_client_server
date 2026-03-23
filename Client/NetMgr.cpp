@@ -21,6 +21,7 @@ void NetMgr::Init()
 
 	_service = make_shared<ClientService>(
 		NetAddress(L"127.0.0.1", 8989),
+		//NetAddress(L"211.58.26.46", 8989),
 		make_shared<IocpCore>(),
 		[=]() { return CreateSession(); },
 		1);

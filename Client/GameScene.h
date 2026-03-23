@@ -42,6 +42,8 @@ public:
 
 	void LoadUI();
 
+	void RenderDebugger(HDC hdc);
+
 	template<typename T>
 	T* SpawnObject(Vec2Int pos)
 	{
@@ -79,6 +81,7 @@ public:
 	Vec2 ConvertPos(Vec2Int cellPos);
 	Vec2Int GetRandomEmptyCellPos();
 	GameObject* GetGameObjectAt(Vec2Int cellPos);
+	void ToggleDebugger();
 
 private:
 	void TickMonsterSpawn();
@@ -86,5 +89,6 @@ private:
 	const int32 DESIRED_COUNT = 1;
 	class TilemapActor* _tilemapActor = nullptr;
 	int32 _monsterCount = 0;
+	bool isDebugger = false;
 };
 

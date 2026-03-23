@@ -18,6 +18,8 @@ public:
 
 	static void DrawLineColored(HDC hdc, Pos from, Pos to, COLORREF color);
 
+	static void DrawRectAlpha(HDC hdc, Pos pos, int32 w, int32 h, COLORREF color, BYTE alpha);
+
 	static void ReadBmp(const wstring& path);
 };
 

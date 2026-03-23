@@ -78,6 +78,15 @@ void MyPlayer::TickInput()
 		GET(NetMgr)->RegisterPacket(ClientPacketHandler::Make_C_ObjectWeaponChange(info.objectid(), WeaponType::OBJECT_WEAPON_TYPE_BOW));
 	}
 
+	// 디버그 모드
+	if (GET(InputMgr)->GetButtonUp(KeyType::P)) {
+		GameScene* scene = dynamic_cast<GameScene*>(GET(SceneMgr)->GetCurrentScene());
+		if (scene == nullptr)
+			return;
+
+		scene->ToggleDebugger();
+	}
+
 	if (GET(InputMgr)->GetButton(KeyType::SpaceBar))
 	{
 		GameScene* scene = dynamic_cast<GameScene*>(GET(SceneMgr)->GetCurrentScene());

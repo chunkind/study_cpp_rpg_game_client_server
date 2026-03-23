@@ -50,7 +50,7 @@ void GameScene::Init()
 	GET(ResMgr)->LoadTexture(L"Exit", L"Sprite\\UI\\Exit.bmp");
 
 	GET(ResMgr)->LoadTexture(L"RectBar", L"Sprite\\UI\\hp_mp_bar.bmp");
-	// ��������
+	// 지형지물
 	GET(ResMgr)->LoadTexture(L"Tree", L"Sprite\\Map\\tree.bmp", RGB(255, 0, 255));
 
 	GET(ResMgr)->CreateSprite(L"Stage01", GET(ResMgr)->GetTexture(L"Stage01"));
@@ -65,7 +65,7 @@ void GameScene::Init()
 	GET(ResMgr)->CreateSprite(L"HpBar", GET(ResMgr)->GetTexture(L"RectBar"), 0, 0, 32 * 4, 32);
 	GET(ResMgr)->CreateSprite(L"MpBar", GET(ResMgr)->GetTexture(L"RectBar"), 0, 32, 32 * 4, 32);
 
-	// ��������
+	// 지형지물
 	GET(ResMgr)->CreateSprite(L"TreeDead01", GET(ResMgr)->GetTexture(L"Tree"), 0, 0, 64, 64);
 	GET(ResMgr)->CreateSprite(L"TreeDead02", GET(ResMgr)->GetTexture(L"Tree"), 0, 64, 64, 64);
 	GET(ResMgr)->CreateSprite(L"TreeDead03", GET(ResMgr)->GetTexture(L"Tree"), 0, 64*2, 64, 64);
@@ -110,8 +110,6 @@ void GameScene::Init()
 
 	AddActor(tree);
 
-
-
 	Super::Init();
 }
 
@@ -127,6 +125,89 @@ void GameScene::Update()
 void GameScene::Render(HDC hdc)
 {
 	Super::Render(hdc);
+
+	// debugger 랜더
+	if (isDebugger) {
+		RenderDebugger(hdc);
+	}
+}
+
+void GameScene::RenderDebugger(HDC hdc) {
+	// --- UI ---
+	int32 objCnt = 0;
+	wstring str = std::format(L"ObjectCount: {0}", objCnt);
+	::TextOut(hdc, 30, 30, str.c_str(), static_cast<int32>(str.size()));
+
+	// --- 카메라 오프셋 계산 ---
+	// cameraPos = 플레이어 위치 (화면 중심)
+	// offsetX/Y = 화면 좌상단의 월드 좌표
+	//   예) cameraPos=(500,400), 화면=800x600 -> offsetX=100, offsetY=100
+	Vec2 cameraPos = GET(SceneMgr)->GetCameraPos();
+	float offsetX = (int32)cameraPos.x - GWinSizeX / 2;
+	float offsetY = (int32)cameraPos.y - GWinSizeY / 2;
+
+	float screenWidth = GET(Core)->GetScreenWidth();
+	float screenHeight = GET(Core)->GetScreenHeight();
+
+	// startX/Y = 그리드가 화면 가장자리에서 몇 픽셀 밀려야 하는지 (나머지 연산)
+	//   예) offsetX=100, 타일크기=48 -> fmod(100,48) = 4
+	//   -> x=-4부터 시작해야 월드 타일 경계와 그리드 선이 정렬됨
+	float startX = fmod(offsetX, GPixcelWidth);
+	float startY = fmod(offsetY, GPixcelHeight);
+
+	// 폰트를 루프 밖에서 1번만 생성 (CreateFont는 비용이 큼)
+	HFONT hFont = ::CreateFont(
+		11, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE,
+		DEFAULT_CHARSET, 0, 0, 0, 0, L"Malgun Gothic"
+	);
+	HFONT oldFont = (HFONT)::SelectObject(hdc, hFont);
+	::SetBkMode(hdc, TRANSPARENT); // 텍스트 배경 투명
+
+	// --- 화면에 보이는 타일만 순회 ---
+	// -startX/-startY부터 시작해서 월드 타일과 정렬
+	// x,y = 각 타일의 화면상 좌상단 픽셀 좌표
+	for (float y = - startY; y < screenHeight; y += GPixcelHeight) {
+		for (float x = - startX; x < screenWidth; x += GPixcelWidth) {
+			// 화면 픽셀 좌표 -> 월드 타일 인덱스 변환
+			// (x + startX)로 - startX 오프셋을 되돌림 -> 
+			// 원래 화면 x + offsetX로 월드 좌표로 변환
+			// / GPixcelWidth로 타일 인덱스로 변환
+			int32 tileX = (int32)(x + startX + offsetX) / (int32)GPixcelWidth;
+			int32 tileY = (int32)(y + startY + offsetY) / (int32)GPixcelHeight;
+
+			// 해당 타일이 이동 가능한지 체크 (tile->value != 1이면 이동 가능)
+			bool canGo = CanGo(Vec2Int{ tileX, tileY });
+
+			// 이동 불가 타일 -> 빨간색 반투명 사각형 (alpha=100)
+			if (!canGo) {
+				Utils::DrawRectAlpha(hdc,
+					Pos{ x + GPixcelWidth / 2, y + GPixcelHeight / 2 },
+					(int32)GPixcelWidth, (int32)GPixcelHeight, RGB(255, 0, 0), 100);
+			}
+
+			// 이동 가능 -> 연두색 글씨, 이동 불가 -> 흰색 글씨
+			::SetTextColor(hdc, canGo ? RGB(0, 255, 0) : RGB(255, 255, 255));
+			wstring tileStr = std::format(L"({0},{1})", tileX, tileY);
+			::TextOut(hdc, (int32)x, (int32)y + 18, tileStr.c_str(), static_cast<int32>(tileStr.size()));
+		}
+	}
+
+	// 폰트 및 텍스트 설정 복원
+	::SelectObject(hdc, oldFont);
+	::DeleteObject(hFont);
+	::SetBkMode(hdc, OPAQUE);
+	::SetTextColor(hdc, RGB(0, 0, 0));
+
+	// --- 그리드 선 (화면 영역만) ---
+	// 세로선
+	for (float x = -startX; x < screenWidth; x += GPixcelWidth) {
+		Utils::DrawLineColored(hdc, { x, 0 }, { x, screenHeight }, RGB(0, 255, 0));
+	}
+
+	// 가로선
+	for (float y = -startY; y < screenHeight; y += GPixcelHeight) {
+		Utils::DrawLineColored(hdc, { 0, y }, { screenWidth, y }, RGB(0, 255, 0));
+	}
 }
 
 void GameScene::AddActor(Actor* actor)
@@ -355,6 +436,7 @@ void GameScene::LoadUI()
 
 	AddUI(hpBar);
 	AddUI(mpBar);
+
 }
 
 void GameScene::Handle_S_AddObject(Protocol::S_AddObject& pkt)
@@ -443,9 +525,9 @@ Player* GameScene::FindClosestPlayer(Vec2Int pos)
 bool GameScene::FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32 maxDepth)
 {
 	// F = G + H
-	// F = ���� ����(���� ���� ����)
-	// G = ���������� �ش� ��ǥ���� �̵��ϴµ� ��� ���
-	// H = ���������� �ش� ��ǥ���� �̵��ϴµ� ��� ���
+	// F = 최종 점수(작을 수록 좋음)
+	// G = 시작점에서 해당 좌표까지 이동하는데 드는 비용
+	// H = 목적지에서 해당 좌표까지 이동하는데 드는 비용
 	int32 depth = abs(src.y - dest.y) + abs(src.x - dest.x);
 	if (depth >= maxDepth)
 		return false;
@@ -454,7 +536,7 @@ bool GameScene::FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32
 	map<Vec2Int, int32> best;
 	map<Vec2Int, Vec2Int> parent;
 
-	// �ʱⰪ
+	// 초기값
 	{
 		int32 cost = abs(dest.y - src.y) + abs(dest.x - src.x);
 
@@ -463,34 +545,26 @@ bool GameScene::FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32
 		parent[src] = src;
 	}
 
-	Vec2Int front[4] =
-	{
-		{0, -1},
-		{0, 1},
-		{-1, 0},
-		{1, 0},
-	};
-
 	bool found = false;
 
 	while (pq.empty() == false)
 	{
-		// ���� ���� �ĺ��� ã�´�
+		// 제일 좋은 후보를 찾는다
 		PQNode node = pq.top();
 		pq.pop();
 
-		// �� ª�� ��θ� �ڴʰ� ã�Ҵٸ� ��ŵ
+		// 더 짧은 경로를 뒤늦게 찾았다면 스킵
 		if (best[node.pos] < node.cost)
 			continue;
 
-		// �������� ���������� �ٷ� ����
+		// 목적지에 도착했으면 바로 종료
 		if (node.pos == dest)
 		{
 			found = true;
 			break;
 		}
 
-		// �湮
+		// 방문
 		for (int32 dir = 0; dir < 4; dir++)
 		{
 			Vec2Int nextPos = node.pos + front[dir];
@@ -506,12 +580,12 @@ bool GameScene::FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32
 			int32 bestValue = best[nextPos];
 			if (bestValue != 0)
 			{
-				// �ٸ� ��ο��� �� ���� ���� ã������ ��ŵ
+				// 다른 경로에서 더 빠른 길을 찾았으면 스킵
 				if (bestValue <= cost)
 					continue;
 			}
 
-			// ���� ����
+			// 예약 진행
 			best[nextPos] = cost;
 			pq.push(PQNode(cost, nextPos));
 			parent[nextPos] = node.pos;
@@ -527,7 +601,7 @@ bool GameScene::FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32
 			Vec2Int pos = item.first;
 			int32 score = item.second;
 
-			// �����̶��, ���� ��ġ���� ���� �� �̵��ϴ� ������
+			// 동점이라면, 최초 위치에서 가장 덜 이동하는 쪽으로
 			if (bestScore == score)
 			{
 				int32 dist1 = abs(dest.x - src.x) + abs(dest.y - src.y);
@@ -550,7 +624,7 @@ bool GameScene::FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32
 	{
 		path.push_back(pos);
 
-		// ������
+		// 시작점
 		if (pos == parent[pos])
 			break;
 
@@ -574,7 +648,7 @@ bool GameScene::CanGo(Vec2Int cellPos)
 	if (tile == nullptr)
 		return false;
 
-	// ���� �浹?
+	// 몬스터 충돌?
 	if (GetCreatureAt(cellPos) != nullptr)
 		return false;
 
@@ -614,7 +688,7 @@ Vec2Int GameScene::GetRandomEmptyCellPos()
 
 	Vec2Int size = tm->GetMapSize();
 
-	// �� �� �õ�?
+	// 몇 번 시도?
 	while (true)
 	{
 		int32 x = rand() % size.x;
@@ -636,6 +710,16 @@ GameObject* GameScene::GetGameObjectAt(Vec2Int cellPos)
 	}
 
 	return nullptr;
+}
+
+void GameScene::ToggleDebugger()
+{
+	if (this->isDebugger) {
+		this->isDebugger = false;
+	}
+	else {
+		this->isDebugger = true;
+	}
 }
 
 void GameScene::TickMonsterSpawn()

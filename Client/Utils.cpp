@@ -68,6 +68,32 @@ void Utils::DrawLineColored(HDC hdc, Pos from, Pos to, COLORREF color)
 	::DeleteObject(pen);
 }
 
+void Utils::DrawRectAlpha(HDC hdc, Pos pos, int32 w, int32 h, COLORREF color, BYTE alpha)
+{
+	HDC memDC = ::CreateCompatibleDC(hdc);
+	HBITMAP bmp = ::CreateCompatibleBitmap(hdc, w, h);
+	HBITMAP oldBmp = (HBITMAP)::SelectObject(memDC, bmp);
+
+	HBRUSH brush = ::CreateSolidBrush(color);
+	RECT rc = { 0, 0, w, h };
+	::FillRect(memDC, &rc, brush);
+	::DeleteObject(brush);
+
+	BLENDFUNCTION bf = {};
+	bf.BlendOp = AC_SRC_OVER;
+	bf.SourceConstantAlpha = alpha;
+
+	::AlphaBlend(hdc,
+		static_cast<int32>(pos.x - w / 2),
+		static_cast<int32>(pos.y - h / 2),
+		w, h,
+		memDC, 0, 0, w, h, bf);
+
+	::SelectObject(memDC, oldBmp);
+	::DeleteObject(bmp);
+	::DeleteDC(memDC);
+}
+
 void Utils::ReadBmp(const wstring& path)
 {
 	FILE* fp = nullptr;
