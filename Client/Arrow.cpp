@@ -76,13 +76,11 @@ void Arrow::TickIdle()
 	}
 	else
 	{
+		// 벽 충돌: 크리처가 있으면 공격 후 제거, 없으면 바로 제거
 		Creature* creature = scene->GetCreatureAt(nextPos);
-		if (creature == nullptr || creature->info.objecttype() == Protocol::OBJECT_TYPE_PLAYER)
-			return;
-		if (creature)
+		if (creature && creature->info.objecttype() != Protocol::OBJECT_TYPE_PLAYER)
 		{
 			scene->SpawnObject<HitEffect>(nextPos);
-			//creature->OnDamaged(this);
 			GET(NetMgr)->RegisterPacket(ClientPacketHandler::Make_C_Attack(creature));
 		}
 
