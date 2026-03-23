@@ -14,7 +14,7 @@ Core::Core()
 
 Core::~Core()
 {
-	// ��� �������� ..
+	// 메모리 누수 체크
 	//GET(SceneMgr)->Clear();
 	//GET(ResMgr)->Clear();
 
@@ -28,9 +28,9 @@ void Core::Init(HWND hwnd)
 
 	::GetClientRect(hwnd, &_rect);
 
-	hdcBack = ::CreateCompatibleDC(hdc); // hdc�� ȣȯ�Ǵ� DC�� ����
-	_bmpBack = ::CreateCompatibleBitmap(hdc, _rect.right, _rect.bottom); // hdc�� ȣȯ�Ǵ� ��Ʈ�� ����
-	HBITMAP prev = (HBITMAP)::SelectObject(hdcBack, _bmpBack); // DC�� BMP�� ����
+	hdcBack = ::CreateCompatibleDC(hdc); // hdc와 호환되는 DC를 생성
+	_bmpBack = ::CreateCompatibleBitmap(hdc, _rect.right, _rect.bottom); // hdc와 호환되는 비트맵 생성
+	HBITMAP prev = (HBITMAP)::SelectObject(hdcBack, _bmpBack); // DC에 BMP를 연결
 	::DeleteObject(prev);
 
 	GET(TimeMgr)->Init();
@@ -70,11 +70,11 @@ void Core::Render()
 		::TextOut(hdcBack, 550, 10, str.c_str(), static_cast<int32>(str.size()));
 	}
 
-	// Double Buffering
+	// 더블 버퍼링: 백버퍼(800x600)를 실제 윈도우 크기에 맞춰 확대/축소하여 표시
 	RECT clientRect;
-	::GetClientRect(_hwnd, &clientRect);
-	::SetStretchBltMode(hdc, HALFTONE);
+	::GetClientRect(_hwnd, &clientRect); // 현재 윈도우 클라이언트 영역 크기
+	::SetStretchBltMode(hdc, HALFTONE); // 확대 시 화질 보정 (픽셀 깨짐 방지)
 	::StretchBlt(hdc, 0, 0, clientRect.right, clientRect.bottom,
 		hdcBack, 0, 0, _rect.right, _rect.bottom, SRCCOPY);
-	::PatBlt(hdcBack, 0, 0, _rect.right, _rect.bottom, WHITENESS);
+	::PatBlt(hdcBack, 0, 0, _rect.right, _rect.bottom, WHITENESS); // 백버퍼 초기화 (흰색)
 }
