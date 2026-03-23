@@ -6,6 +6,10 @@
 HINSTANCE hInst;
 HWND g_hWnd;
 
+// 최대 윈도우 크기 (4:3 비율)
+const int32 MAX_WIN_WIDTH = 1600;
+const int32 MAX_WIN_HEIGHT = 1200;
+
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -132,6 +136,49 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         ::EndPaint(hWnd, &ps);
     }
     break;
+    case WM_SIZING:
+    {
+        // 창 크기 조절 시 4:3 비율 유지 + 최대 크기 제한
+        RECT* r = (RECT*)lParam;
+        int32 w = r->right - r->left;
+        int32 h = r->bottom - r->top;
+
+        switch (wParam)
+        {
+        // 가로 또는 대각선 방향 드래그 -> 가로 기준으로 세로 맞춤
+        case WMSZ_LEFT: case WMSZ_RIGHT:
+        case WMSZ_TOPLEFT: case WMSZ_BOTTOMLEFT:
+        case WMSZ_TOPRIGHT: case WMSZ_BOTTOMRIGHT:
+            if (w > MAX_WIN_WIDTH) w = MAX_WIN_WIDTH;
+            h = w * 3 / 4;
+            r->right = r->left + w;
+            r->bottom = r->top + h;
+            break;
+        // 세로 방향 드래그 -> 세로 기준으로 가로 맞춤
+        case WMSZ_TOP: case WMSZ_BOTTOM:
+            if (h > MAX_WIN_HEIGHT) h = MAX_WIN_HEIGHT;
+            w = h * 4 / 3;
+            r->right = r->left + w;
+            r->bottom = r->top + h;
+            break;
+        }
+        return TRUE;
+    }
+    case WM_GETMINMAXINFO:
+    {
+        // 최대화 버튼 클릭 시 최대 크기 제한 + 화면 가운데 정렬
+        MINMAXINFO* mmi = (MINMAXINFO*)lParam;
+        int32 screenW = ::GetSystemMetrics(SM_CXSCREEN);
+        int32 screenH = ::GetSystemMetrics(SM_CYSCREEN);
+
+        // 최대화 시 창 크기
+        mmi->ptMaxSize.x = MAX_WIN_WIDTH;
+        mmi->ptMaxSize.y = MAX_WIN_HEIGHT;
+        // 최대화 시 창 위치 (모니터 가운데)
+        mmi->ptMaxPosition.x = (screenW - MAX_WIN_WIDTH) / 2;
+        mmi->ptMaxPosition.y = (screenH - MAX_WIN_HEIGHT) / 2;
+        return 0;
+    }
     case WM_DESTROY:
         ::PostQuitMessage(0);
         break;
