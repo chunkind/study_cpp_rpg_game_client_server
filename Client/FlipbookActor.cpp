@@ -57,7 +57,7 @@ void FlipbookActor::Render(HDC hdc)
 
 	::TransparentBlt(hdc,
 		(int32)_pos.x - info.size.x / 2 - ((int32)cameraPos.x - GWinSizeX / 2),
-		(int32)_pos.y - info.size.y + (TILE_SIZE::TILE_SIZEX/2)  - ((int32)cameraPos.y - GWinSizeY / 2),
+		(int32)_pos.y - info.size.y + GPixcelHeight / 2 - ((int32)cameraPos.y - GWinSizeY / 2),
 		info.size.x,
 		info.size.y,
 		info.texture->GetDC(),
