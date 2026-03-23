@@ -66,12 +66,6 @@ void FlipbookActor::Render(HDC hdc)
 		info.size.x,
 		info.size.y,
 		info.texture->GetTransparent());
-	/*::Rectangle(hdc,
-		(int32)_pos.x - info.size.x/2,
-		(int32)_pos.y - info.size.y,
-		(int32)_pos.x + info.size.x/2,
-		(int32)_pos.y
-	);*/
 }
 
 void FlipbookActor::SetFlipbook(Flipbook* flipbook)
