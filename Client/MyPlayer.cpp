@@ -87,7 +87,7 @@ void MyPlayer::TickInput()
 		scene->ToggleDebugger();
 	}
 
-	if (GET(InputMgr)->GetButton(KeyType::SpaceBar))
+	if (GET(InputMgr)->GetButtonDown(KeyType::SpaceBar))
 	{
 		GameScene* scene = dynamic_cast<GameScene*>(GET(SceneMgr)->GetCurrentScene());
 		if (scene == nullptr)
@@ -123,7 +123,7 @@ void MyPlayer::TryMove()
 	if (_keyPressed == false)
 		return;
 
-	Vec2Int deltaXY[4] = { {0, -1}, {0, 1}, {-1, 0}, {1, 0} };
+	Vec2Int deltaXY[4] = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
 
 	if (info.dir() == DIR_UP)
 	{
