@@ -150,7 +150,7 @@ void GameScene::RenderDebugger(HDC hdc) {
 	float screenHeight = GET(Core)->GetScreenHeight();
 
 	// startX/Y = 그리드가 화면 가장자리에서 몇 픽셀 밀려야 하는지 (나머지 연산)
-	//   예) offsetX=100, 타일크기=48 -> fmod(100,48) = 4
+	//   예) offsetX=100, 타일크기=32 -> fmod(100,32) = 4 (3.125)
 	//   -> x=-4부터 시작해야 월드 타일 경계와 그리드 선이 정렬됨
 	float startX = fmod(offsetX, GPixcelWidth);
 	float startY = fmod(offsetY, GPixcelHeight);
@@ -164,7 +164,7 @@ void GameScene::RenderDebugger(HDC hdc) {
 	::SetBkMode(hdc, TRANSPARENT); // 텍스트 배경 투명
 
 	// --- 화면에 보이는 타일만 순회 ---
-	// -startX/-startY부터 시작해서 월드 타일과 정렬
+	// -startX / -startY부터 시작해서 월드 타일과 정렬
 	// x,y = 각 타일의 화면상 좌상단 픽셀 좌표
 	for (float y = - startY; y < screenHeight; y += GPixcelHeight) {
 		for (float x = - startX; x < screenWidth; x += GPixcelWidth) {
