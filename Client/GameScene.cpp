@@ -100,15 +100,15 @@ void GameScene::Init()
 	//Test
 	//SpawnObject<Tree>(Vec2Int{ 32*7,32*8 });
 
-	Sprite* sprite = GET(ResMgr)->GetSprite(L"TreeDead01");
+	//Sprite* sprite = GET(ResMgr)->GetSprite(L"TreeDead01");
 
-	SpriteActor* tree = new SpriteActor();
-	tree->SetSprite(sprite);
-	tree->SetLayer(LAYER_OBJECT);
-	const Vec2Int size = sprite->GetSize();
-	tree->SetPos(Vec2(64 * 7, 64 * 8));
+	//SpriteActor* tree = new SpriteActor();
+	//tree->SetSprite(sprite);
+	//tree->SetLayer(LAYER_OBJECT);
+	//const Vec2Int size = sprite->GetSize();
+	//tree->SetPos(Vec2(64 * 7, 64 * 8));
 
-	AddActor(tree);
+	//AddActor(tree);
 
 	Super::Init();
 }
